@@ -1640,7 +1640,7 @@ export class HomePage {
   }
 
   goLiveMini(){
-    this.playerMin.currentTime(this.playerMin.duration())
+    this.playerMin.currentTime(this.playerMin.currentTime()+1000)
     this.playerMin.play()
   }
 
