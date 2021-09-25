@@ -12,7 +12,7 @@ background: #000000cf; padding-top: 0;  padding-bottom: 0;">
         <ion-spinner name="lines-small"></ion-spinner>
         <div class="view" [style]="viewIs">
 
-            <cloudflare-stream *ngIf="isDestacado === false" [controls]="true" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" [src]="episodioItem.link"></cloudflare-stream>
+            <cloudflare-stream *ngIf="isDestacado === false" [controls]="true" allow="accelerometer; gyroscope; encrypted-media; picture-in-picture;" [src]="episodioItem.link"></cloudflare-stream>
             <video *ngIf="isDestacado === true" style=" height: 100%;width: 100%; " id="episodio" preload="metadata" playsinline webkit-playsinline autoplay muted controls allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" class="video-js vjs-default-skin "></video>
         </div>
 
