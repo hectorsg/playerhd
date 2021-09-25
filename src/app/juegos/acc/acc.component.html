@@ -340,7 +340,7 @@
             <div class="content-pron" *ngIf="gameStart && apuestaADD && !raceRun && !results ">
                 <h3 id="span-su-apuesta-se-realizara">Aquí tiene los comentarios previos que le servirán para hacer su apuesta.</h3>
                 <div class="reproductor">
-                    <cloudflare-stream [controls]="true" [autoplay]="true" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" [src]="carreraSala.comentario"></cloudflare-stream>
+                    <cloudflare-stream [controls]="true" allow="accelerometer; gyroscope; encrypted-media; picture-in-picture;" [src]="carreraSala.comentario"></cloudflare-stream>
                     <!--     <video style="height: 100%;width: 100%;object-fit: cover;" controls id="accProno" loop playsinline webkit-playsinline preload="metadata" class="video-js vjs-default-skin"></video>-->
 
                 </div>
@@ -372,7 +372,7 @@
             <div class="content-pron" *ngIf="gameStart && apuestaADD && raceRun && !results">
                 <h3 style="font-size: 18px;">Disfruta de la carrera.</h3>
                 <div class="reproductor">
-                    <cloudflare-stream [controls]="true" [autoplay]="true" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" [src]="carreraSala.carrera"></cloudflare-stream>
+                    <cloudflare-stream [controls]="true"  allow="accelerometer; gyroscope; encrypted-media; picture-in-picture;" [src]="carreraSala.carrera"></cloudflare-stream>
                     <!--  <video style="height: 100%;width: 100%;object-fit: cover;" controls id="accCarrera" loop playsinline webkit-playsinline preload="metadata" class="video-js vjs-default-skin"></video>-->
 
                 </div>
