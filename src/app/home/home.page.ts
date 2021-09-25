@@ -1607,7 +1607,7 @@ export class HomePage {
 
   async verplayerMini(){
 
-    await this.sleep(1000)
+    await this.sleep(500)
 
     this.cint.update()
     
@@ -1619,7 +1619,7 @@ export class HomePage {
 
        const web:string = link.changingThisBreaksApplicationSecurity
       this.playerMin.src({
-        type: 'video/youtube',
+        type: 'application/x-mpegURL',
         src: web,
       });
 
