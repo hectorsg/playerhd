@@ -1,0 +1,127 @@
+<div class="content">
+    <div class="header-title" style="    background: #000000d6;
+backdrop-filter: blur(5px);    margin-top: 0;">
+
+        <div class="titulo">
+            <!--  <div class="title-dia"  >
+          <span>.</span>
+      </div>
+      <div class="title-dia-dos"  >
+          <span>.</span>
+      </div>
+      <div class="title-dia-tres" style="      height: 2%;
+      top: 7.3%; " >
+          <span>.</span>
+      </div>-->
+            <h3>Hipodromos En Vivo</h3>
+        </div>
+        <span (click)="cerrarModal()" style="    color: white;
+      margin-right: 5%;
+      font-weight: 600;">Volver</span>
+    </div>
+
+    <div class="episodios-list">
+
+
+        <div class="episodios-item" *ngFor="let item of hipodromosAll">
+
+
+
+
+            <div *ngIf="item.actividad === true" class="item-img parpadea">
+                <!--   <div class="item-img-dia"  >
+                <span>.</span>
+            </div>
+           -->
+                <img [src]="item.cover" alt="">
+            </div>
+            <div *ngIf="item.actividad === false" class="item-img ">
+                <!--   <div class="item-img-dia"  >
+                <span>.</span>
+            </div>
+           -->
+                <img [src]="item.cover" alt="">
+            </div>
+            <div *ngIf="item.enVivo === false" (click)="preguntarAntes(item)" style=" display: flex;
+                      width: 70%;
+                      height: 75%;
+                      justify-content: space-evenly;
+                      align-items: center;
+                      border-bottom: 1px solid #313131 ;background: #ffff99;
+                      padding-left: 2%;">
+                <div class="item-content">
+                    <div class="other-info">
+                        <span>{{item.diaEnVivo}} </span>
+                        <!--
+                      <span> <ion-icon name="eye-outline"></ion-icon> {{item.nrocarreras}}</span>-->
+                    </div>
+                    <div class="titulo-episodio" style="display: flex;">
+                        <span style="text-align: initial;">{{item.nombre}} </span>
+                    </div>
+                    <div class="other-info">
+                        <span *ngIf="item.enVivo === true" class="parpadea" style="color: red;">En Vivo Hoy</span>
+                        <span *ngIf="item.enVivo === false && item.actividad === false">Ultima carrera el {{item.lastDay}}</span>
+                        <span *ngIf="item.actividad === true" class="parpadea" style="color: red;">Hoy {{item.nrocarreras}} Carreras</span>
+                        <span>{{item.pais}}</span>
+                        <!--
+                    <span> <ion-icon name="eye-outline"></ion-icon> {{item.nrocarreras}}</span>-->
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div (click)="preguntarTerminar(item)" *ngIf="item.enVivo === true" style=" display: flex;
+            width: 70%;
+            height: 75%;
+            justify-content: space-evenly;
+            align-items: center;
+            border-bottom: 1px solid #313131 ;background: rgba(99,208,99,1);
+            padding-left: 2%;">
+                <div class="item-content">
+                    <div class="other-info">
+                        <span>{{item.diaEnVivo}} </span>
+                        <!--
+            <span> <ion-icon name="eye-outline"></ion-icon> {{item.nrocarreras}}</span>-->
+                    </div>
+                    <div class="titulo-episodio" style="display: flex;">
+                        <span style="text-align: initial;">{{item.nombre}} </span>
+                    </div>
+                    <div class="other-info">
+                        <span *ngIf="item.enVivo === true" class="parpadea" style="color: red;">En Vivo Hoy</span>
+                        <span *ngIf="item.enVivo === false && item.actividad === false">Ultima carrera el {{item.lastDay}}</span>
+                        <span *ngIf="item.actividad === true" class="parpadea" style="color: red;">Hoy {{item.nrocarreras}} Carreras</span>
+                        <span>{{item.pais}}</span>
+                        <!--
+          <span> <ion-icon name="eye-outline"></ion-icon> {{item.nrocarreras}}</span>-->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+</div>
+
+<div class="addurl" [style]="adduR">
+    <div class="tit" *ngIf="hipodromoData">
+
+        <span>{{hipodromoData.nombre}} </span>
+        <span (click)="cerrarAddurl()" style="    color: white;
+      margin-right: 5%;
+      font-weight: 600;"><ion-icon name="chevron-down-outline"></ion-icon></span>
+    </div>
+    <ion-item>
+        <ion-label position="floating">Agrega el link de Youtube</ion-label>
+        <ion-input [(ngModel)]="newYoutube" *ngIf="hipodromoData" placeholder="{{hipodromoData.youtube}}"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">Agrega el link de M3u8</ion-label>
+        <ion-input [(ngModel)]="newUrl" *ngIf="hipodromoData" placeholder="{{hipodromoData.link}}"></ion-input>
+    </ion-item>
+    <ion-button (click)="updateEnVivo()">Mandar En Vivo</ion-button>
+
+</div>

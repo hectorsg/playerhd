@@ -1,0 +1,54 @@
+    .info {
+        position: absolute;
+        bottom: 5%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        z-index: 1000000000000;
+    }
+    
+    .info .first {
+        width: 70%;
+        margin-left: 5%;
+    }
+    
+    .info .first .linet {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5%;
+        font-weight: 600;
+        text-shadow: 1px 1px 4px #000000e3;
+    }
+    
+    .info .profile {
+        width: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+    
+    .info .profile ion-avatar {
+        -webkit-animation: spin 4s linear infinite;
+        -moz-animation: spin 4s linear infinite;
+        animation: spin 4s linear infinite;
+    }
+    
+    @-moz-keyframes spin {
+        100% {
+            -moz-transform: rotate(360deg);
+        }
+    }
+    
+    @-webkit-keyframes spin {
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    
+    @keyframes spin {
+        100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }

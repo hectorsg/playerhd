@@ -1,0 +1,630 @@
+<div class="spinn" *ngIf="!sliderLoad && !mustLogin ">
+    <ion-spinner style="    width: 30%;
+    height: 40%;
+    left: 35%;
+    top: 30%;
+    color: white;position: absolute;" name="crescent"></ion-spinner>
+</div>
+
+<ion-slides #acc [options]="accslider" style="width: 100%;height: 100%;{{sliderLoad}} ">
+
+    <!--Aqui va la jugada rapida-->
+    <ion-slide>
+        <div class="contenido-modal" style="display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;">
+            <span style="position: absolute;
+    top: 4%;
+    right: 6%;
+    font-weight: 600;
+    font-size: 20px;" (click)="backtoStart()">Volver</span>
+            <img style="    position: absolute;
+    top: 2%;
+    height: 7%;
+    left: 5%;" src="../../../assets/logo/grtv.png" alt="">
+
+            <div *ngIf="!thereIsActiveSalas" class="circle pulse">
+                <img *ngIf="myUser" src="{{myUser.photoURL}}" alt="">
+            </div>
+
+            <span *ngIf="!thereIsActiveSalas" style="font-weight: 600;
+      margin-top: 5%;" class="parpadea">Buscando partidas disponibles</span>
+
+            <ion-list *ngIf="thereIsActiveSalas" style="    background: transparent;    height: 90%;
+            margin-top: auto;overflow-y: scroll;    width: 100%;">
+                <ion-item *ngFor="let item of salasDisponibles" (click)="entrarSalaRapida(item)" style="    --background: #d6d6d66e; color: white;--color: white;font-weight: 600;">
+                    <ion-avatar slot="start">
+                        <img [src]="item.photoURL">
+                    </ion-avatar>
+                    <ion-avatar slot="end">
+                        <img *ngIf="item.paisToplay == 'venezuela'" src="../../../assets/paises/ven.png" alt="">
+                        <img *ngIf="item.paisToplay == 'argentina'" src="../../../assets/paises/arg.png" alt="">
+                        <img *ngIf="item.paisToplay == 'chile'" src="../../../assets/paises/chil.png" alt="">
+                        <img *ngIf="item.paisToplay == 'mexico'" src="../../../assets/paises/mex.png" alt="">
+                        <img *ngIf="item.paisToplay == 'panama'" src="../../../assets/paises/pan.png" alt="">
+                        <img *ngIf="item.paisToplay == 'rd'" src="../../../assets/paises/rd.png" alt="">
+                        <img *ngIf="item.paisToplay == 'uruguay'" src="../../../assets/paises/uru.png" alt="">
+                    </ion-avatar>
+                    <ion-label>
+                        <h3>Maximo: {{item.maxPlayer}} jugadores</h3>
+                        <span>Sala de {{item.salaName}} </span>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+
+
+            <div *ngIf="!entrarSalaP" class="other-button">
+                <ion-button (click)="crearSala()">Crear sala</ion-button>
+                <ion-button (click)="entrarASalaPrivada()">Entrar a Sala Privada</ion-button>
+            </div>
+            <div class="other-button" *ngIf="entrarSalaP">
+                <div class="here-input">
+                    <ion-input [(ngModel)]="inputEntrarSala" placeholder="Ingresa el codigo de la sala..."></ion-input>
+                </div>
+                <div class="send-buttons">
+                    <ion-button style="
+          font-size: 13px;--border-radius: 10px;" (click)="enviarCodigoEntrar()">Ingresar</ion-button>
+                    <ion-button style=" 
+          --border-radius: 10px;
+          font-size: 10px;
+          --background: #ffffffad;" (click)="entrarSalaP = null">Volver</ion-button>
+                </div>
+            </div>
+
+        </div>
+
+    </ion-slide>
+
+    <!--Aqui va la portadita-->
+    <ion-slide>
+        <div class="contenido-modal">
+            <div class="juego-header">
+                <div class="it" style="    margin-left: auto;
+        margin-right: 5%;    margin-top: 5%;" (click)="dismissModal()">
+                    <ion-icon name="chevron-down-outline"></ion-icon>
+                </div>
+            </div>
+            <img style="    position: absolute;
+      top: 2%;
+      height: 7%;
+      left: 5%;" src="../../../assets/logo/grtv.png" alt="">
+            <div class="juego-title" *ngIf="fotoPerfilAcc">
+                <ion-avatar class="juego-foto">
+                    <img [src]="fotoPerfilAcc.photoUrl" alt="">
+                </ion-avatar>
+                <span id="titulo">{{fotoPerfilAcc.name}} </span>
+                <div class="juego-info-mas" *ngIf="salaAllArray">
+                    <span>Salas activas: {{salaAllArray.length}} </span>
+                    <span *ngIf="salasDisponibles">Salas rapidas: {{salasDisponibles.length}} </span>
+                </div>
+            </div>
+            <div class="botones">
+                <ion-button (click)="juegoRapido()">Juego Rapido</ion-button>
+                <ion-button (click)="crearSala()">Crear Sala</ion-button>
+                <ion-button *ngIf="!myJugad" (click)="howTo()">¿Como Jugar?</ion-button>
+
+                <ion-button *ngIf="myJugad" (click)="misSalas()">Mis Salas</ion-button>
+            </div>
+            <span *ngIf="frasesBienvenido" id="dato" style="transition: 1.5s; {{datoSpan}} ">{{frasesBienvenido.content}}  </span>
+            <img *ngIf="frasesBienvenido" class="dato-img" style="transition: 1s; {{gustavoDato}} " [src]="frasesBienvenido.photoUrl" alt="">
+        </div>
+    </ion-slide>
+
+    <!--Aqui va el crear partida-->
+    <ion-slide>
+        <div class="contenido-modal">
+            <span style="position: absolute;
+      top: 4%;
+      right: 6%;
+      font-weight: 600;
+      font-size: 20px;" (click)="backtoStart()">Volver</span>
+            <img style="    position: absolute;
+      top: 2%;
+      height: 7%;
+      left: 5%;" src="../../../assets/logo/grtv.png" alt="">
+            <h3 id="h3crearsala" style="margin-top: 20%;">¡Debes configurar la sala para comenzar a jugar!</h3>
+            <div class="config-listado">
+                <ion-item style="    --background: #d6d6d66e;
+        color: white;
+        --color: white;" lines="none">
+                    <ion-label style="font-weight: 600;">Maximo de participantes</ion-label>
+                    <ion-select [(ngModel)]="participantesMax" lines="none">
+                        <ion-select-option value="2">2</ion-select-option>
+                        <ion-select-option value="3">3</ion-select-option>
+                        <ion-select-option value="4">4</ion-select-option>
+                        <ion-select-option value="5">5</ion-select-option>
+                        <ion-select-option value="6">6</ion-select-option>
+                        <ion-select-option value="7">7</ion-select-option>
+                        <ion-select-option value="8">8</ion-select-option>
+                        <ion-select-option value="9">9</ion-select-option>
+                        <ion-select-option value="10">10</ion-select-option>
+                        <ion-select-option value="11">11</ion-select-option>
+                        <ion-select-option value="12">12</ion-select-option>
+                        <ion-select-option value="13">13</ion-select-option>
+                        <ion-select-option value="14">14</ion-select-option>
+                        <ion-select-option value="15">15</ion-select-option>
+                        <ion-select-option value="16">16</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item style="    --background: #d6d6d66e;
+        color: white;
+        --color: white;" lines="none">
+                    <ion-label style="font-weight: 600;">Pais para apostar</ion-label>
+                    <ion-select [(ngModel)]="pais" lines="none">
+                        <ion-select-option value="argentina">Argentina</ion-select-option>
+                        <ion-select-option value="chile">Chile</ion-select-option>
+                        <ion-select-option value="mexico">Mexico</ion-select-option>
+                        <ion-select-option value="panama">Panama</ion-select-option>
+                        <ion-select-option value="rd">Republica Dominicana</ion-select-option>
+                        <ion-select-option value="uruguay">Uruguay</ion-select-option>
+                        <ion-select-option value="venezuela">Venezuela</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item style="    --background: #d6d6d66e;
+        color: white;
+        --color: white;" lines="none">
+                    <ion-label style="font-weight: 600;">La sala sera publica?</ion-label>
+                    <ion-toggle [(ngModel)]="isPublic" color="light"></ion-toggle>
+                </ion-item>
+                <ion-item style="    --background: #d6d6d66e;
+        color: white;
+        --color: white;" lines="none">
+                    <ion-label style="font-weight: 600;">Habilitar las llamadas en vivo</ion-label>
+                    <ion-toggle disabled="true" color="light"></ion-toggle>
+                </ion-item>
+                <ion-item style="    --background: #d6d6d66e;
+        color: white;
+        --color: white;" lines="none">
+                    <ion-label style="font-weight: 600;">Habilitar chat</ion-label>
+                    <ion-toggle disabled="true" color="light"></ion-toggle>
+                </ion-item>
+                <ion-button *ngIf="participantesMax && pais" (click)="creandoSala()" id="boton-crearsala">Crear sala</ion-button>
+
+            </div>
+        </div>
+    </ion-slide>
+
+
+
+    <!--Aqui va el como jugar-->
+    <ion-slide>
+        <div class="contenido-modal" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+            <img style="    position: absolute;
+      top: 2%;
+      height: 7%;
+      left: 5%;z-index: 1000000" src="../../../assets/logo/grtv.png" alt="">
+            <span *ngIf="!howToData" style="position: absolute;top: 4%;right: 6%;font-weight: 600; font-size: 20px;z-index: 1000000;text-shadow: 2px 3px 4px black;" (click)="backtoStart()">Volver</span>
+            <span *ngIf="howToData" style="position: absolute;top: 4%;right: 6%;font-weight: 600; font-size: 20px;z-index: 1000000;text-shadow: 2px 3px 4px black;" (click)="howToData = null ">Volver</span>
+
+            <ion-list *ngIf="!howToData" style="    width: 100%;height: 90%; margin-top: auto;background: transparent;">
+                <ion-item *ngFor="let item of howToVideos" (click)="abrirHowTo(item)" style="width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+                border-radius: 15px;
+                --border-radius: 15px;    
+                --background: #e0e0e0ad;">
+                    <ion-avatar slot="start">
+                        <img src="../../../assets/logo/icon.png" alt="">
+                    </ion-avatar>
+                    <ion-label>
+                        <h3>{{item.titulo}} </h3>
+                        <p>{{item.descripcion}} </p>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+            <ion-spinner *ngIf="howToData" style="    width: 30%;
+            height: 40%;
+            left: 35%;
+            top: 30%;
+            color: white;position: absolute;" name="crescent"></ion-spinner>
+
+            <div *ngIf="howToData" class="video-cont">
+                <video style="height: 100%;width: 100%;object-fit: contain;" id="howToVideoPlay" preload="metadata" playsinline webkit-playsinline loop autoplay muted controls allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" class="video-js vjs-default-skin"></video>
+
+            </div>
+
+        </div>
+    </ion-slide>
+
+    <!--partida-->
+    <ion-slide>
+        <div *ngIf="salaInfo" class="contenido-modal">
+            <span *ngIf="salaInfo.adminId === myUser.uid" style="position: absolute;
+        top: 4%;
+        right: 6%;
+        font-weight: 600;
+        font-size: 20px;    z-index: 100000;" (click)="backtoStart()"><ion-icon name="close"></ion-icon> </span>
+            <span *ngIf="salaInfo.adminId !== myUser.uid" style="position: absolute;
+        top: 4%;
+        right: 6%;
+        font-weight: 600;
+        font-size: 20px;    z-index: 100000;" (click)="presentAlert()"><ion-icon name="close"></ion-icon> </span>
+            <img style="    position: absolute;
+      top: 2%;
+      height: 7%;
+      left: 5%;" src="../../../assets/logo/grtv.png" alt="">
+            <div *ngIf="salaInfo" class="header-sala">
+                <h3 id="h3crearsala">Sala de {{salaInfo.salaName}} </h3>
+                <img *ngIf="salaInfo.paisToplay == 'venezuela'" src="../../../assets/paises/ven.png" alt="">
+                <img *ngIf="salaInfo.paisToplay == 'argentina'" src="../../../assets/paises/arg.png" alt="">
+                <img *ngIf="salaInfo.paisToplay == 'chile'" src="../../../assets/paises/chil.png" alt="">
+                <img *ngIf="salaInfo.paisToplay == 'mexico'" src="../../../assets/paises/mex.png" alt="">
+                <img *ngIf="salaInfo.paisToplay == 'panama'" src="../../../assets/paises/pan.png" alt="">
+                <img *ngIf="salaInfo.paisToplay == 'rd'" src="../../../assets/paises/rd.png" alt="">
+                <img *ngIf="salaInfo.paisToplay == 'uruguay'" src="../../../assets/paises/uru.png" alt="">
+            </div>
+            <!--Comienza la sala de espera-->
+            <div class="en-espera" *ngIf="!gameStart && !apuestaADD && !raceRun && !results && salaInfo">
+                <div class="principal">
+                    <div class="circle pulse">
+                        <img src="{{salaInfo.photoURL}} " alt="">
+                    </div>
+                    <span style="font-weight: 600;
+          margin-top: 2%;">{{salaInfo.salaName}} </span>
+                </div>
+                <div class="jugada-id" (click)="copyToClipBoard()">
+                    <span class="label-compartir">Comparte este codigo para que ingresen a tu sala</span>
+                    <span class="codigo-id">{{salaInfo.uid}}</span>
+                </div>
+                <span style="font-weight: 600;" class="parpadea waiting">Esperando que se unan a la sala</span>
+                <div class="otros-jugadores">
+
+                    <div class="jugador-item" *ngFor="let item of playersArray">
+                        <ion-avatar>
+                            <img style="    width: 100%;
+              height: 100%;" src="{{item.photoURL}} " alt="">
+                        </ion-avatar>
+                        <span>{{item.displayName}} </span>
+                    </div>
+                </div>
+                <ion-button *ngIf="!comenzarPartida && myUser.uid == salaInfo.adminId; else notShow" (click)="CountDown()" id="comenzar-partida-button">Comenzar Partida</ion-button>
+                <ion-button *ngIf="comenzarPartida" id="comenzar-partida-button" style="--background:#ffffff75;">Comienza en {{dateFalta}} </ion-button>
+                <ng-template #notShow>
+                    <ion-button *ngIf="myUser.uid !== salaInfo.adminId && !comenzarPartida" id="comenzar-partida-button" style="    --background: #ffffff75;
+          color: white;
+          font-weight: 600;
+          font-size: 18px;">{{playersArray.length+1}}/{{salaInfo.maxPlayer}} </ion-button>
+                </ng-template>
+            </div>
+            <!--Termina la sala de espera-->
+
+            <!--Aqui escoges tu apuesta-->
+
+            <span *ngIf="gameStart && !apuestaADD && !raceRun && !results" id="span-su-apuesta-se-realizara">Su apuesta se realizará con una carrera escogida aleatoriamente para garantizar la transparencia de la misma.</span>
+            <h3 *ngIf="gameStart && !apuestaADD && !raceRun && !results">¿Que apostarás?</h3>
+            <ion-list *ngIf="gameStart && !apuestaADD" style="    background: transparent;
+                    height: 42%;
+                    overflow-y: scroll;
+                    margin-bottom: 5%; {{betIsDone}} ">
+                <ion-item style="    --background: #d6d6d66e;
+                        color: white;
+                        --color: white;
+                        font-weight: 600;" *ngFor="let item of apuestaList">
+                    <ion-label>{{item.name}} </ion-label>
+                    <ion-checkbox (ionChange)="onAddApuesta(item)" [(ngModel)]="item.isCheck" slot="start"></ion-checkbox>
+                </ion-item>
+            </ion-list>
+            <div class="flx-info" *ngIf="gameStart && !apuestaADD && !raceRun && !results">
+                <div class="quedan-escoger">
+                    <span>Quedan</span>
+                    <h3>{{dateFaltaGame}} </h3>
+                    <span>Para apostar</span>
+                </div>
+                <div class="otros-jugadores" style="    grid-template-columns: 1fr 1fr 1fr;
+        width: 45%;">
+
+                    <div *ngFor="let item of HowManyPlayers" class="jugador-item">
+                        <ion-badge *ngIf="item.betConfirmed === true" color="success">
+                            <ion-icon name="checkmark"></ion-icon>
+                        </ion-badge>
+                        <ion-avatar style="width: 50px;
+            height: 50px;">
+                            <img style="    width: 100%;
+              height: 100%;" src="{{item.photoURL}} " alt="">
+                        </ion-avatar>
+                        <span>{{item.displayName | slice : 0 : 8}} </span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="botones-game" *ngIf="gameStart && !apuestaADD && !raceRun && !results">
+                <ion-button class="confirm" (click)="apuestaConfirmadas()" *ngIf="!apuestaConfirmada">Confirmar Apuesta</ion-button>
+                <ion-button (click)="dismissApuesta()" class="confirm" style="--background:#ffffff75;" *ngIf="apuestaConfirmada">Apuesta Confirmada</ion-button>
+
+            </div>
+            <!--Aqui terminas de escoger tu apuesta-->
+
+            <!-- Aqui va el video del pronostico-->
+
+            <div class="content-pron" *ngIf="gameStart && apuestaADD && !raceRun && !results ">
+                <h3 id="span-su-apuesta-se-realizara">Aquí tiene los comentarios previos que le servirán para hacer su apuesta.</h3>
+                <div class="reproductor">
+                    <cloudflare-stream [controls]="true" [autoplay]="true" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" [src]="carreraSala.comentario"></cloudflare-stream>
+                    <!--     <video style="height: 100%;width: 100%;object-fit: cover;" controls id="accProno" loop playsinline webkit-playsinline preload="metadata" class="video-js vjs-default-skin"></video>-->
+
+                </div>
+                <h3 id="haztusele">Haz tu seleccion</h3>
+                <span id="span-su-apuesta-se-realizara" style="text-align: center;">Una vez que todos los usuarios hayan hecho su seleccion podran ver la carrera simultaneamente</span>
+                <ion-list style="    background: transparent;
+                        height: 45%;
+                         width: 100%;
+                        overflow-y: scroll;padding-bottom: 0;
+                            z-index: 1000000; {{UnselectedHorse}} ">
+                    <ion-item style="    --background: #d6d6d66e;
+                            color: white;
+                            --color: white;
+                            font-weight: 600;" *ngFor="let item of carreraSala.corredores">
+                        <ion-label>{{item.name}} </ion-label>
+                        <ion-checkbox (ionChange)="addRacersBet(item)" [(ngModel)]="item.isCheck" slot="end"></ion-checkbox>
+                    </ion-item>
+                    <br>
+                    <br>
+                    <br>
+                </ion-list>
+            </div>
+
+            <!--Aqui termina el video del pronostico-->
+
+            <!--Aqui comienza la carrera-->
+
+
+            <div class="content-pron" *ngIf="gameStart && apuestaADD && raceRun && !results">
+                <h3 style="font-size: 18px;">Disfruta de la carrera.</h3>
+                <div class="reproductor">
+                    <cloudflare-stream [controls]="true" [autoplay]="true" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" [src]="carreraSala.carrera"></cloudflare-stream>
+                    <!--  <video style="height: 100%;width: 100%;object-fit: cover;" controls id="accCarrera" loop playsinline webkit-playsinline preload="metadata" class="video-js vjs-default-skin"></video>-->
+
+                </div>
+                <h3 id="haztusele">Esta es tu seleccion, Buena suerte</h3>
+                <ion-list style="    background: transparent;
+        height: 45%;
+        overflow-y: scroll;">
+                    <ion-item style="    --background: #d6d6d66e;
+          color: white;
+          --color: white;
+          font-weight: 600;" *ngFor="let item of MiSeleccionArray">
+                        <ion-label>{{item.name}} </ion-label>
+                        <ion-checkbox disabled="true" checked="true" slot="end"></ion-checkbox>
+                    </ion-item>
+                </ion-list>
+            </div>
+            <!--Aqui termina la carrera-->
+
+
+
+            <!--Aqui comienza el lobby de finalizado juego-->
+
+            <div id="confettis" *ngIf="gameStart && apuestaADD && raceRun && results">
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+            </div>
+            <div class="content-pron" *ngIf="gameStart && apuestaADD && raceRun && results">
+                <h3 id='felicita' style="font-weight: 600;margin-top: 0;">FELICITACIONES</h3>
+                <div *ngIf="HowManyPlayers" class="principal" style="margin-top: 2%;">
+                    <div class="circle">
+                        <img [src]="HowManyPlayers[0].photoURL" alt="">
+                    </div>
+                    <span style="font-weight: 600;
+          margin-top: 2%;">{{HowManyPlayers[0].displayName}} </span>
+                </div>
+                <div *ngIf="HowManyPlayers" class="results-dostres">
+                    <div class="jugador-item" *ngIf="HowManyPlayers[1]">
+                        <ion-avatar style="width: 50px;
+            height: 50px;">
+                            <img style="    width: 100%;
+              height: 100%;" [src]="HowManyPlayers[1].photoURL" alt="">
+                        </ion-avatar>
+                        <span>{{HowManyPlayers[1].displayName}} </span>
+                    </div>
+                    <div class="jugador-item" *ngIf="HowManyPlayers[2]">
+                        <ion-avatar style="width: 50px;
+            height: 50px;">
+                            <img style="    width: 100%;
+              height: 100%;" [src]="HowManyPlayers[2].photoURL" alt="">
+                        </ion-avatar>
+                        <span>{{HowManyPlayers[2].displayName}} </span>
+                    </div>
+                </div>
+                <div class="boton-results">
+                    <div class="item-bot-res" (click)="apustaAct()" style=" transition: 1s; {{apuestaActive}}">
+                        <span>Apuestas</span>
+                    </div>
+                    <div class="item-bot-res" (click)="posicionActive()" style=" transition: 1s; {{posicionesActive}}">
+                        <span>Posiciones</span>
+                    </div>
+                    <div class="item-bot-res" (click)="resultaActive()" style=" transition: 1s; {{resultadosActive}}">
+                        <span>Resultados</span>
+                    </div>
+                </div>
+                <div class="list-slider">
+                    <ion-slides #listslider>
+
+
+                        <ion-slide>
+                            <ion-list style="    background: transparent;
+              height: 100%;
+              margin-top: 5%;
+              overflow-y: scroll;    width: 100%;">
+
+                                <ion-item *ngFor="let item of ApuestasArraySala" style="    --background: #d6d6d66e;
+              color: white;
+              --color: white;
+              font-weight: 600;">
+                                    <ion-avatar slot="start">
+                                        <img [src]="item.userPhotoURL">
+                                    </ion-avatar>
+                                    <ion-label>
+                                        <h3>{{item.playerName}} </h3>
+                                        <span>{{item.name}} </span>
+                                    </ion-label>
+                                </ion-item>
+                                <br>
+                                <br>
+                                <br>
+                            </ion-list>
+                        </ion-slide>
+
+
+                        <ion-slide>
+                            <ion-list style="    background: transparent;
+              height: 100%;
+              margin-top: 5%;
+              overflow-y: scroll;    width: 100%;">
+
+                                <ion-item *ngFor="let item of carreraSala.results" style="    --background: #d6d6d66e;
+              color: white;
+              --color: white;
+              font-weight: 600;">
+                                    <ion-label>
+                                        <h3>{{item.puntos}} puntos</h3>
+                                        <span>{{item.name}}</span>
+                                    </ion-label>
+
+                                </ion-item>
+
+                                <br>
+                                <br>
+                                <br>
+                            </ion-list>
+                        </ion-slide>
+
+
+                        <ion-slide>
+                            <ion-list style="    background: transparent;
+                                                height: 100%;
+                                                margin-top: 5%;
+                                                overflow-y: scroll;    width: 100%;">
+
+                                <ion-item *ngFor="let item of HowManyPlayers" style="    --background: #d6d6d66e;
+                                                                                                            color: white;
+                                                                                                            --color: white;
+                                                                                                            font-weight: 600;">
+                                    <ion-avatar slot="start">
+                                        <img [src]="item.photoURL">
+                                    </ion-avatar>
+                                    <ion-label>
+                                        <h3>{{item.puntos}} puntos</h3>
+                                        <span>{{item.displayName}} </span>
+                                    </ion-label>
+                                </ion-item>
+                                <br>
+                                <br>
+                                <br>
+                            </ion-list>
+                        </ion-slide>
+
+
+
+                    </ion-slides>
+                </div>
+            </div>
+
+            <div class="botones-game" *ngIf="gameStart && apuestaADD">
+                <span *ngIf="!raceRun" class="confirm" style="    display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;width: 100%;height: 5vh;
+        background: white;font-size: 15px; {{confirmCaballosJugada}} " (click)="confirmHorseSelection()">Confirmar Seleccion   |   {{ConfirmedHorseJugadores.length}}/{{HowManyPlayers.length}} Listos</span>
+                <span *ngIf="raceRun && !results" (click)="resultsDados()" class="confirm" style="    display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;width: 100%;height: 5vh;
+            background: white;font-size: 14px; {{confirmCaballosJugada}} ">Carrera Confirmada | {{carreraVistaPlayers.length}}/{{HowManyPlayers.length}} </span>
+                <span *ngIf="raceRun && results" (click)="restartSala()" class="confirm" style="    display: flex;
+             align-items: center;
+             justify-content: center;
+             font-weight: 600;width: 100%;height: 5vh;
+             background: white; {{confirmRestartGame}} ">Jugar de nuevo: {{howManyRestartSala.length}} /{{HowManyPlayers.length}} </span>
+
+
+            </div>
+            <!--Aqui termina el lobby de finalizacion-->
+
+        </div>
+        <div *ngIf="!salaInfo" class="contenido-modal" style="display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;">
+            <span style="font-weight: bold;
+            width: 80%;">El Administrador de la partida la acaba de eliminar</span>
+            <ion-button style="--background: #747373;
+            font-weight: 600;
+            margin-top: 10%;" (click)="backtoStart()">Buscar otra partida</ion-button>
+        </div>
+    </ion-slide>
+
+    <ion-slide>
+        <div class="contenido-modal" style="display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;">
+            <span style="position: absolute;
+        top: 4%;
+        right: 6%;
+        font-weight: 600;
+        font-size: 20px;" (click)="backtoStart()">Volver</span>
+            <img style="    position: absolute;
+        top: 2%;
+        height: 7%;
+        left: 5%;" src="../../../assets/logo/grtv.png" alt="">
+
+
+            <ion-list *ngIf="myJugad" style="    background: transparent;    height: 90%;
+                margin-top: auto;overflow-y: scroll;    width: 100%;">
+                <ion-item *ngFor="let item of myJugad" (click)="goToGameLobby(item)" style="    --background: #d6d6d66e; color: white;--color: white;font-weight: 600;">
+                    <ion-avatar slot="start">
+                        <img [src]="item.photoURL">
+                    </ion-avatar>
+                    <ion-avatar slot="end">
+                        <img *ngIf="item.paisToplay == 'venezuela'" src="../../../assets/paises/ven.png" alt="">
+                        <img *ngIf="item.paisToplay == 'argentina'" src="../../../assets/paises/arg.png" alt="">
+                        <img *ngIf="item.paisToplay == 'chile'" src="../../../assets/paises/chil.png" alt="">
+                        <img *ngIf="item.paisToplay == 'mexico'" src="../../../assets/paises/mex.png" alt="">
+                        <img *ngIf="item.paisToplay == 'panama'" src="../../../assets/paises/pan.png" alt="">
+                        <img *ngIf="item.paisToplay == 'rd'" src="../../../assets/paises/rd.png" alt="">
+                        <img *ngIf="item.paisToplay == 'uruguay'" src="../../../assets/paises/uru.png" alt="">
+                    </ion-avatar>
+                    <ion-label>
+                        <h3>Maximo: {{item.maxPlayer}} jugadores</h3>
+                        <span>Sala de {{item.salaName}} </span>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+
+
+
+
+        </div>
+    </ion-slide>
+
+
+
+
+
+
+</ion-slides>
+<div *ngIf="mustLogin" class="onLogin" style="width: 100%;height: 100%; {{mustLogin}}">
+    <div class="juego-header" style="    position: absolute;
+  top: 2%;
+  color: white;
+  justify-content: flex-end;">
+        <div class="it" style="margin-right: 5%;" (click)="dismissModal()">
+            <ion-icon name="chevron-down-outline"></ion-icon>
+        </div>
+    </div>
+    <span>Primero debes iniciar sesion</span>
+    <ion-button>Login con Email
+    </ion-button>
+</div>

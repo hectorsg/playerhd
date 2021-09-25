@@ -1,0 +1,2769 @@
+<!--Menu Traducido-->
+<ion-menu style=" --background: #000000cc;" side="end" menuId="config" contentId="main">
+    <!--Primer div del menu-->
+    <div *ngIf="!soporte && !login && !loginEmail && !registro " class="menu-list">
+        <!--Otro Idioma-->
+        <span *ngIf="userAny && MyLangIs !== 'en' && MyLangIs !== 'es' " (click)="openPerfilFromMenu()">Mi Perfil</span>
+        <span *ngIf="!userAny && MyLangIs !== 'en' && MyLangIs !== 'es' " (click)="login = true">Acceder</span>
+
+
+        <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es' " (click)="openConfiguracionOfApp()">Configuracion</span>
+
+        <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es' " (click)="openHowTo()">¿Como hacer?</span>
+        <!--Otro Idioma-->
+
+        <!--Español-->
+        <span *ngIf="userAny && MyLangIs === 'es' " (click)="openPerfilFromMenu()">Mi Perfil</span>
+        <span *ngIf="!userAny && MyLangIs === 'es'" (click)="login = true">Acceder</span>
+
+
+        <span *ngIf="MyLangIs === 'es'" (click)="openConfiguracionOfApp()">Configuracion</span>
+        <span *ngIf="MyLangIs === 'es' " (click)="openHowTo()">¿Como hacer?</span>
+        <!--Español-->
+
+        <!--Ingles-->
+        <span *ngIf="userAny && MyLangIs === 'en' " (click)="openPerfilFromMenu()">My Profile</span>
+        <span *ngIf="!userAny && MyLangIs === 'en'" (click)="login = true">Log In</span>
+
+        <span *ngIf="MyLangIs === 'en'" (click)="openConfiguracionOfApp()">Settings</span>
+        <span *ngIf="MyLangIs === 'en' " (click)="openHowTo()">How To?</span>
+        <!--Ingles-->
+
+        <!--Portugues-->
+        <span *ngIf="userAny && MyLangIs === 'pt' " (click)="openPerfilFromMenu()">Meu Perfil</span>
+        <span *ngIf="!userAny && MyLangIs === 'pt'" (click)="login = true">Acessar</span>
+
+
+        <span *ngIf="MyLangIs === 'pt'" (click)="openConfiguracionOfApp()">Configuração</span>
+        <!--Portugues-->
+    </div>
+    <!--Primer div del menu-->
+
+    <!--Boton Volver-->
+    <!--Español-->
+    <span style="position: absolute;top: 3%;left: 3%;z-index: 100000000000;color: white;font-weight: 600;" *ngIf="login && MyLangIs === 'es'" (click)="volverLogin()">Volver</span>
+    <!--Español-->
+
+    <!--Ingles-->
+    <span style="position: absolute;top: 3%;left: 3%;z-index: 100000000000;color: white;font-weight: 600;" *ngIf="login && MyLangIs === 'en'" (click)="volverLogin()">Back</span>
+    <!--Ingles-->
+    <!--Portugues-->
+    <span style="position: absolute;top: 3%;left: 3%;z-index: 100000000000;color: white;font-weight: 600;" *ngIf="login && MyLangIs === 'pt'" (click)="volverLogin()">Retorna</span>
+    <!--Portugues-->
+    <!--Otro Idioma-->
+    <span style="position: absolute;top: 3%;left: 3%;z-index: 100000000000;color: white;font-weight: 600;" *ngIf="login && MyLangIs !== 'en' && MyLangIs !== 'es' " (click)="volverLogin()">Volver</span>
+    <!--Otro Idioma-->
+    <!--Boton Volver-->
+
+    <!--Boton de interstitial para logearte-->
+    <div class="menu-list" *ngIf="login && !soporte && !userAny && !loginEmail && !registro">
+        <!--Español-->
+        <h3 *ngIf="MyLangIs === 'es'" style="text-align: center;
+        font-weight: 600;
+        color: #b8b8b8;">¡Accede a GRTV Ahora!</h3>
+        <span *ngIf="MyLangIs === 'es'" (click)="loginEmail = true">Email</span>
+        <span *ngIf="MyLangIs === 'es'" style="font-size: 16px;
+        margin-left: auto;
+        margin-right: 10%; color: #b8b8b8;" (click)="registro = true">Registrate</span>
+        <!--Español-->
+
+        <!--Ingles-->
+        <h3 *ngIf="MyLangIs === 'en'" style="text-align: center;
+        font-weight: 600;
+        color: #b8b8b8;">Access GRTV Now!</h3>
+        <span *ngIf="MyLangIs === 'en'" (click)="loginEmail = true">Email</span>
+        <span *ngIf="MyLangIs === 'en'" style="font-size: 16px;
+        margin-left: auto;
+        margin-right: 10%; color: #b8b8b8;" (click)="registro = true">Sign Up</span>
+        <!--Ingles-->
+
+        <!--Portugues-->
+        <h3 *ngIf="MyLangIs === 'pt'" style="text-align: center;
+        font-weight: 600;
+        color: #b8b8b8;">Acesse GRTV agora!</h3>
+        <span *ngIf="MyLangIs === 'pt'" (click)="loginEmail = true">O Email</span>
+        <span *ngIf="MyLangIs === 'pt'" style="font-size: 16px;
+        margin-left: auto;
+        margin-right: 10%; color: #b8b8b8;" (click)="registro = true">Inscrever-se</span>
+        <!--Portugues-->
+
+        <!--Otro idioma-->
+        <h3 *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" style="text-align: center;
+         font-weight: 600;
+         color: #b8b8b8;">¡Accede a GRTV Ahora!</h3>
+        <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" (click)="loginEmail = true">Email</span>
+        <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" style="font-size: 16px;
+         margin-left: auto;
+         margin-right: 10%; color: #b8b8b8;" (click)="registro = true">Registrate</span>
+        <!--Otro idioma-->
+    </div>
+    <!--Boton de interstitial para logearte-->
+
+
+    <!--Ingresa tu email y password-->
+    <div class="menu-list" *ngIf="login && loginEmail && !soporte && !userAny && !registro">
+        <!--Espanol-->
+        <h3 *ngIf="MyLangIs === 'es'" style="text-align: center; font-size: 20px;font-weight: 600;">Ingresa tu Email y Contraseña</h3>
+        <!--Espanol-->
+
+        <!--Ingles-->
+        <h3 *ngIf="MyLangIs === 'en'" style="text-align: center; font-size: 20px;font-weight: 600;">Enter your Email and Password</h3>
+        <!--Ingles-->
+
+        <!--Otro Idioma-->
+        <h3 *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" style="text-align: center; font-size: 20px;font-weight: 600;">Ingresa tu Email y Contraseña</h3>
+        <!--Otro Idioma-->
+
+        <div class="box" style="    width: 95%;
+        height: 40%;
+        display: flex;
+        flex-direction: column;">
+            <ion-item style="--background: #ffffff63;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 2%;">
+
+                <ion-label position="floating">Email</ion-label>
+
+
+                <ion-input #correo></ion-input>
+            </ion-item>
+            <ion-item style="--background: #ffffff63;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 2%;">
+
+                <!--Espanol-->
+                <ion-label *ngIf="MyLangIs === 'es'" position="floating">Contraseña</ion-label>
+                <!--Espanol-->
+                <!--Ingles-->
+                <ion-label *ngIf="MyLangIs === 'es'" position="floating">Password</ion-label>
+                <!--Ingles-->
+                <!--Otro Idioma-->
+                <ion-label *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" position="floating">Contraseña</ion-label>
+                <!--Otro Idioma-->
+
+                <ion-input #contra type="password"></ion-input>
+            </ion-item>
+
+            <!--Espanol-->
+            <ion-button *ngIf="MyLangIs === 'es'" style="--background:#949494c4;" (click)="emailLogin(correo, contra)">Ingresar</ion-button>
+            <!--Espanol-->
+            <!--Ingles-->
+            <ion-button *ngIf="MyLangIs === 'en'" style="--background:#949494c4;" (click)="emailLogin(correo, contra)">Log In</ion-button>
+            <!--Ingles-->
+            <!--Otro Idioma-->
+            <ion-button *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" style="--background:#949494c4;" (click)="emailLogin(correo, contra)">Ingresar</ion-button>
+            <!--Otro Idioma-->
+
+        </div>
+    </div>
+    <!--Ingresa tu email y password-->
+
+
+    <!--Cuestionario para registrarse-->
+
+    <div class="menu-list" *ngIf="login && !loginEmail && !soporte && !userAny && registro">
+        <!--Espanol-->
+        <h3 *ngIf="MyLangIs === 'es'" style="text-align: center; font-size: 20px;font-weight: 600;">Registrate en GRTV</h3>
+        <!--Espanol-->
+        <!--Ingles-->
+        <h3 *ngIf="MyLangIs === 'en'" style="text-align: center; font-size: 20px;font-weight: 600;">Sign up for GRTV</h3>
+        <!--Ingles-->
+
+        <!--Otro Idioma-->
+        <h3 *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" style="text-align: center; font-size: 20px;font-weight: 600;">Registrate en GRTV</h3>
+        <!--Otro idioma-->
+        <div class="profile-cont" style="height: 40%;">
+            <ion-avatar>
+                <img *ngIf="photoAlt" src="{{photoAlt}}" alt="">
+                <img *ngIf="!photoAlt" src="../../../assets/other/poster1.jpg " alt="">
+            </ion-avatar>
+
+        </div>
+        <div class="box" style="    width: 95%;
+        height: 40%;
+        display: flex;
+        flex-direction: column;">
+            <ion-item style="--background: #ffffff63;
+        color: white;
+        font-weight: 600;
+        margin-bottom: 2%;">
+                <!--Espanol-->
+                <ion-label *ngIf="MyLangIs === 'es'" position="floating">Nombre</ion-label>
+                <!--Espanol-->
+                <!--Ingles-->
+                <ion-label *ngIf="MyLangIs === 'en'" position="floating">Name</ion-label>
+                <!--Ingles-->
+                <!--Otro Idiona-->
+                <ion-label *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" position="floating">Nombre</ion-label>
+                <!--Otro Idioma-->
+                <ion-input [(ngModel)]="Rnombre"></ion-input>
+            </ion-item>
+            <ion-item style="--background: #ffffff63;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 2%;">
+                <!--Espanol-->
+                <ion-label *ngIf="MyLangIs === 'es'" position="floating">Apellido</ion-label>
+                <!--Espanol-->
+
+                <!--Ingles-->
+                <ion-label *ngIf="MyLangIs === 'en'" position="floating">Last Name</ion-label>
+                <!--Ingles-->
+                <!--Otro idioma-->
+                <ion-label *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" position="floating">Apellido</ion-label>
+                <!--Otro idioma-->
+                <ion-input [(ngModel)]="Rapellido"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="Rnombre && Rapellido" style="--background: #ffffff63;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 2%;">
+                <ion-label position="floating">Email</ion-label>
+                <ion-input [(ngModel)]="Rcorreo" (ionChange)="createProfilePhoto()"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="Rnombre && Rapellido && Rcorreo" style="--background: #ffffff63;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 2%;">
+
+                <!--Espanol-->
+                <ion-label *ngIf="MyLangIs === 'es'" position="floating">Contraseña</ion-label>
+                <!--Espanol-->
+                <!--Ingles-->
+                <ion-label *ngIf="MyLangIs === 'en'" position="floating">Password</ion-label>
+                <!--Ingles-->
+                <!--Otro idioma-->
+                <ion-label *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" position="floating">Contraseña</ion-label>
+                <!--Otro idioma-->
+                <ion-input [(ngModel)]="Rpassword" type="password"></ion-input>
+            </ion-item>
+            <!--Espanol-->
+            <ion-button *ngIf="Rnombre && Rapellido && Rcorreo && Rpassword &&MyLangIs === 'es'" style="--background:#949494c4;" (click)="RegisterNewUserEmail()">Ingresar</ion-button>
+            <!--Espanol-->
+
+            <!--Ingles-->
+            <ion-button *ngIf="Rnombre && Rapellido && Rcorreo && Rpassword &&MyLangIs === 'en'" style="--background:#949494c4;" (click)="RegisterNewUserEmail()">Sign Up</ion-button>
+            <!--Ingles-->
+
+            <!--Otro idioma-->
+            <ion-button *ngIf="Rnombre && Rapellido && Rcorreo && Rpassword &&MyLangIs !== 'en' && MyLangIs !== 'es'" style="--background:#949494c4;" (click)="RegisterNewUserEmail()">Ingresar</ion-button>
+            <!--Otro idioma-->
+        </div>
+    </div>
+
+    <!--Cuestionario para registrarse-->
+
+
+
+
+</ion-menu>
+
+
+
+<ion-menu style=" --background: #000000cc;" side="end" menuId="perfil" contentId="main">
+
+
+
+    <div class="profile-cont" *ngIf="userAny">
+        <ion-avatar style="position: relative;">
+            <img style="    object-fit: cover;
+            width: 100%;
+            height: 100%;" src="{{userAny.photoURL}} " alt="">
+            <input style="position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;" type="file" (change)="onUpload($event)">
+        </ion-avatar>
+        <span *ngIf="uploadPercent && !url" style="width: 90%;
+        height: 20px;
+        background: green;
+        border-radius: 10px;
+        color: white;
+        font-weight: 600;">{{ uploadPercent| async}}%</span>
+
+        <!--Espanol-->
+        <ion-button *ngIf="url &&MyLangIs === 'es'" (click)="ActualizarFoto()" style="
+        font-weight: 600;
+        width: 95%;
+        margin-top: 5%;color: white;--background:green">Actualizar Foto de Perfil</ion-button>
+        <!--Espanol-->
+
+        <!--Ingles-->
+        <ion-button *ngIf="url &&MyLangIs === 'en'" (click)="ActualizarFoto()" style="
+        font-weight: 600;
+        width: 95%;
+        margin-top: 5%;color: white;--background:green">Update Profile Picture</ion-button>
+        <!--Ingles-->
+
+        <!--Otro Idioma-->
+        <ion-button *ngIf="url &&MyLangIs !== 'en' && MyLangIs !== 'es'" (click)="ActualizarFoto()" style="
+         font-weight: 600;
+         width: 95%;
+         margin-top: 5%;color: white;--background:green">Actualizar Foto de Perfil</ion-button>
+        <!--Otro idioma-->
+
+        <ion-input style="position: absolute;" [(ngModel)]="url" type="hidden" [value]="urlImage | async"></ion-input>
+        <span>{{userAny.displayName}} </span>
+        <ion-button *ngIf="userAny.talento" style="--background: white;
+        color: black;
+        font-weight: 600;
+        width: 95%;
+        margin-top: 5%;" (click)="pronosticoAdmin()">Subir Pronostico</ion-button>
+        <ion-button *ngIf="userAny.talento" style="--background: white;
+        color: black;
+        font-weight: 600;
+        width: 95%;
+        margin-top: 5%;" (click)="myStories()">Mirar Mis Pronostico</ion-button>
+
+        <ion-button *ngIf="userAny.admin" style="--background: white;
+          color: black;
+          font-weight: 600;
+          width: 95%;
+          margin-top: 5%;" (click)="openAdminHipodromo()">Admin Hipodromo</ion-button>
+
+        <ion-button *ngIf="userAny.admin" style="--background: white;
+        color: black;
+        font-weight: 600;
+        width: 95%;
+        margin-top: 5%;" (click)="openAddEpisodio()">Admin Episodios</ion-button>
+        <ion-button *ngIf="userAny.admin" style="--background: white;
+        color: black;
+        font-weight: 600;
+        width: 95%;
+        margin-top: 5%;" (click)="openAdminPronostico()">Admin Pronosticos</ion-button>
+        <ion-button *ngIf="userAny.admin" style="--background: white;
+        color: black;
+        font-weight: 600;
+        width: 95%;
+        margin-top: 5%;" (click)="openEnVivoAdmin()">En Vivo Hipodromo</ion-button>
+        <ion-button *ngIf="userAny.admin" style="--background: white;
+        color: black;
+        font-weight: 600;
+        width: 95%;
+        margin-top: 5%;" (click)="openNewsAdmin()">News Admin</ion-button>
+        <ion-button *ngIf="userAny.rs" style="--background: white;
+        color: black;
+        font-weight: 600;
+        width: 95%;
+        margin-top: 5%;" (click)="openOptimizacionAdmin()">Optimizacion Pronosticos</ion-button>
+
+        <!--Espanol-->
+        <ion-button *ngIf="MyLangIs === 'es'" (click)="onLogOut()" class="log-out">Cerrar sesion
+            <ion-icon slot="start" name="log-out"></ion-icon>
+        </ion-button>
+        <!--Espanol-->
+
+        <!--Ingles-->
+        <ion-button *ngIf="MyLangIs === 'en'" (click)="onLogOut()" class="log-out">Log Out
+            <ion-icon slot="start" name="log-out"></ion-icon>
+        </ion-button>
+        <!--Ingles-->
+
+        <!--Otro idioma-->
+        <ion-button *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" (click)="onLogOut()" class="log-out">Cerrar sesion
+            <ion-icon slot="start" name="log-out"></ion-icon>
+        </ion-button>
+        <!--Otro Idioma-->
+    </div>
+
+
+    <div class="menu-list" *ngIf="!userAny && !login">
+        <!--Espanol-->
+        <span *ngIf="!userAny && MyLangIs === 'es' " (click)="login = true">Acceder</span>
+        <!--Espanol-->
+
+        <!--Ingles-->
+        <span *ngIf="!userAny && MyLangIs === 'en' " (click)="login = true">Log In</span>
+        <!--Ingles-->
+
+        <!--Otro idioma-->
+        <span *ngIf="!userAny && MyLangIs !== 'en' && MyLangIs !== 'es'" (click)="login = true">Acceder</span>
+        <!--Otro idioma-->
+    </div>
+
+
+    <div class="menu-list" *ngIf="login && !soporte && !userAny && !loginEmail && !registro">
+
+        <!--Espanol-->
+        <h3 *ngIf="MyLangIs === 'es'" style="text-align: center;
+        font-weight: 600;
+        color: #b8b8b8;">¡Accede a GRTV Ahora!</h3>
+        <!--Espanol-->
+
+        <!--Ingles-->
+        <h3 *ngIf="MyLangIs === 'en'" style="text-align: center;
+       font-weight: 600;
+       color: #b8b8b8;">Access GRTV Now!</h3>
+        <!--Ingles-->
+
+        <!--Otro idioma-->
+        <h3 *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" style="text-align: center;
+       font-weight: 600;
+       color: #b8b8b8;">¡Accede a GRTV Ahora!</h3>
+        <!--Otro idioma-->
+
+        <span (click)="loginEmail = true">Email</span>
+
+        <!--Espanol-->
+        <span *ngIf="MyLangIs === 'es'" style="font-size: 16px;
+        margin-left: auto;
+        margin-right: 10%; color: #b8b8b8;" (click)="registro = true">Registrate</span>
+        <!--Espanol-->
+        <!--Ingles-->
+        <span *ngIf="MyLangIs === 'en'" style="font-size: 16px;
+         margin-left: auto;
+         margin-right: 10%; color: #b8b8b8;" (click)="registro = true">Sign Up</span>
+        <!--Ingles-->
+
+        <!--Otro idioma-->
+        <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" style="font-size: 16px;
+         margin-left: auto;
+         margin-right: 10%; color: #b8b8b8;" (click)="registro = true">Registrate</span>
+        <!--Otro Idioma-->
+
+
+    </div>
+    <div class="menu-list" *ngIf="login && loginEmail && !soporte && !userAny && !registro">
+        <!--Espanol-->
+        <h3 *ngIf="MyLangIs === 'es'" style="text-align: center; font-size: 20px;font-weight: 600;">Ingresa tu Email y Contraseña</h3>
+        <!--Espanol-->
+
+        <!--Ingles-->
+        <h3 *ngIf="MyLangIs === 'en'" style="text-align: center; font-size: 20px;font-weight: 600;">Enter your Email and Password</h3>
+        <!--Ingles-->
+
+        <!--Otro Idioma-->
+        <h3 *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" style="text-align: center; font-size: 20px;font-weight: 600;">Ingresa tu Email y Contraseña</h3>
+        <!--Otro Idioma-->
+
+        <div class="box" style="    width: 95%;
+        height: 40%;
+        display: flex;
+        flex-direction: column;">
+            <ion-item style="--background: #ffffff63;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 2%;">
+                <ion-label position="floating">Email</ion-label>
+
+                <ion-input #correo></ion-input>
+            </ion-item>
+            <ion-item style="--background: #ffffff63;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 2%;">
+                <!--Espanol-->
+                <ion-label *ngIf="MyLangIs === 'es'" position="floating">Contraseña</ion-label>
+                <!--Espanol-->
+                <!--Ingles-->
+                <ion-label *ngIf="MyLangIs === 'en'" position="floating">Password</ion-label>
+                <!--Ingles-->
+                <!--Otro idioma-->
+                <ion-label *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" position="floating">Contraseña</ion-label>
+                <!--Otro idioma-->
+                <ion-input #contra type="password"></ion-input>
+            </ion-item>
+            <!--Espanol-->
+            <ion-button *ngIf="MyLangIs === 'es'" style="--background:#949494c4;" (click)="emailLogin(correo, contra)">Ingresar</ion-button>
+            <!--Espanol-->
+            <!--Ingles-->
+            <ion-button *ngIf="MyLangIs === 'en'" style="--background:#949494c4;" (click)="emailLogin(correo, contra)">Log In</ion-button>
+            <!--Ingles-->
+            <!--Otroidioma-->
+            <ion-button *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" style="--background:#949494c4;" (click)="emailLogin(correo, contra)">Ingresar</ion-button>
+            <!--Otro idioma-->
+        </div>
+    </div>
+
+    <div class="menu-list" *ngIf="login && !loginEmail && !soporte && !userAny && registro">
+
+        <!--Espanol-->
+        <h3 *ngIf="MyLangIs === 'es'" style="text-align: center; font-size: 20px;font-weight: 600;">Registrate en GRTV</h3>
+        <!--Espanol-->
+
+        <!--ingles-->
+        <h3 *ngIf="MyLangIs === 'en'" style="text-align: center; font-size: 20px;font-weight: 600;">Sign up for GRTV</h3>
+        <!--ingles-->
+
+        <!--Otro idioma-->
+        <h3 *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" style="text-align: center; font-size: 20px;font-weight: 600;">Registrate en GRTV</h3>
+        <!--Otro idioma-->
+
+
+        <div class="profile-cont" style="height: 40%;">
+            <ion-avatar>
+                <img *ngIf="photoAlt" src="{{photoAlt}}" alt="">
+                <img *ngIf="!photoAlt" src="../../../assets/other/poster1.jpg " alt="">
+            </ion-avatar>
+
+        </div>
+        <div class="box" style="    width: 95%;
+        height: 40%;
+        display: flex;
+        flex-direction: column;">
+            <ion-item style="--background: #ffffff63;
+        color: white;
+        font-weight: 600;
+        margin-bottom: 2%;">
+
+                <!--espanol-->
+                <ion-label *ngIf="MyLangIs === 'es'" position="floating">Nombre</ion-label>
+                <!--espanol-->
+                <!--ingles-->
+                <ion-label *ngIf="MyLangIs === 'en'" position="floating">Name</ion-label>
+                <!--ingles-->
+
+                <!--otro idioma-->
+                <ion-label *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" position="floating">Nombre</ion-label>
+                <!--otro idioma-->
+
+                <ion-input [(ngModel)]="Rnombre"></ion-input>
+            </ion-item>
+            <ion-item style="--background: #ffffff63;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 2%;">
+
+                <!--Espanol-->
+                <ion-label *ngIf="MyLangIs === 'es'" position="floating">Apellido</ion-label>
+                <!--Espanol-->
+                <!--Ingles-->
+                <ion-label *ngIf="MyLangIs === 'en'" position="floating">Last Name</ion-label>
+                <!--Ingles-->
+
+                <!--otro idioma-->
+                <ion-label *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" position="floating">Apellido</ion-label>
+                <!--otro idioma-->
+
+                <ion-input [(ngModel)]="Rapellido"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="Rnombre && Rapellido" style="--background: #ffffff63;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 2%;">
+
+
+                <ion-label position="floating">Email</ion-label>
+
+
+                <ion-input [(ngModel)]="Rcorreo" (ionChange)="createProfilePhoto()"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="Rnombre && Rapellido && Rcorreo" style="--background: #ffffff63;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 2%;">
+
+                <!--espanol-->
+                <ion-label *ngIf="MyLangIs === 'es'" position="floating">Contraseña</ion-label>
+                <!--espanol-->
+                <!--ingles-->
+                <ion-label *ngIf="MyLangIs === 'en'" position="floating">Password</ion-label>
+                <!--ingles-->
+                <!--otro idioma-->
+                <ion-label *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" position="floating">Contraseña</ion-label>
+                <!--otro idioma-->
+
+                <ion-input [(ngModel)]="Rpassword" type="password"></ion-input>
+            </ion-item>
+
+            <!--espanol-->
+            <ion-button *ngIf="Rnombre && Rapellido && Rcorreo && Rpassword && MyLangIs === 'es'" style="--background:#949494c4;" (click)="RegisterNewUserEmail()">Ingresar</ion-button>
+            <!--espanol-->
+            <!--ingles-->
+            <ion-button *ngIf="Rnombre && Rapellido && Rcorreo && Rpassword && MyLangIs === 'en'" style="--background:#949494c4;" (click)="RegisterNewUserEmail()">Sign Up</ion-button>
+            <!--ingles-->
+            <!--otro idioma-->
+            <ion-button *ngIf="Rnombre && Rapellido && Rcorreo && Rpassword && MyLangIs !== 'en' && MyLangIs !== 'es'" style="--background:#949494c4;" (click)="RegisterNewUserEmail()">Ingresar</ion-button>
+            <!--otro idioma-->
+
+        </div>
+    </div>
+
+
+
+
+</ion-menu>
+
+
+<ion-menu class="custom" style=" --background: #000000cc;backdrop-filter: blur(5px);-webkit-backdrop-filter: blur(5px);" side="end" menuId="misionvision" contentId="main">
+    <div class="misiontextcontent" *ngIf="misionvision && MyLangIs === 'es' ">
+
+        <span (click)="backToconfigFromMision()"><ion-icon name="arrow-redo-outline"></ion-icon></span>
+        <!--espanol-->
+        <h1 *ngIf="MyLangIs === 'es'">MISIÓN / VISIÓN</h1>
+        <!--espanol-->
+
+        <!--  <p>En procura de contribuir en el crecimiento y la evolución de las Carreras de Caballos tan abatidas por las circunstancias que lastiman a nuestros países en Latinoamérica, hemos tomado la iniciativa de aportar la experiencia de un equipo de trabajo
+            notablemente calificado, provisto de las herramientas tecnológicas apropiadas, para penetrar en la selva de la desidia y consolidar la Unión de países y sus hipódromos en cada región en base a una transmisión múltiple desde los diferentes
+            rincones del Continente, para que por primera vez podamos seguir y conocer lo que acontece entorno al deporte de los reyes en las voces de profesionales que por encima de todo aman al caballo en todas sus dimensiones y que más que un esfuerzo
+            será un privilegio informar y mantener al tanto de lo que pasa día a día en cada uno de esos escenarios, a partir de ahora nos juramentamos ante ustedes para ofrecer profesionalismo por encima de intereses.</p>
+
+        <p>Estados Unidos será el centro de operaciones y su hípica formará parte de este proyecto que persigue consolidar a nuestra mismísima región con todo su esplendor para que sirva de inspiración a las nuevas generaciones, observándola como uno de
+            los deportes más bellos donde combinadamente se unen atletas (Jinete y Caballo) corriendo por el todo, generando en el espectador gran tensión y aumentando la adrenalina, desbocando pasión y emoción como ningún otro.</p>
+
+        <p>GRTV será la plataforma del caballo de carrera para toda Latino Americana donde disfrutemos a nuestros Ídolos locales por igual a los otros que compiten en hipódromos de países hermanos, guiados por una generación de relevo y otra en formación,
+            que persigue difundir la majestuosidad de un espectáculo que ejerce un embrujo especial sobre el nuevo aficionado, aportando incalculable satisfacción a los amantes del turf.</p>
+
+        <p>Asumimos el reto, porque creemos que nuestra mayor recompensa reside en el amor que nos une a este noble y bello deporte, pero además aceptamos este compromiso porque muchos aquí le debemos todo lo que somos, hoy más que ayer reconocemos que esta
+            labor no podrá hacernos sentir cansados.</p>
+        -->
+        <p *ngFor="let item of misionvision.mision"> {{item.p}} </p>
+        <h1>VISIÓN</h1>
+
+        <!--
+        <p>Nuestra visión será la de generar interés sano por este deporte y contribuir a devolverle el puesto que se merece, enseñando a querer al caballo y todo lo que rodea a la actividad de las carreras, empezando por difundir y resaltar el hermoso mundo
+            de los purasangres desde la cría, la doma, el entrenamiento, el cuidado de un animal tan delicado como fiel, tan orgulloso como vulnerable, su puesta en condición y, finalmente, el espectáculo de fuerza y belleza armoniosamente unidas, en
+            busca de un desenlace favorable que no es casualidad, cruzar la meta por encima de su oponente, ahora más que nunca debemos recordar a Carlos Gardel como primer embajador de la hípica latinoamericana pues como admirador al deporte inmortalizó
+            en su tango la diferencia entre la victoria y la derrota, él como muchos otros héroes del turf a los largo de nuestra historia son inspiración en pro del porvenir de un deporte distinto, pero a la vez único y tan especial, ajeno, para muchos,
+            pero no por mucho tiempo.</p>
+
+        <p>Enaltecer la actividad como deporte, pero donde también jugamos y nos divertimos aplicando cálculos por tiempos, efectividad, habilidad para interpretar distintos factores, memoria, análisis estadísticos, suspicacia y entender que a veces puede
+            intervenir el factor suerte, reconociendo que una corazonada puede decidir o no a nuestro favor, el turf es una industria que además genera miles de empleos directos y centenares de miles de forma indirecta en la región, una sana Diversión
+            que, por factores políticos y a nuestro entender mal-enfocados, llegó a ser considerado como un Juego de Envite y Azar por su dependencia económica de la Apuesta y no como deporte, ese argumento quedo obsoleto, porque sin excepción las apuestas
+            desde hace mucho tiempo son permitidas en todos los deportes cuando en el pasado era prohibido, aclaratoria por demás que nos llena de regocijo, pues esa visión ya no puede encasillarnos.</p>
+        <p>Estamos aquí para invitarlos a subirse al caballo imaginario de GRTV y correr día a día, de norte a sur y de sur a norte por una industria mejor, reconociendo que las derrotas son la escuela para disfrutar la victoria cuando ella nos alcanza.</p>
+        <p>A partir de ahora la visión que tenemos por la majestuosidad de este espectáculo se ha convertido en un reto para nosotros, pues trabajaremos sin desfallecer hasta confirmar que las carreras de caballos de cada país sean vistas simultáneamente
+            en todo el continente por miles de miles y por GRTV como: el Espectáculo más Bello del Mundo.</p>
+-->
+        <p *ngFor="let item of misionvision.vision"> {{item.p}} </p>
+
+        <h3 style="    font-weight: 600;">QUE VIVA LA HÍPICA EN TODAS SUS DIMENSIONES… PORQUE AQUÍ AMAMOS LAS CARRERAS. GUSTAVO RAVELL Y SUS AMIGOS.</h3>
+        <span style="font-size:13px">Siguenos en nuestras redes sociales:</span>
+        <div class="social-setup">
+            <ion-icon (click)="goToLink('https://www.facebook.com/Grtv.us/')" name="logo-facebook"></ion-icon>
+            <ion-icon (click)="goToLink('https://www.instagram.com/grtv.us/')" name="logo-instagram"></ion-icon>
+            <ion-icon (click)="goToLink('https://twitter.com/grtvus')" name="logo-twitter"></ion-icon>
+            <ion-icon (click)="goToLink('https://www.youtube.com/user/LAPALABRAVERDAD')" name="logo-youtube"></ion-icon>
+        </div>
+        <br>
+    </div>
+
+
+    <div class="misiontextcontent" *ngIf="misionvision && MyLangIs === 'en' ">
+
+        <span (click)="backToconfigFromMision()"><ion-icon name="arrow-redo-outline"></ion-icon></span>
+        <!--espanol-->
+        <h1>MISSION | VISION
+        </h1>
+        <!--espanol-->
+
+        <!--  <p>En procura de contribuir en el crecimiento y la evolución de las Carreras de Caballos tan abatidas por las circunstancias que lastiman a nuestros países en Latinoamérica, hemos tomado la iniciativa de aportar la experiencia de un equipo de trabajo
+            notablemente calificado, provisto de las herramientas tecnológicas apropiadas, para penetrar en la selva de la desidia y consolidar la Unión de países y sus hipódromos en cada región en base a una transmisión múltiple desde los diferentes
+            rincones del Continente, para que por primera vez podamos seguir y conocer lo que acontece entorno al deporte de los reyes en las voces de profesionales que por encima de todo aman al caballo en todas sus dimensiones y que más que un esfuerzo
+            será un privilegio informar y mantener al tanto de lo que pasa día a día en cada uno de esos escenarios, a partir de ahora nos juramentamos ante ustedes para ofrecer profesionalismo por encima de intereses.</p>
+
+        <p>Estados Unidos será el centro de operaciones y su hípica formará parte de este proyecto que persigue consolidar a nuestra mismísima región con todo su esplendor para que sirva de inspiración a las nuevas generaciones, observándola como uno de
+            los deportes más bellos donde combinadamente se unen atletas (Jinete y Caballo) corriendo por el todo, generando en el espectador gran tensión y aumentando la adrenalina, desbocando pasión y emoción como ningún otro.</p>
+
+        <p>GRTV será la plataforma del caballo de carrera para toda Latino Americana donde disfrutemos a nuestros Ídolos locales por igual a los otros que compiten en hipódromos de países hermanos, guiados por una generación de relevo y otra en formación,
+            que persigue difundir la majestuosidad de un espectáculo que ejerce un embrujo especial sobre el nuevo aficionado, aportando incalculable satisfacción a los amantes del turf.</p>
+
+        <p>Asumimos el reto, porque creemos que nuestra mayor recompensa reside en el amor que nos une a este noble y bello deporte, pero además aceptamos este compromiso porque muchos aquí le debemos todo lo que somos, hoy más que ayer reconocemos que esta
+            labor no podrá hacernos sentir cansados.</p>
+        -->
+        <p *ngFor="let item of misionvision.mision"> {{item.pIng}} </p>
+        <h1>VISION</h1>
+
+        <!--
+        <p>Nuestra visión será la de generar interés sano por este deporte y contribuir a devolverle el puesto que se merece, enseñando a querer al caballo y todo lo que rodea a la actividad de las carreras, empezando por difundir y resaltar el hermoso mundo
+            de los purasangres desde la cría, la doma, el entrenamiento, el cuidado de un animal tan delicado como fiel, tan orgulloso como vulnerable, su puesta en condición y, finalmente, el espectáculo de fuerza y belleza armoniosamente unidas, en
+            busca de un desenlace favorable que no es casualidad, cruzar la meta por encima de su oponente, ahora más que nunca debemos recordar a Carlos Gardel como primer embajador de la hípica latinoamericana pues como admirador al deporte inmortalizó
+            en su tango la diferencia entre la victoria y la derrota, él como muchos otros héroes del turf a los largo de nuestra historia son inspiración en pro del porvenir de un deporte distinto, pero a la vez único y tan especial, ajeno, para muchos,
+            pero no por mucho tiempo.</p>
+
+        <p>Enaltecer la actividad como deporte, pero donde también jugamos y nos divertimos aplicando cálculos por tiempos, efectividad, habilidad para interpretar distintos factores, memoria, análisis estadísticos, suspicacia y entender que a veces puede
+            intervenir el factor suerte, reconociendo que una corazonada puede decidir o no a nuestro favor, el turf es una industria que además genera miles de empleos directos y centenares de miles de forma indirecta en la región, una sana Diversión
+            que, por factores políticos y a nuestro entender mal-enfocados, llegó a ser considerado como un Juego de Envite y Azar por su dependencia económica de la Apuesta y no como deporte, ese argumento quedo obsoleto, porque sin excepción las apuestas
+            desde hace mucho tiempo son permitidas en todos los deportes cuando en el pasado era prohibido, aclaratoria por demás que nos llena de regocijo, pues esa visión ya no puede encasillarnos.</p>
+        <p>Estamos aquí para invitarlos a subirse al caballo imaginario de GRTV y correr día a día, de norte a sur y de sur a norte por una industria mejor, reconociendo que las derrotas son la escuela para disfrutar la victoria cuando ella nos alcanza.</p>
+        <p>A partir de ahora la visión que tenemos por la majestuosidad de este espectáculo se ha convertido en un reto para nosotros, pues trabajaremos sin desfallecer hasta confirmar que las carreras de caballos de cada país sean vistas simultáneamente
+            en todo el continente por miles de miles y por GRTV como: el Espectáculo más Bello del Mundo.</p>
+-->
+        <p *ngFor="let item of misionvision.vision"> {{item.pIng}} </p>
+
+        <h3 style="    font-weight: 600;">LONG LIVE HORSEBACK IN ALL ITS DIMENSIONS ... BECAUSE WE LOVE RACING HERE. GUSTAVO RAVELL AND HIS FRIENDS.</h3>
+        <span style="font-size:13px">Follow us on our social networks:</span>
+        <div class="social-setup">
+            <ion-icon (click)="goToLink('https://www.facebook.com/Grtv.us/')" name="logo-facebook"></ion-icon>
+            <ion-icon (click)="goToLink('https://www.instagram.com/grtv.us/')" name="logo-instagram"></ion-icon>
+            <ion-icon (click)="goToLink('https://twitter.com/grtvus')" name="logo-twitter"></ion-icon>
+            <ion-icon (click)="goToLink('https://www.youtube.com/user/LAPALABRAVERDAD')" name="logo-youtube"></ion-icon>
+        </div>
+        <br>
+    </div>
+
+
+
+
+
+
+    <div class="misiontextcontent" *ngIf="misionvision && MyLangIs !== 'en' && MyLangIs !== 'es'">
+
+        <span (click)="backToconfigFromMision()"><ion-icon name="arrow-redo-outline"></ion-icon></span>
+        <!--espanol-->
+        <h1>MISIÓN / VISIÓN</h1>
+        <!--espanol-->
+
+        <!--  <p>En procura de contribuir en el crecimiento y la evolución de las Carreras de Caballos tan abatidas por las circunstancias que lastiman a nuestros países en Latinoamérica, hemos tomado la iniciativa de aportar la experiencia de un equipo de trabajo
+            notablemente calificado, provisto de las herramientas tecnológicas apropiadas, para penetrar en la selva de la desidia y consolidar la Unión de países y sus hipódromos en cada región en base a una transmisión múltiple desde los diferentes
+            rincones del Continente, para que por primera vez podamos seguir y conocer lo que acontece entorno al deporte de los reyes en las voces de profesionales que por encima de todo aman al caballo en todas sus dimensiones y que más que un esfuerzo
+            será un privilegio informar y mantener al tanto de lo que pasa día a día en cada uno de esos escenarios, a partir de ahora nos juramentamos ante ustedes para ofrecer profesionalismo por encima de intereses.</p>
+
+        <p>Estados Unidos será el centro de operaciones y su hípica formará parte de este proyecto que persigue consolidar a nuestra mismísima región con todo su esplendor para que sirva de inspiración a las nuevas generaciones, observándola como uno de
+            los deportes más bellos donde combinadamente se unen atletas (Jinete y Caballo) corriendo por el todo, generando en el espectador gran tensión y aumentando la adrenalina, desbocando pasión y emoción como ningún otro.</p>
+
+        <p>GRTV será la plataforma del caballo de carrera para toda Latino Americana donde disfrutemos a nuestros Ídolos locales por igual a los otros que compiten en hipódromos de países hermanos, guiados por una generación de relevo y otra en formación,
+            que persigue difundir la majestuosidad de un espectáculo que ejerce un embrujo especial sobre el nuevo aficionado, aportando incalculable satisfacción a los amantes del turf.</p>
+
+        <p>Asumimos el reto, porque creemos que nuestra mayor recompensa reside en el amor que nos une a este noble y bello deporte, pero además aceptamos este compromiso porque muchos aquí le debemos todo lo que somos, hoy más que ayer reconocemos que esta
+            labor no podrá hacernos sentir cansados.</p>
+        -->
+        <p *ngFor="let item of misionvision.mision"> {{item.p}} </p>
+        <h1>VISIÓN</h1>
+
+        <!--
+        <p>Nuestra visión será la de generar interés sano por este deporte y contribuir a devolverle el puesto que se merece, enseñando a querer al caballo y todo lo que rodea a la actividad de las carreras, empezando por difundir y resaltar el hermoso mundo
+            de los purasangres desde la cría, la doma, el entrenamiento, el cuidado de un animal tan delicado como fiel, tan orgulloso como vulnerable, su puesta en condición y, finalmente, el espectáculo de fuerza y belleza armoniosamente unidas, en
+            busca de un desenlace favorable que no es casualidad, cruzar la meta por encima de su oponente, ahora más que nunca debemos recordar a Carlos Gardel como primer embajador de la hípica latinoamericana pues como admirador al deporte inmortalizó
+            en su tango la diferencia entre la victoria y la derrota, él como muchos otros héroes del turf a los largo de nuestra historia son inspiración en pro del porvenir de un deporte distinto, pero a la vez único y tan especial, ajeno, para muchos,
+            pero no por mucho tiempo.</p>
+
+        <p>Enaltecer la actividad como deporte, pero donde también jugamos y nos divertimos aplicando cálculos por tiempos, efectividad, habilidad para interpretar distintos factores, memoria, análisis estadísticos, suspicacia y entender que a veces puede
+            intervenir el factor suerte, reconociendo que una corazonada puede decidir o no a nuestro favor, el turf es una industria que además genera miles de empleos directos y centenares de miles de forma indirecta en la región, una sana Diversión
+            que, por factores políticos y a nuestro entender mal-enfocados, llegó a ser considerado como un Juego de Envite y Azar por su dependencia económica de la Apuesta y no como deporte, ese argumento quedo obsoleto, porque sin excepción las apuestas
+            desde hace mucho tiempo son permitidas en todos los deportes cuando en el pasado era prohibido, aclaratoria por demás que nos llena de regocijo, pues esa visión ya no puede encasillarnos.</p>
+        <p>Estamos aquí para invitarlos a subirse al caballo imaginario de GRTV y correr día a día, de norte a sur y de sur a norte por una industria mejor, reconociendo que las derrotas son la escuela para disfrutar la victoria cuando ella nos alcanza.</p>
+        <p>A partir de ahora la visión que tenemos por la majestuosidad de este espectáculo se ha convertido en un reto para nosotros, pues trabajaremos sin desfallecer hasta confirmar que las carreras de caballos de cada país sean vistas simultáneamente
+            en todo el continente por miles de miles y por GRTV como: el Espectáculo más Bello del Mundo.</p>
+-->
+        <p *ngFor="let item of misionvision.vision"> {{item.p}} </p>
+
+        <h3 style="    font-weight: 600;">QUE VIVA LA HÍPICA EN TODAS SUS DIMENSIONES… PORQUE AQUÍ AMAMOS LAS CARRERAS. GUSTAVO RAVELL Y SUS AMIGOS.</h3>
+        <span style="font-size:13px">Siguenos en nuestras redes sociales:</span>
+        <div class="social-setup">
+            <ion-icon (click)="goToLink('https://www.facebook.com/Grtv.us/')" name="logo-facebook"></ion-icon>
+            <ion-icon (click)="goToLink('https://www.instagram.com/grtv.us/')" name="logo-instagram"></ion-icon>
+            <ion-icon (click)="goToLink('https://twitter.com/grtvus')" name="logo-twitter"></ion-icon>
+            <ion-icon (click)="goToLink('https://www.youtube.com/user/LAPALABRAVERDAD')" name="logo-youtube"></ion-icon>
+        </div>
+        <br>
+    </div>
+</ion-menu>
+
+
+<ion-menu style=" --background: #000000cc;" side="end" menuId="redessociales" contentId="main">
+    <div class="redcont" style="height: 100%;width: 100%;overflow-y: scroll;">
+        <div *ngFor="let item of redesDatas" class="reditem" style="width: 100%;
+        height: 20vh;
+        background: url({{item.banner}});
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;">
+            <div class="sps">
+
+                <span>{{item.name}} </span>
+                <!--espanol-->
+                <div *ngIf="MyLangIs === 'es'" class="reddata">
+                    <span>{{item.seguidores}} Seguidores</span>
+                    <span (click)="goToLink(item.LinkRed)" *ngIf="item.enVivo === false">Ver Mas</span>
+                    <span *ngIf="item.enVivo === true" style="color:red;" class="parpadea" (click)="goToLink(item.enVivoLink)">En Vivo</span>
+                </div>
+                <!--espanol-->
+                <!--ingles-->
+                <div *ngIf="MyLangIs === 'en'" class="reddata">
+                    <span>{{item.seguidores}} Followers</span>
+                    <span (click)="goToLink(item.LinkRed)" *ngIf="item.enVivo === false">See More</span>
+                    <span *ngIf="item.enVivo === true" style="color:red;" class="parpadea" (click)="goToLink(item.enVivoLink)">Live</span>
+                </div>
+                <!--ingles-->
+                <!--otro idioma-->
+                <div *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" class="reddata">
+                    <span>{{item.seguidores}} Seguidores</span>
+                    <span (click)="goToLink(item.LinkRed)" *ngIf="item.enVivo === false">Ver Mas</span>
+                    <span *ngIf="item.enVivo === true" style="color:red;" class="parpadea" (click)="goToLink(item.enVivoLink)">En Vivo</span>
+                </div>
+                <!--otro idioma-->
+            </div>
+        </div>
+    </div>
+</ion-menu>
+
+
+<ion-menu style=" --background: #000000cc;" side="end" menuId="comohacer" contentId="main">
+    <div class="redcont" style="height: 100%;width: 100%;overflow-y: scroll;">
+        <div *ngFor="let item of howToVideos" (click)="openHowToVideo(item)" class="reditem" style="width: 100%;
+        height: 20vh;
+        background: url({{item.banner}});
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;">
+            <div class="sps">
+
+                <span>{{item.name}} </span>
+            </div>
+        </div>
+    </div>
+</ion-menu>
+
+<ion-menu class="custom" style=" --background: #000000cc;backdrop-filter: blur(5px);-webkit-backdrop-filter: blur(5px);" side="end" menuId="nosotros" contentId="main">
+    <!--Aqui van los mamapinga esos-->
+    <div *ngIf="!personalData && talentsBios" class="nosotros-content">
+        <!--espanol-->
+        <span class="atras" *ngIf="MyLangIs === 'es'" (click)="backToConfigFromNosotros()"><ion-icon name="arrow-redo-outline"></ion-icon></span>
+        <!--espanol-->
+        <!--ingles-->
+        <span class="atras" *ngIf="MyLangIs === 'en'" (click)="backToConfigFromNosotros()"><ion-icon name="arrow-redo-outline"></ion-icon></span>
+        <!--ingles-->
+        <!--otro idioma-->
+        <span class="atras" *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" (click)="backToConfigFromNosotros()"><ion-icon name="arrow-redo-outline"></ion-icon></span>
+        <!--otro idioma-->
+
+        <!--espanol-->
+        <h1 *ngIf="MyLangIs === 'es'">Quienes Somos</h1>
+        <!--espanol-->
+        <!--ingles-->
+        <h1 *ngIf="MyLangIs === 'en'">About Us</h1>
+        <!--ingles-->
+        <!--otro idioma-->
+        <h1 *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'">Quienes Somos</h1>
+        <!--otro idioma-->
+        <div class="nosotros-grid">
+            <div *ngFor="let item of talentsBios" (click)="verBioTalent(item)" class="item-bio">
+                <img [src]="item.photoUrl" alt="">
+                <span>{{item.name}}  </span>
+                <span style="font-size: 11px;color:#c3c3c3;">{{item.pais}} </span>
+            </div>
+        </div>
+        <br>
+        <br>
+
+
+    </div>
+
+    <!--Aqui va la informacion individual de cada uno-->
+    <!--espanol-->
+    <div *ngIf="personalData && MyLangIs === 'es'" class="nosotros-content">
+        <br>
+        <!--espanol-->
+        <span (click)="personalData = null">Volver</span>
+        <!--espanol-->
+        <br>
+        <br>
+        <h3>{{personalData.name}} </h3>
+        <img style="width: 55%;float: right;" [src]="personalData.insidePhoto" alt="">
+        <p style="text-align: justify;" *ngFor="let item of personalData.bio">{{item.p}} </p>
+
+        <span *ngIf="personalData.instagram" style="font-size:13px">Sigue a {{personalData.name}} en sus redes sociales:</span>
+        <div class="social-setup">
+            <ion-icon *ngIf="personalData.facebook" (click)="goToLink(personalData.facebook)" name="logo-facebook"></ion-icon>
+            <ion-icon *ngIf="personalData.instagram" (click)="goToLink(personalData.instagram)" name="logo-instagram"></ion-icon>
+            <ion-icon *ngIf="personalData.twitter" (click)="goToLink(personalData.twitter)" name="logo-twitter"></ion-icon>
+            <ion-icon *ngIf="personalData.youtube" (click)="goToLink(personalData.youtube)" name="logo-youtube"></ion-icon>
+        </div>
+        <br>
+    </div>
+    <!--espanol-->
+
+    <!--ingles-->
+    <div *ngIf="personalData && MyLangIs === 'en'" class="nosotros-content">
+        <br>
+        <!--ingles-->
+        <span (click)="personalData = null">Back</span>
+        <!--ingles-->
+        <br>
+        <br>
+        <h3>{{personalData.name}} </h3>
+        <img style="width: 55%;float: right;" [src]="personalData.insidePhoto" alt="">
+        <p style="text-align: justify;" *ngFor="let item of personalData.bio">{{item.pin}} </p>
+
+        <span *ngIf="personalData.instagram" style="font-size:13px">{{personalData.name}} on his social networks:</span>
+        <div class="social-setup">
+            <ion-icon *ngIf="personalData.facebook" (click)="goToLink(personalData.facebook)" name="logo-facebook"></ion-icon>
+            <ion-icon *ngIf="personalData.instagram" (click)="goToLink(personalData.instagram)" name="logo-instagram"></ion-icon>
+            <ion-icon *ngIf="personalData.twitter" (click)="goToLink(personalData.twitter)" name="logo-twitter"></ion-icon>
+            <ion-icon *ngIf="personalData.youtube" (click)="goToLink(personalData.youtube)" name="logo-youtube"></ion-icon>
+        </div>
+        <br>
+    </div>
+    <!--ingles-->
+
+    <!--otro idioma-->
+    <div *ngIf="personalData && MyLangIs !== 'en' && MyLangIs !== 'es'" class="nosotros-content">
+        <br>
+        <!--espanol-->
+        <span (click)="personalData = null">Volver</span>
+        <!--espanol-->
+        <br>
+        <br>
+        <h3>{{personalData.name}} </h3>
+        <img style="width: 55%;float: right;" [src]="personalData.insidePhoto" alt="">
+        <p style="text-align: justify;" *ngFor="let item of personalData.bio">{{item.p}} </p>
+
+        <span *ngIf="personalData.instagram" style="font-size:13px">Sigue a {{personalData.name}} en sus redes sociales:</span>
+        <div class="social-setup">
+            <ion-icon *ngIf="personalData.facebook" (click)="goToLink(personalData.facebook)" name="logo-facebook"></ion-icon>
+            <ion-icon *ngIf="personalData.instagram" (click)="goToLink(personalData.instagram)" name="logo-instagram"></ion-icon>
+            <ion-icon *ngIf="personalData.twitter" (click)="goToLink(personalData.twitter)" name="logo-twitter"></ion-icon>
+            <ion-icon *ngIf="personalData.youtube" (click)="goToLink(personalData.youtube)" name="logo-youtube"></ion-icon>
+        </div>
+        <br>
+    </div>
+    <!--otro idioma-->
+
+    <div class="spinnnn" *ngIf="!talentsBios ">
+        <ion-spinner style="    width: 30%;
+        height: 40%;
+        left: 35%;
+        top: 30%;
+        color: white;position: absolute;" name="crescent"></ion-spinner>
+    </div>
+
+
+</ion-menu>
+<!--Menu actualizado con las traducciones-->
+<ion-menu style=" --background: #000000cc;" side="end" menuId="configuracionApp" contentId="main">
+    <div class="menu-list">
+
+        <!--Espanol-->
+        <span *ngIf="!toChangeLang && MyLangIs === 'es'" (click)="toChangeLang = true">Cambiar Idioma</span>
+        <!--Espanol-->
+        <!--ingles-->
+        <span *ngIf="!toChangeLang && MyLangIs === 'en'" (click)="toChangeLang = true">Change Language</span>
+        <!--ingles-->
+        <!--otro idioma-->
+        <span *ngIf="!toChangeLang && MyLangIs !== 'en' && MyLangIs !== 'es'" (click)="toChangeLang = true">Cambiar Idioma</span>
+        <!--otro idioma-->
+        <div *ngIf="toChangeLang" (click)="setUs()" class="changeLang" style="    width: 60%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;">
+            <img style="width: 20%;" src="../../assets/icon/united-states.svg" alt="">
+            <span *ngIf="MyLangIs === 'es' ">Ingles</span>
+            <span *ngIf="MyLangIs === 'en' ">English</span>
+            <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'">Ingles</span>
+        </div>
+        <div *ngIf="toChangeLang" (click)="setEs()" class="changeLang" style="    width: 60%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;">
+            <img style="width: 20%;" src="../../assets/icon/spain.svg" alt="">
+            <span *ngIf="MyLangIs === 'es' ">Español</span>
+            <span *ngIf="MyLangIs === 'en' ">Spanish</span>
+            <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es' ">Español</span>
+        </div>
+        <!--  <div *ngIf="toChangeLang" (click)="setPt()" class="changeLang" style="    width: 60%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;">
+
+            <img style="width: 20%;" src="../../assets/icon/brazil.svg" alt="">
+            <span *ngIf="MyLangIs === 'es' ">Portugués</span>
+            <span *ngIf="MyLangIs === 'en' ">Portuguese</span>
+            <span *ngIf="MyLangIs === 'pt' ">Português</span>
+        </div>-->
+    </div>
+</ion-menu>
+
+
+
+
+<div (click)="dismissSplash()" class="splas" style="background: url(../../assets/other/SPLASH.png);  background-position: center;
+background-repeat: no-repeat;
+background-size: cover;transition-timing-function: linear; {{splashScreen}} ">
+    <span>..</span>
+</div>
+<ion-router-outlet id="main">
+
+
+
+
+    <div class="contenido" id="cont" [style]="viewheight">
+
+        <ion-slides #contenido [options]="contenidos">
+            <ion-slide>
+                <!--En Vivo-->
+                <div class="content">
+
+                    <div class="header" style="    background: #000000d6;
+                  backdrop-filter: blur(5px);    margin-top: 0;">
+                        <div class="logo-place" style="
+                      height: 100%;
+                      width: 17%;
+                      border-radius: 50%;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center; {{logoT}} ">
+                            <!--     <div class="logo-dia">
+                              <span>.</span>
+                          </div>
+                        <div class="logo-dia-dos">
+                              <span>.</span>
+                          </div>  (click)="openAddEpisodio()"-->
+                            <img style="    width: 80%;
+                          margin: auto;" src="../../assets/logo/grtv.png" alt="">
+                        </div>
+                        <div class="config" (click)="openMenu()">
+                            <!--  
+                                (click)=""
+                                
+                                <div class="logo-dia">
+                              <span>.</span>
+                          </div>
+                          <div class="logo-dia-dos">
+                              <span>.</span>
+                          </div>-->
+                            <ion-icon name="menu"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="reproductor">
+                        <div class="view">
+                            <span *ngIf="isMudo === true" (click)="uitarMudo()" style="
+                            position: absolute;
+                            z-index: 100;
+                            bottom: 3%;
+                            left: 3%;
+                            background: #ffffff;
+                            /* padding: 2%; */
+                            border: 1px solid;
+                            border-radius: 50%;
+                            box-shadow: 3px 2px 9px #000000d9;
+                            height: 30px;
+                            width: 30px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;"> <ion-icon    name="volume-mute"></ion-icon></span>
+
+                            <div #playpaussss class="playpaus" [style]="toPause" (click)="playPuaseAction()">
+                                <span *ngIf="isMudo === false" (click)="ponerMudo()" style="
+                            position: absolute;
+                            z-index: 100;
+                            bottom: 3%;
+                            left: 3%;
+                            background: #ffffff;
+                            color:black;
+                            border: 1px solid;
+                            border-radius: 50%;
+                            box-shadow: 3px 2px 9px #000000d9;
+                            height: 30px;
+                            width: 30px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;"> <ion-icon name="volume-high"></ion-icon></span>
+                                <ion-icon (click)="pauseStre()" *ngIf="estaEnPlay" class="pla" name="pause"></ion-icon>
+                                <ion-icon id="clickPlay" (click)="playStrea()" *ngIf="!estaEnPlay" class="pla" name="play"></ion-icon>
+                                <ion-icon (click)="openEnVivoFullScreen()" class="fullscree" name="expand"></ion-icon>
+                            </div>
+
+                            <!-- <cloudflare-stream [controls]="true" src="e520bc99468997e8b1e6d786ef816c65"></cloudflare-stream>-->
+                            <video style="height: 100%;width: 100%;" id="video-player" preload="metadata" playsinline webkit-playsinline autoplay muted class="video-js vjs-default-skin"></video>
+
+                        </div>
+
+                    </div>
+                    <div class="ruedita">
+
+                        <!--espanol-->
+                        <div *ngIf="MyLangIs === 'es' " class="two-span-ruedita" style="display: flex; width: 100%;">
+                            <span *ngIf="valueRuedita < -1 && howMuchBack" style="margin-left: 5%;margin-right: auto;"><ion-icon name="play-back"></ion-icon> {{howMuchBack}} </span>
+                            <span *ngIf="!howMuchBack" style="margin-left: 5%;margin-right: auto"><ion-icon name="play-back"></ion-icon>{{howManyMaxMin}} <ion-icon name="play-forward"></ion-icon></span>
+                            <span id="fecharedita" style="margin-top: 0;">{{dateRuedita}}</span>
+                            <span (click)="goToLive()" *ngIf="valueRuedita < -1  && howMuchBack" style="color: white;font-size: 12px;background: #9e9e9e;padding: 4px;border-radius: 10px; {{liveFix}} "> <ion-icon slot="start" name="radio"></ion-icon>En vivo</span>
+                            <span id="enVivoActtion" (click)="goToLive()" class="parpadea" style="color: white;font-size: 12px;background: red;padding: 4px;border-radius: 10px;{{liveFix}} " *ngIf="valueRuedita == 0 && !howMuchBack"> <ion-icon slot="start" name="radio"></ion-icon>En vivo</span>
+                        </div>
+                        <!--espanol-->
+
+                        <!--ingles-->
+                        <div *ngIf="MyLangIs === 'en' " class="two-span-ruedita" style="display: flex; width: 100%;">
+                            <span *ngIf="valueRuedita < -1 && howMuchBack" style="margin-left: 5%;margin-right: auto;"><ion-icon name="play-back"></ion-icon> {{howMuchBack}} </span>
+                            <span *ngIf="!howMuchBack" style="margin-left: 5%;margin-right: auto"><ion-icon name="play-back"></ion-icon>{{howManyMaxMin}} <ion-icon name="play-forward"></ion-icon></span>
+                            <span id="fecharedita" style="margin-top: 0;">{{dateRueditaIng}}</span>
+                            <span (click)="goToLive()" *ngIf="valueRuedita < -1  && howMuchBack" style="color: white;font-size: 12px;background: #9e9e9e;padding: 4px;border-radius: 10px; {{liveFix}} "> <ion-icon slot="start" name="radio"></ion-icon> Live</span>
+                            <span id="enVivoActtion" (click)="goToLive()" class="parpadea" style="color: white;font-size: 12px;background: red;padding: 4px;border-radius: 10px;{{liveFix}} " *ngIf="valueRuedita == 0 && !howMuchBack"> <ion-icon slot="start" name="radio"></ion-icon> Live</span>
+                        </div>
+                        <!--ingles-->
+
+                        <!--otro idioma-->
+                        <div *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es' " class="two-span-ruedita" style="display: flex; width: 100%;">
+                            <span *ngIf="valueRuedita < -1 && howMuchBack" style="margin-left: 5%;margin-right: auto;"><ion-icon name="play-back"></ion-icon> {{howMuchBack}} </span>
+                            <span *ngIf="!howMuchBack" style="margin-left: 5%;margin-right: auto"><ion-icon name="play-back"></ion-icon>{{howManyMaxMin}} <ion-icon name="play-forward"></ion-icon></span>
+                            <span id="fecharedita" style="margin-top: 0;">{{dateRuedita}}</span>
+                            <span (click)="goToLive()" *ngIf="valueRuedita < -1  && howMuchBack" style="color: white;font-size: 12px;background: #9e9e9e;padding: 4px;border-radius: 10px; {{liveFix}} "> <ion-icon slot="start" name="radio"></ion-icon>En vivo</span>
+                            <span id="enVivoActtion" (click)="goToLive()" class="parpadea" style="color: white;font-size: 12px;background: red;padding: 4px;border-radius: 10px;{{liveFix}} " *ngIf="valueRuedita == 0 && !howMuchBack"> <ion-icon slot="start" name="radio"></ion-icon>En vivo</span>
+                        </div>
+                        <!--otro idioma-->
+
+
+                        <div class="rue">
+
+                            <ion-range mode='md' style="padding-bottom: 0;padding-top: 1%;    --bar-background-active: #cfcaca;
+                                --knob-background: black;
+                                --bar-background: #cfcaca;
+                                color: black;
+                                --pin-background: black;padding-inline: 0;--knob-size:24px;" (ionChange)="puntito($event)" min="{{min}}" max="{{max}}" step="{{step}}" value="{{valueRuedita}} " snaps>
+
+
+                                <ion-icon (click)="restTimeTrim()" slot="start" name="remove-circle"></ion-icon>
+                                <ion-icon (click)="addTimeTrim()" slot="end" name="add-circle"></ion-icon>
+                            </ion-range>
+                            <div class="horas-ruedita" style="top: 25%;max-width: 95%;width: 84%;">
+                                <span style="border-right:none; border-left: 1px solid black;">.</span>
+                                <span style="border-right:none; border-left: 1px solid black;height: 50%;margin-top: auto;margin-bottom: auto;">.</span>
+                                <span style="border-right:none; border-left: 1px solid black;height: 50%;margin-top: auto;margin-bottom: auto;">.</span>
+                                <span style="border-right:none; border-left: 1px solid black;height: 50%;margin-top: auto;margin-bottom: auto;">.</span>
+                                <span style="border-right:none; border-left: 1px solid black;height: 50%;margin-top: auto;margin-bottom: auto;">.</span>
+                                <span style="border-right:none; border-left: 1px solid black;">.</span>
+                                <span style="border-right:none; border-left: 1px solid black;height: 50%;margin-top: auto;margin-bottom: auto;">.</span>
+                                <span style="border-right:none; border-left: 1px solid black;height: 50%;margin-top: auto;margin-bottom: auto;">.</span>
+                                <span style="border-right:none; border-left: 1px solid black;height: 50%;margin-top: auto;margin-bottom: auto;">.</span>
+                                <span style="border-right:none; border-left: 1px solid black;height: 50%;margin-top: auto;margin-bottom: auto;">.</span>
+                                <span style="    height: 85%;margin-top: auto;margin-bottom: auto;">.</span>
+                                <span style="height: 50%;margin-top: auto;margin-bottom: auto;">.</span>
+                                <span style="height: 50%;margin-top: auto;margin-bottom: auto;">.</span>
+                                <span style="height: 50%;margin-top: auto;margin-bottom: auto;">.</span>
+                                <span style="height: 50%;margin-top: auto;margin-bottom: auto;">.</span>
+                                <span>.</span>
+                                <span style="height: 50%;margin-top: auto;margin-bottom: auto;">.</span>
+                                <span style="height: 50%;margin-top: auto;margin-bottom: auto;">.</span>
+                                <span style="height: 50%;margin-top: auto;margin-bottom: auto;">.</span>
+                                <span style="height: 50%;margin-top: auto;margin-bottom: auto;">.</span>
+                                <span>.</span>
+                            </div>
+                            <div class="horas-ruedita" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+                                bottom: 55%;
+                                max-width: 94%;">
+                                <span style="    color: black;
+                                    width: 100%;
+                                    border-right: none;
+                                    margin: 0;
+                                    display: flex;
+                                    justify-content: flex-start;
+                                    " id="horasspanvar">{{lastten}} </span>
+                                <span style="    color: black;
+                                    width: 100%;
+                                    border-right: none;
+                                    margin: 0;
+                                    display: flex;justify-content: flex-start;" id="horasspanvar"> {{lastfive}} </span>
+                                <span style="    color: black;
+                                    width: 100%;
+                                    border-right: none;
+                                    margin: 0;">{{myCurrentHour}} </span>
+                                <span style="    color: black;
+                                    width: 100%;
+                                    border-right: none;
+                                    margin: 0;
+                                    
+                                    display: flex;
+                                    justify-content: flex-end;" id="horasspanvar">{{Laterfive}} </span>
+                                <span style="    color: black;
+                                    width: 100%;
+                                    border-right: none;
+                                    margin: 0;
+                                    display: flex;
+                                    justify-content: flex-end;
+                                    " id="horasspanvar">{{LaterTen}} </span>
+                            </div>
+
+                        </div>
+                        <div class="tres-span-ruedita">
+                            <div class="quick" [style]="slideStyle">
+                                <ion-slides [options]="miniInfo" #quic style="height: 100%;width: 100%;">
+                                    <ion-slide *ngFor="let item of newsArray" (click)="openNews(item)">
+                                        <!--espanol-->
+                                        <span *ngIf="item.type === 'En Vivo' && MyLangIs === 'es'  " class="parpadea" style="width: 100%;
+                                        margin-right: 0;
+                                        margin-left: 0;
+                                        margin-top: 0;color: red;">{{item.title}} </span>
+                                        <span *ngIf="item.type === 'Normal' && MyLangIs === 'es' " class="parpadea" style="width: 100%;
+                                        margin-right: 0;
+                                        margin-left: 0;
+                                        margin-top: 0;">{{item.title}} </span>
+                                        <!--espanol-->
+                                        <!--ingles-->
+                                        <span *ngIf="item.type === 'En Vivo' && MyLangIs === 'en'  " class="parpadea" style="width: 100%;
+                                        margin-right: 0;
+                                        margin-left: 0;
+                                        margin-top: 0;color: red;">{{item.titleIng}} </span>
+                                        <span *ngIf="item.type === 'Normal' && MyLangIs === 'en' " class="parpadea" style="width: 100%;
+                                        margin-right: 0;
+                                        margin-left: 0;
+                                        margin-top: 0;">{{item.titleIng}} </span>
+                                        <!--ingles-->
+
+                                        <!--otro idioma-->
+                                        <span *ngIf="item.type === 'En Vivo' && MyLangIs !== 'en' && MyLangIs !== 'es'  " class="parpadea" style="width: 100%;
+                                         margin-right: 0;
+                                         margin-left: 0;
+                                         margin-top: 0;color: red;">{{item.titleIng}} </span>
+                                        <span *ngIf="item.type === 'Normal' && MyLangIs !== 'en' && MyLangIs !== 'es' " class="parpadea" style="width: 100%;
+                                         margin-right: 0;
+                                         margin-left: 0;
+                                         margin-top: 0;">{{item.titleIng}} </span>
+                                        <!--otro idioma-->
+                                    </ion-slide>
+                                </ion-slides>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="show-botons" style="width: 97%;
+                  margin-left: auto;
+                  border-radius: 10px;
+                  margin-right: auto;
+                  background:white;
+                  backdrop-filter: blur(5px);border:1px solid  #000000d6;">
+                        <!--     <div class="show-dia" style="transition: 1s; {{onVivoBoton}} " >
+                          <span>.</span>
+                      </div>
+                     <div class="show-dia-dos" style="transition: 1.3s; {{transpDiv}} " >
+                          <span>.</span>
+                      </div>-->
+                        <div (click)="onDestacado()" class="show-bot" style="  {{destacadoActive}} {{showBotFix}} ">
+                            <!--espanol-->
+                            <span *ngIf="MyLangIs === 'es'">Destacado</span>
+                            <!--espanol-->
+                            <!--ingles-->
+                            <span *ngIf="MyLangIs === 'en' && destacadoIng ">{{destacadoIng}}</span>
+                            <!--ingles-->
+
+                            <!--otro idioma-->
+                            <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'">Destacado</span>
+                            <!--otro idioma-->
+                        </div>
+                        <div (click)="onProgramas()" class="show-bot" style=" {{progamaActive}} {{showBotFix}} ">
+
+                            <!--espanol-->
+                            <span *ngIf="MyLangIs === 'es'">Programación</span>
+                            <!--espanol-->
+                            <!--ingles-->
+                            <span *ngIf="MyLangIs === 'en' && programacionIng ">{{programacionIng}}</span>
+                            <!--ingles-->
+
+                            <!--otro idioma-->
+                            <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'">Programación</span>
+                            <!--otro idioma-->
+                        </div>
+                        <div (click)="onVerDespues()" class="show-bot" style=" {{despuesActive}} {{showBotFix}} ">
+                            <!--espanol-->
+                            <span *ngIf="MyLangIs === 'es'">Pronósticos</span>
+                            <!--espanol-->
+                            <!--ingles-->
+                            <span *ngIf="MyLangIs === 'en' && PronosticosIng ">{{PronosticosIng}}</span>
+                            <!--ingles-->
+
+                            <!--otro idioma-->
+                            <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'">Pronósticos</span>
+                            <!--otro idioma-->
+                        </div>
+                    </div>
+                    <div class="slider-programacion">
+                        <ion-slides [style]="slideStyle" #programacion [options]="sliderprog">
+                            <ion-slide>
+
+                                <div class="con" style="height: 100%;width: 100%;overflow-y: scroll;" infiniteScroll [scrollWindow]="false" (scrolled)="pruebapruebaprueba()">
+                                    <ion-list class="programacion-list" style="height: max-content; overflow-y: initial;">
+                                        <div *ngIf="episodiosDestacado" class="programacion-item">
+                                            <!--espanol-->
+                                            <h3 *ngIf="episodiosDestacado.length > 0 && MyLangIs === 'es'" style="margin-top: 1%;">Hoy</h3>
+                                            <!--espanol-->
+                                            <!--ingles-->
+                                            <h3 *ngIf="episodiosDestacado.length > 0 && MyLangIs === 'en'" style="margin-top: 1%;">Today</h3>
+                                            <!--ingles-->
+                                            <!--otro idioma-->
+                                            <h3 *ngIf="episodiosDestacado.length > 0 && MyLangIs !== 'en' && MyLangIs !== 'es'" style="margin-top: 1%;">Hoy</h3>
+                                            <!--otro idioma-->
+                                            <div class="episodios-item" *ngFor="let item of episodiosDestacado" style="margin-bottom:2vh;">
+                                                <div (click)="openEpisodio(item)" class="item-img">
+                                                    <img style="border:2px solid black" src="{{item.cover}} " alt="">
+                                                </div>
+                                                <div style=" display: flex;
+                                              width: 70%;
+                                              height: 100%;
+                                              justify-content: space-evenly;
+                                              align-items: center;
+                                              border-bottom: 1px solid #313131 ;">
+                                                    <div (click)="openEpisodio(item)" class="item-content" style="width: 90%;">
+                                                        <div class="other-info">
+                                                            <!--espanol-->
+                                                            <span *ngIf="MyLangIs === 'es'">Repetición</span>
+                                                            <!--espanol-->
+                                                            <!--ingles-->
+                                                            <span *ngIf="MyLangIs === 'en'">Replay</span>
+                                                            <!--ingles-->
+                                                            <!--otro idioma-->
+                                                            <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'">Repetición</span>
+                                                            <!--otro idioma-->
+                                                            <span style="margin-left: auto;">{{item.pais}} </span>
+                                                        </div>
+                                                        <div class="titulo-episodio" style="text-align: initial;">
+                                                            <span style="text-align: initial;">{{item.nombre}} </span>
+                                                        </div>
+                                                        <div class="other-info">
+
+                                                            <span *ngIf="item.categoria !== 'Hipismo' ">Episodio {{item.capitulo}} </span>
+                                                            <span *ngIf="item.categoria == 'Hipismo'">{{item.longDate}}  </span>
+                                                            <span>{{item.horario}} </span>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="programacion-item">
+                                            <div class="fillt">
+                                                <!--espanol-->
+                                                <h3 *ngIf="MyLangIs === 'es'" style="margin-top: 1%;">Ultimos Días</h3>
+                                                <!--espanol-->
+                                                <!--ingles-->
+                                                <h3 *ngIf="MyLangIs === 'en'" style="margin-top: 1%;">Latest</h3>
+                                                <!--ingles-->
+                                                <!--otro idioma-->
+                                                <h3 *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" style="margin-top: 1%;">Ultimos Días</h3>
+                                                <!--otro idioma-->
+
+                                                <!--espanol-->
+                                                <span *ngIf="MyLangIs === 'es'" style="
+                                                    margin-right: 2%;
+                                                    color: #6d6d6d;
+                                                    font-weight: 600;
+                                                    display: flex;
+                                                    width: 20%;
+                                                    justify-content: space-between;" (click)="filtroDestacadoOtrosDias()">Filtro <ion-icon slot="end" name="options"></ion-icon> </span>
+                                                <!--espanol-->
+
+                                                <!--ingles-->
+                                                <span *ngIf="MyLangIs === 'en'" style="
+                                                 margin-right: 2%;
+                                                 color: #6d6d6d;
+                                                 font-weight: 600;
+                                                 display: flex;
+                                                 width: 20%;
+                                                 justify-content: space-between;" (click)="filtroDestacadoOtrosDias()">Filters <ion-icon slot="end" name="options"></ion-icon> </span>
+                                                <!--ingles-->
+                                                <!--otro idioma-->
+                                                <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" style="
+                                                 margin-right: 2%;
+                                                 color: #6d6d6d;
+                                                 font-weight: 600;
+                                                 display: flex;
+                                                 width: 20%;
+                                                 justify-content: space-between;" (click)="filtroDestacadoOtrosDias()">Filtro <ion-icon slot="end" name="options"></ion-icon> </span>
+                                                <!--otro idioma-->
+                                            </div>
+                                            <div class="episodios-item" *ngFor='let item  of (episodioDestacadoOtros | slice : 0 : indexOfDestacado)' style="margin-bottom:2vh;">
+                                                <div (click)="openEpisodio(item)" class="item-img">
+                                                    <img style="border:2px solid black" src="{{$any(item).cover}} " alt="">
+                                                </div>
+                                                <div style=" display: flex;
+                                              width: 70%;
+                                              height: 100%;
+                                              justify-content: space-evenly;
+                                              align-items: center;
+                                              border-bottom: 1px solid #313131 ;">
+                                                    <div (click)="openEpisodio(item)" class="item-content" style="width: 90%;">
+                                                        <div class="other-info">
+                                                            <!--espanol-->
+                                                            <span *ngIf="MyLangIs === 'es'">Repetición</span>
+                                                            <!--espanol-->
+                                                            <!--ingles-->
+                                                            <span *ngIf="MyLangIs === 'en'">Replay</span>
+                                                            <!--ingles-->
+                                                            <!--otro idioma-->
+                                                            <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'">Repetición</span>
+                                                            <!--otro idioma-->
+                                                            <span style="margin-left: auto;">{{$any(item).pais}} </span>
+                                                        </div>
+                                                        <div class="titulo-episodio" style="text-align: initial;">
+                                                            <span style="text-align: initial;">{{$any(item).nombre}} </span>
+                                                        </div>
+                                                        <div class="other-info">
+
+                                                            <span *ngIf="$any(item).categoria !== 'Hipismo' ">Episodio {{$any(item).capitulo}} </span>
+                                                            <span *ngIf="$any(item).categoria == 'Hipismo'">{{$any(item).longDate}}  </span>
+                                                            <span>{{$any(item).horario}} </span>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </ion-list>
+                                </div>
+
+                                <!--    <div class="programacion-list">
+                                        <div *ngIf="episodiosDestacado" class="programacion-item">
+                                            <h3 *ngIf="episodiosDestacado.length > 0" style="margin-top: 1%;">Hoy</h3>
+                                            <div class="episodios-item" *ngFor="let item of episodiosDestacado" style="margin-bottom:2vh;">
+                                                <div (click)="openEpisodio(item)" class="item-img">
+                                                    <img style="border:2px solid black" src="{{item.cover}} " alt="">
+                                                </div>
+                                                <div style=" display: flex;
+                                              width: 70%;
+                                              height: 100%;
+                                              justify-content: space-evenly;
+                                              align-items: center;
+                                              border-bottom: 1px solid #313131 ;">
+                                                    <div (click)="openEpisodio(item)" class="item-content" style="width: 80%;">
+                                                        <div class="other-info">
+                                                            <span style="margin-left: auto;">{{item.pais}} </span>
+                                                        </div>
+                                                        <div class="titulo-episodio" style="text-align: initial;">
+                                                            <span style="text-align: initial;">{{item.nombre}} </span>
+                                                        </div>
+                                                        <div class="other-info">
+
+                                                            <span *ngIf="item.categoria !== 'Hipismo' ">Episodio {{item.capitulo}} </span>
+                                                            <span *ngIf="item.categoria == 'Hipismo'">{{item.longDate}}  </span>
+                                                            <span>{{item.horario}} </span>
+                                                        </div>
+
+                                                    </div>
+                                                    <div (click)="guardarEpisodio(item)" class="play-item">
+                                                        <ion-icon name="bookmark"></ion-icon>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="programacion-item">
+                                            <div class="fillt">
+                                                <h3 style="margin-top: 1%;">Ultimos Dias</h3>
+                                                <span style="
+                                                    margin-right: 2%;
+                                                    color: #6d6d6d;
+                                                    font-weight: 600;
+                                                    display: flex;
+                                                    width: 20%;
+                                                    justify-content: space-between;" (click)="filtroDestacadoOtrosDias()">Filtro <ion-icon slot="end" name="options"></ion-icon> </span>
+                                            </div>
+                                            <div class="episodios-item" *ngFor='let item  of (episodioDestacadoOtros | slice : 0 : indexOfDestacado)' style="margin-bottom:2vh;">
+                                                <div (click)="openEpisodio(item)" class="item-img">
+                                                    <img style="border:2px solid black" src="{{$any(item).cover}} " alt="">
+                                                </div>
+                                                <div style=" display: flex;
+                                              width: 70%;
+                                              height: 100%;
+                                              justify-content: space-evenly;
+                                              align-items: center;
+                                              border-bottom: 1px solid #313131 ;">
+                                                    <div (click)="openEpisodio(item)" class="item-content" style="width: 80%;">
+                                                        <div class="other-info">
+                                                            <span style="margin-left: auto;">{{$any(item).pais}} </span>
+                                                        </div>
+                                                        <div class="titulo-episodio" style="text-align: initial;">
+                                                            <span style="text-align: initial;">{{$any(item).nombre}} </span>
+                                                        </div>
+                                                        <div class="other-info">
+
+                                                            <span *ngIf="$any(item).categoria !== 'Hipismo' ">Episodio {{$any(item).capitulo}} </span>
+                                                            <span *ngIf="$any(item).categoria == 'Hipismo'">{{$any(item).longDate}}  </span>
+                                                            <span>{{$any(item).horario}} </span>
+                                                        </div>
+
+                                                    </div>
+                                                    <div (click)="guardarEpisodio(item)" class="play-item">
+                                                        <ion-icon name="bookmark"></ion-icon>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <br>
+                                        <br>
+                                        <br>
+
+                                    </div>-->
+                                <!--   <ion-infinite-scroll threshold="100px" (ionInfinite)="doInfinite($event)">
+                                        <ion-infinite-scroll-content loadingSpinner="dots" loadingText="Cargando Destacados...">
+                                        </ion-infinite-scroll-content>
+                                    </ion-infinite-scroll>
+                                -->
+
+
+
+
+                            </ion-slide>
+
+
+                            <ion-slide style="display: flex;flex-direction: column;">
+                                <div class="programacion-list" style="height: 10%;overflow-y: initial;">
+                                    <div class="programacion-item">
+                                        <div class="agenda-item">
+                                            <span *ngIf="day == 'Lun' && elLun; else isLun" style="border-right: 2px solid #c7c7c7; background: rgb(107, 107, 107);color: white;">{{elLun}} </span>
+                                            <ng-template #isLun>
+                                                <span (click)="changeDayEpisodio('Lun')" style="border-right: 2px solid #c7c7c7;">{{elLun}}</span>
+                                            </ng-template>
+                                            <span *ngIf="day == 'Mar'; else isMar" style="border-right: 2px solid #c7c7c7;background: rgb(107, 107, 107);color: white;">{{elMar}}</span>
+                                            <ng-template #isMar>
+                                                <span (click)="changeDayEpisodio('Mar')" style="border-right: 2px solid #c7c7c7;">{{elMar}}</span>
+                                            </ng-template>
+                                            <span *ngIf="day == 'Mie'; else isMie" style="border-right: 2px solid #c7c7c7;background: rgb(107, 107, 107);color: white;  ">{{elMie}}</span>
+                                            <ng-template #isMie>
+                                                <span (click)="changeDayEpisodio('Mie')" style="border-right: 2px solid #c7c7c7;">{{elMie}}</span>
+                                            </ng-template>
+                                            <span *ngIf="day == 'Jue';else isJue" style="border-right: 2px solid #c7c7c7; background: rgb(107, 107, 107);color: white;">{{elJue}}</span>
+                                            <ng-template #isJue>
+                                                <span (click)="changeDayEpisodio('Jue')" style="border-right: 2px solid #c7c7c7;">{{elJue}}</span>
+                                            </ng-template>
+                                            <span *ngIf="day == 'Vie';else isVie" style="border-right: 2px solid #c7c7c7;background: rgb(107, 107, 107);color: white;">{{elVie}}</span>
+                                            <ng-template #isVie>
+                                                <span (click)="changeDayEpisodio('Vie')" style="border-right: 2px solid #c7c7c7;">{{elVie}}</span>
+                                            </ng-template>
+                                            <span *ngIf="day == 'Sab';else isSab" style="border-right: 2px solid #c7c7c7;    background: rgb(107, 107, 107);color: white;">{{elSab}}</span>
+                                            <ng-template #isSab>
+                                                <span (click)="changeDayEpisodio('Sab')" style="border-right: 2px solid #c7c7c7;">{{elSab}}</span>
+                                            </ng-template>
+                                            <span *ngIf="day == 'Dom';else isDom" style="background: rgb(107, 107, 107);color: white;">{{elDom}}</span>
+                                            <ng-template #isDom>
+                                                <span (click)="changeDayEpisodio('Dom')">{{elDom}}</span>
+                                            </ng-template>
+                                        </div>
+
+
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <br>
+                                </div>
+                                <div class="programacion-list" style="height: 90%;">
+                                    <div class="programacion-item">
+
+                                        <div class="episodios-item" *ngFor="let item of episodiosByDay" style="margin-bottom: 2vh;">
+                                            <div *ngIf="item.aHour === aHourComp" (click)="openEpisodio(item)" class="item-img parpadea">
+                                                <!--   <div class="item-img-dia">
+                                                  <span>.</span>
+                                              </div>
+                                             -->
+                                                <img style="border:2px solid black;" src="{{item.cover}} " alt="">
+                                            </div>
+                                            <div class="parpadea" *ngIf="item.aHour === aHourComp" style=" display: flex;
+                                          width: 70%;
+                                          height: 100%;
+                                          justify-content: space-evenly;
+                                          align-items: center;
+                                          border-bottom: 1px solid #313131 ;">
+                                                <div (click)="openEpisodio(item)" class="item-content" style="width: 95%;">
+                                                    <div class="other-info">
+                                                        <span style="margin-left: auto;">{{item.pais}} </span>
+                                                    </div>
+                                                    <div class="titulo-episodio" style="text-align: initial;">
+                                                        <span style="text-align: initial;">{{item.nombre}} </span>
+                                                    </div>
+                                                    <div class="other-info">
+                                                        <span *ngIf="item.categoria !== 'Hipismo' ">Episodio {{item.capitulo}} </span>
+                                                        <span *ngIf="item.categoria == 'Hipismo'">{{item.longDate}}  </span>
+                                                        <span>{{item.horario}} </span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+
+                                            <div *ngIf="item.aHour !== aHourComp" (click)="openEpisodio(item)" class="item-img">
+                                                <!--   <div class="item-img-dia">
+                                                  <span>.</span>
+                                              </div>
+                                             -->
+                                                <img style="border:2px solid black;" src="{{item.cover}} " alt="">
+                                            </div>
+                                            <div *ngIf="item.aHour !== aHourComp" style=" display: flex;
+                                          width: 70%;
+                                          height: 100%;
+                                          justify-content: space-evenly;
+                                          align-items: center;
+                                          border-bottom: 1px solid #313131 ;">
+                                                <div (click)="openEpisodio(item)" class="item-content" style="width: 95%;">
+                                                    <div class="other-info">
+                                                        <span style="margin-left: auto;">{{item.pais}} </span>
+                                                    </div>
+                                                    <div class="titulo-episodio" style="text-align: initial;">
+                                                        <span style="text-align: initial;">{{item.nombre}} </span>
+                                                    </div>
+                                                    <div class="other-info">
+                                                        <span *ngIf="item.categoria !== 'Hipismo' ">Episodio {{item.capitulo}} </span>
+                                                        <span *ngIf="item.categoria == 'Hipismo'">{{item.longDate}}  </span>
+                                                        <span>{{item.horario}} </span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <br>
+                                </div>
+                            </ion-slide>
+
+
+                            <ion-slide style="display: block;">
+                                <ion-segment style="--background:#e3e3e3;height:10%; width:90%; margin-left:auto;margin-right:auto; margin-bottom: 2%; " value="Pronostico" (ionChange)="changePronos($event)">
+                                    <ion-segment-button value="Noticia" style="min-height: 0;font-weight: 600;font-size: 11px;">
+                                        <!--espanol-->
+                                        <ion-label *ngIf="MyLangIs === 'es'">Noticias</ion-label>
+                                        <!--espanol-->
+                                        <!--ingleds-->
+                                        <ion-label *ngIf="MyLangIs === 'en'">News</ion-label>
+                                        <!--ingles-->
+                                        <!--otro idioma-->
+                                        <ion-label *ngIf="MyLangIs !== 'es'&&MyLangIs !== 'en'">Noticias</ion-label>
+                                        <!--otro idioma-->
+                                    </ion-segment-button>
+                                    <ion-segment-button value="Pronostico" style="min-height: 0;font-weight: 600;font-size: 11px;">
+                                        <!--espanol-->
+                                        <ion-label *ngIf="MyLangIs === 'es'">Pronosticos</ion-label>
+                                        <!--espanol-->
+                                        <!--ingles-->
+                                        <ion-label *ngIf="MyLangIs === 'en'">Picks</ion-label>
+                                        <!--ingles-->
+                                        <!--otro idioma-->
+                                        <ion-label *ngIf="MyLangIs !== 'es'&&MyLangIs !== 'en'">Pronosticos</ion-label>
+                                        <!--otro idioma-->
+                                    </ion-segment-button>
+                                    <ion-segment-button value="Resumen" style="min-height: 0;font-weight: 600;font-size: 11px;">
+                                        <!--espanol-->
+                                        <ion-label *ngIf="MyLangIs === 'es'">Resumen</ion-label>
+                                        <!--espanol-->
+                                        <!--ingles-->
+                                        <ion-label *ngIf="MyLangIs === 'en'">Summary</ion-label>
+                                        <!--ingles-->
+                                        <!--otro idioma-->
+                                        <ion-label *ngIf="MyLangIs !== 'es'&&MyLangIs !== 'en'">Resumen</ion-label>
+                                        <!--otro idioma-->
+                                    </ion-segment-button>
+                                </ion-segment>
+
+
+                                <div class="con" style="height: 88%;width: 100%;overflow-y: scroll;" infiniteScroll [scrollWindow]="false" (scrolled)="doInfinitePronostico()">
+                                    <ion-list class="programacion-list" style="height: max-content; overflow-y: initial;">
+                                        <div *ngIf="pronostiHoy" class="programacion-item">
+                                            <div *ngIf="pronostiHoy.length > 0" class="fillt">
+                                                <!--espanol-->
+                                                <h3 *ngIf="MyLangIs === 'es'" style="margin-top: 1%;">Hoy</h3>
+                                                <!--espanol-->
+                                                <!--ingles-->
+                                                <h3 *ngIf="MyLangIs === 'en'" style="margin-top: 1%;">Today</h3>
+                                                <!--ingles-->
+                                                <!--otro idioma-->
+                                                <h3 *ngIf="MyLangIs !== 'es'&&MyLangIs !== 'en'" style="margin-top: 1%;">Hoy</h3>
+                                                <!--otro idioma-->
+
+                                                <!--espanlo-->
+                                                <span *ngIf="MyLangIs === 'es'" style="
+                                                    margin-right: 2%;
+                                                    color: #6d6d6d;
+                                                    font-weight: 600;
+                                                    display: flex;
+                                                    width: 20%;
+                                                    justify-content: space-between;" (click)="filtroPronosHoy()">Filtros <ion-icon slot="end" name="options"></ion-icon> </span>
+                                                <!--espanlo-->
+                                                <!--ingles-->
+                                                <span *ngIf="MyLangIs === 'en'" style="
+                                                margin-right: 2%;
+                                                color: #6d6d6d;
+                                                font-weight: 600;
+                                                display: flex;
+                                                width: 20%;
+                                                justify-content: space-between;" (click)="filtroPronosHoy()">Filters <ion-icon slot="end" name="options"></ion-icon> </span>
+                                                <!--ingles-->
+
+                                                <!--otro idioma-->
+                                                <span *ngIf="MyLangIs !== 'es'&&MyLangIs !== 'en'" style="
+                                                 margin-right: 2%;
+                                                 color: #6d6d6d;
+                                                 font-weight: 600;
+                                                 display: flex;
+                                                 width: 20%;
+                                                 justify-content: space-between;" (click)="filtroPronosHoy()">Filtros <ion-icon slot="end" name="options"></ion-icon> </span>
+                                                <!--otro idioma-->
+                                            </div>
+
+                                            <div class="episodios-item" *ngFor="let item of pronostiHoy" style="margin-bottom:2vh;" (click)="openPronostico(item)">
+                                                <!-- 
+                                                <div class="item-img">
+                                                    <img style="border:2px solid black" src="../../assets/acc-fotos/portada.jpg" alt="">
+                                                </div>
+    -->
+                                                <ion-avatar id="avatarstorie" style="margin-left: 2%;">
+                                                    <img style="width: 100%;height: 100%;object-fit: cover;border:2px solid black" [src]="item.talentPhoto" alt="">
+                                                </ion-avatar>
+                                                <div style=" display: flex;
+                                              width: 80%;
+                                              height: 100%;
+                                              justify-content: space-evenly;
+                                              align-items: center;
+                                              border-bottom: 1px solid #313131 ; {{avatarFix}} ">
+                                                    <div class="item-content" style="width: 100%;">
+                                                        <div class="other-info">
+                                                            <span class="parpadea">{{item.type}} </span>
+                                                            <span style="margin-left: auto;">{{item.pais}} </span>
+                                                        </div>
+                                                        <div class="titulo-episodio" style="text-align: initial;">
+                                                            <span style="text-align: initial;">{{item.hipodromo}} </span>
+                                                        </div>
+                                                        <div class="other-info">
+
+                                                            <span style="text-align: initial;">{{item.talentName}} </span>
+                                                            <span style="text-align: end;">{{item.date}} a las {{item.hour}} </span>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="programacion-item">
+                                            <div class="fillt">
+                                                <!--Espanol-->
+                                                <h3 *ngIf="MyLangIs === 'es'" style="margin-top: 1%;">Ultimos Días</h3>
+                                                <!--espanol-->
+                                                <!--ingles-->
+                                                <h3 *ngIf="MyLangIs === 'en'" style="margin-top: 1%;">Latest</h3>
+                                                <!--ingles-->
+                                                <!--otro idioma-->
+                                                <h3 *ngIf="MyLangIs !== 'es'&&MyLangIs !== 'en'" style="margin-top: 1%;">Ultimos Días</h3>
+                                                <!--otro idioma-->
+
+                                                <!--espanol-->
+                                                <span *ngIf="MyLangIs === 'es'" style="
+                                                    margin-right: 2%;
+                                                    color: #6d6d6d;
+                                                    font-weight: 600;
+                                                    display: flex;
+                                                    width: 20%;
+                                                    justify-content: space-between;" (click)="filtroPronosOtrosDias()">Filtros <ion-icon slot="end" name="options"></ion-icon> </span>
+                                                <!--espanol-->
+
+                                                <!--ingles-->
+                                                <span *ngIf="MyLangIs === 'en'" style="
+                                                margin-right: 2%;
+                                                color: #6d6d6d;
+                                                font-weight: 600;
+                                                display: flex;
+                                                width: 20%;
+                                                justify-content: space-between;" (click)="filtroPronosOtrosDias()">Filters <ion-icon slot="end" name="options"></ion-icon> </span>
+                                                <!--ingles-->
+
+                                                <!--otro idioma-->
+                                                <span *ngIf="MyLangIs !== 'es'&&MyLangIs !== 'en'" style="
+                                                margin-right: 2%;
+                                                color: #6d6d6d;
+                                                font-weight: 600;
+                                                display: flex;
+                                                width: 20%;
+                                                justify-content: space-between;" (click)="filtroPronosOtrosDias()">Filtro <ion-icon slot="end" name="options"></ion-icon> </span>
+                                                <!--otro idioma-->
+                                            </div>
+
+                                            <div class="episodios-item" *ngFor="let item of ( pronostiViejos | slice : 0 : indexOfPronostico)" style="margin-bottom:2vh;" (click)="openPronostico(item)">
+                                                <!-- 
+                                                <div class="item-img">
+                                                    <img style="border:2px solid black" src="../../assets/acc-fotos/portada.jpg" alt="">
+                                                </div>
+    -->
+                                                <ion-avatar id="avatarstorie" style="margin-left: 2%;">
+                                                    <img style="width: 100%;height: 100%;object-fit: cover;border:2px solid black" [src]="$any(item).talentPhoto" alt="">
+                                                </ion-avatar>
+                                                <div style=" display: flex;
+                                              width: 80%;
+                                              height: 100%;
+                                              justify-content: space-evenly;
+                                              align-items: center;
+                                              border-bottom: 1px solid #313131 ; {{avatarFix}} ">
+                                                    <div class="item-content" style="width: 100%;">
+                                                        <div class="other-info">
+                                                            <span class="parpadea">{{$any(item).type}} </span>
+                                                            <span style="margin-left: auto;">{{$any(item).pais}} </span>
+                                                        </div>
+                                                        <div class="titulo-episodio" style="text-align: initial;">
+                                                            <span style="text-align: initial;">{{$any(item).hipodromo}} </span>
+                                                        </div>
+                                                        <div class="other-info">
+
+                                                            <span style="text-align: initial;">{{$any(item).talentName}} </span>
+                                                            <span style="text-align: end;">{{$any(item).date}} a las {{$any(item).hour}} </span>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <br>
+                                    </ion-list>
+                                </div>
+                                <!--    <div class="programacion-list">
+                                    <div *ngIf="pronostiHoy" class="programacion-item">
+                                        <div *ngIf="pronostiHoy.length > 0" class="fillt">
+                                            <h3 style="margin-top: 1%;">Hoy</h3>
+                                            <span style="
+                                                margin-right: 2%;
+                                                color: #6d6d6d;
+                                                font-weight: 600;
+                                                display: flex;
+                                                width: 20%;
+                                                justify-content: space-between;" (click)="filtroPronosHoy()">Filtro <ion-icon slot="end" name="options"></ion-icon> </span>
+                                        </div>
+
+                                        <div class="episodios-item" *ngFor="let item of pronostiHoy" style="margin-bottom:2vh;" (click)="openPronostico(item)">
+                                             
+                                            <div class="item-img">
+                                                <img style="border:2px solid black" src="../../assets/acc-fotos/portada.jpg" alt="">
+                                            </div>
+
+                                            <ion-avatar id="avatarstorie" style="margin-left: 2%;">
+                                                <img style="width: 100%;height: 100%;object-fit: cover;border:2px solid black" [src]="item.talentPhoto" alt="">
+                                            </ion-avatar>
+                                            <div style=" display: flex;
+                                          width: 80%;
+                                          height: 100%;
+                                          justify-content: space-evenly;
+                                          align-items: center;
+                                          border-bottom: 1px solid #313131 ; {{avatarFix}} ">
+                                                <div class="item-content" style="width: 100%;">
+                                                    <div class="other-info">
+                                                        <span class="parpadea">{{item.type}} </span>
+                                                        <span style="margin-left: auto;">{{item.pais}} </span>
+                                                    </div>
+                                                    <div class="titulo-episodio" style="text-align: initial;">
+                                                        <span style="text-align: initial;">{{item.hipodromo}} </span>
+                                                    </div>
+                                                    <div class="other-info">
+
+                                                        <span style="text-align: initial;">{{item.talentName}} </span>
+                                                        <span style="text-align: end;">{{item.date}} a las {{item.hour}} </span>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="programacion-item">
+                                        <div class="fillt">
+                                            <h3 style="margin-top: 1%;">Dias Anteriores</h3>
+                                            <span style="
+                                                margin-right: 2%;
+                                                color: #6d6d6d;
+                                                font-weight: 600;
+                                                display: flex;
+                                                width: 20%;
+                                                justify-content: space-between;" (click)="filtroPronosOtrosDias()">Filtro <ion-icon slot="end" name="options"></ion-icon> </span>
+                                        </div>
+
+                                        <div class="episodios-item" *ngFor="let item of pronostiViejos" style="margin-bottom:2vh;" (click)="openPronostico(item)">
+                                            
+                                            <div class="item-img">
+                                                <img style="border:2px solid black" src="../../assets/acc-fotos/portada.jpg" alt="">
+                                            </div>
+
+                                            <ion-avatar id="avatarstorie" style="margin-left: 2%;">
+                                                <img style="width: 100%;height: 100%;object-fit: cover;border:2px solid black" [src]="item.talentPhoto" alt="">
+                                            </ion-avatar>
+                                            <div style=" display: flex;
+                                          width: 80%;
+                                          height: 100%;
+                                          justify-content: space-evenly;
+                                          align-items: center;
+                                          border-bottom: 1px solid #313131 ; {{avatarFix}} ">
+                                                <div class="item-content" style="width: 100%;">
+                                                    <div class="other-info">
+                                                        <span class="parpadea">{{item.type}} </span>
+                                                        <span style="margin-left: auto;">{{item.pais}} </span>
+                                                    </div>
+                                                    <div class="titulo-episodio" style="text-align: initial;">
+                                                        <span style="text-align: initial;">{{item.hipodromo}} </span>
+                                                    </div>
+                                                    <div class="other-info">
+
+                                                        <span style="text-align: initial;">{{item.talentName}} </span>
+                                                        <span style="text-align: end;">{{item.date}} a las {{item.hour}} </span>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <br>
+
+                                </div> -->
+
+                            </ion-slide>
+                        </ion-slides>
+                    </div>
+                </div>
+            </ion-slide>
+
+
+            <ion-slide>
+                <!--Episodios-->
+                <div class="content">
+                    <div *ngIf="!ToSearchE" class="header-title" style="    background: #000000d6;
+                  backdrop-filter: blur(5px);    margin-top: 0;">
+                        <div class="logo-place" style="
+                   height: 70%;
+                   width: 20%;
+                   border-radius: 50%;
+                   display: flex;
+                   justify-content: center;
+                   align-items: center;">
+                            <!--     <div class="logo-dia">
+                           <span>.</span>
+                       </div>
+                     <div class="logo-dia-dos">
+                           <span>.</span>
+                       </div>  (click)="openAddEpisodio()"-->
+                            <img (click)="onEnVivo()" style="    width: 70%;
+                       margin: auto;" src="../../assets/logo/grtv.png" alt="">
+                        </div>
+                        <div class="titulo">
+                            <!--      <div class="title-dia">
+                              <span>.</span>
+                          </div>
+                          <div class="title-dia-dos">
+                              <span>.</span>
+                          </div>
+                          <div class="title-dia-tres">
+                              <span>.</span>
+                          </div>-->
+
+                            <!--Espanol-->
+                            <h3 *ngIf="MyLangIs === 'es'">Episodios</h3>
+                            <!--Espanol-->
+                            <!--ingles-->
+                            <h3 *ngIf="MyLangIs === 'en'">Episodes</h3>
+                            <!--ingles-->
+                            <!--otro idioma-->
+                            <h3 *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'">Episodios</h3>
+                            <!--otro idioma-->
+                        </div>
+
+                        <div style="color: white;" class="search-icon" (click)="EpisodioToSearch()">
+                            <!--   <div class="close-dia" style="background: #1f1f1f;" >
+                              <span style="opacity: 0;" >.</span>
+                          </div>
+                          <div class="close-dia-dos" style="    border:2px solid #c7c7c7;" >
+                              <span style="opacity: 0;" >.</span>
+                          </div>-->
+                            <ion-icon name="search"></ion-icon>
+                        </div>
+                    </div>
+                    <div *ngIf="ToSearchE" class="header-title" style="    background: #000000d6;
+                  backdrop-filter: blur(5px);    margin-top: 0;">
+                        <div class="onsearch">
+                            <!--  <div class="search-dia">
+                              <span>.</span>
+                          </div>-->
+
+                            <!--Espanol-->
+                            <ion-input *ngIf="MyLangIs === 'es'" (ionChange)="buscarE($event)" placeholder="Busca algún episodio.."></ion-input>
+                            <!--Espanol-->
+
+                            <!--ingles-->
+                            <ion-input *ngIf="MyLangIs === 'en'" (ionChange)="buscarE($event)" placeholder="Search for an episode.."></ion-input>
+                            <!--ingles-->
+                            <!--otro idioma-->
+                            <ion-input *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" (ionChange)="buscarE($event)" placeholder="Busca algún episodio.."></ion-input>
+                            <!--otro idioma-->
+                        </div>
+                        <div class="search-icon" style="color: white;" (click)="EpisodioToSearchClose()">
+                            <!--  <div class="close-dia">
+                              <span>.</span>
+                          </div>
+                          <div class="close-dia-dos">
+                              <span>.</span>
+                          </div>-->
+                            <ion-icon name="close"></ion-icon>
+                        </div>
+
+                    </div>
+                    <div class="filter-episodios">
+
+                        <span *ngIf="MyLangIs === 'es' " class="spanm">{{episodioTitle}} </span>
+                        <span *ngIf="MyLangIs === 'en' " class="spanm">{{episodioTitleIng}} </span>
+                        <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es' " class="spanm">{{episodioTitle}} </span>
+
+
+                        <div class="filtro" (click)="EpisodioFiltroAction()">
+                            <!--espanol-->
+                            <span *ngIf="MyLangIs === 'es'">Filtros</span>
+                            <!--espanol-->
+                            <!--ingles-->
+                            <span *ngIf="MyLangIs === 'en'">Filters</span>
+                            <!--ingles-->
+                            <!--otro idioma-->
+                            <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'">Filtros</span>
+                            <!--otro idioma-->
+                            <ion-icon name="options"></ion-icon>
+                        </div>
+                    </div>
+
+
+                    <div class="episodios-list" infiniteScroll [scrollWindow]="false" (scrolled)="doInfiniteEpisodio()">
+                        <ion-list>
+                            <div class="episodios-item" style="height: 12vh;" *ngFor="let item of (episodiosPropios | slice : 0 : indexOfEpisodio)  | searchHipodromo:buscarEpisodio ">
+
+
+                                <div (click)="openEpisodio(item)" class="item-img">
+                                    <!--    <div class="item-img-dia">
+                                      <span>.</span>
+                                  </div>
+                                -->
+                                    <img src="{{item.cover}} " alt="">
+                                </div>
+                                <div style=" display: flex;
+                                              width: 70%;
+                                              height: 75%;
+                                              justify-content: space-evenly;
+                                              align-items: center;
+                                              border-bottom: 1px solid #313131 ;">
+                                    <div (click)="openEpisodio(item)" class="item-content" style="width: 80%;">
+
+                                        <div class="titulo-episodio" style="
+                                                      text-align: initial;
+                                                  ">
+                                            <span id="nombreepisiodiospan">{{item.nombre}} </span>
+                                        </div>
+                                        <div class="other-info">
+                                            <!--espanol-->
+                                            <span *ngIf="MyLangIs === 'es'">Episodio {{item.capitulo}} </span>
+                                            <!--espanol-->
+                                            <!--ingles-->
+                                            <span *ngIf="MyLangIs === 'en'">Episode {{item.capitulo}} </span>
+                                            <!--ingles-->
+                                            <!--otro idioma-->
+                                            <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'">Episodio {{item.capitulo}} </span>
+                                            <!--otro idioma-->
+
+                                            <span>{{item.pais}} </span>
+                                            <span>{{item.shortDate}} </span>
+                                        </div>
+
+                                    </div>
+                                    <div class="play-item">
+                                        <ion-icon name="play"></ion-icon>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                        </ion-list>
+                    </div>
+                </div>
+            </ion-slide>
+
+
+            <ion-slide>
+                <!--Hipodromos-->
+                <div class="content">
+                    <div *ngIf="!ToSearch" class="header-title" style="    background: #000000d6;
+                  backdrop-filter: blur(5px);    margin-top: 0;">
+                        <div class="logo-place" style="
+                   height: 70%;
+                   width: 20%;
+                   border-radius: 50%;
+                   display: flex;
+                   justify-content: center;
+                   align-items: center;">
+                            <!--     <div class="logo-dia">
+                           <span>.</span>
+                       </div>
+                     <div class="logo-dia-dos">
+                           <span>.</span>
+                       </div>  (click)="openAddEpisodio()"-->
+                            <img (click)="onEnVivo()" style="    width: 70%;
+                       margin: auto;" src="../../assets/logo/grtv.png" alt="">
+                        </div>
+                        <div class="titulo">
+                            <!--  <div class="title-dia"  >
+                              <span>.</span>
+                          </div>
+                          <div class="title-dia-dos"  >
+                              <span>.</span>
+                          </div>
+                          <div class="title-dia-tres" style="      height: 2%;
+                          top: 7.3%; " >
+                              <span>.</span>
+                          </div>-->
+
+                            <!--Espanol-->
+                            <h3 *ngIf="MyLangIs === 'es'">Hipódromos</h3>
+                            <!--Espanol-->
+                            <!--ingles-->
+                            <h3 *ngIf="MyLangIs === 'en'">Racetracks</h3>
+                            <!--ingles-->
+                            <!--otro idioma-->
+                            <h3 *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'">Hipódromos</h3>
+                            <!--otro idioma-->
+                        </div>
+
+                        <div style="color: white;" class="search-icon" (click)="hipodromoToSearch()">
+                            <!--   <div class="close-dia" style="background: #1f1f1f;" >
+                              <span style="opacity: 0;" >.</span>
+                          </div>
+                          <div class="close-dia-dos" style="border: 2px solid #c7c7c7;" >
+                              <span style="opacity: 0;" >.</span>
+                          </div>-->
+                            <ion-icon name="search"></ion-icon>
+                        </div>
+                    </div>
+                    <div *ngIf="ToSearch" class="header-title" style="    background: #000000d6;
+                  backdrop-filter: blur(5px);    margin-top: 0;">
+                        <div class="onsearch">
+                            <!--  <div class="search-dia">
+                              <span>.</span>
+                          </div>-->
+                            <!--espanol-->
+                            <ion-input *ngIf="MyLangIs === 'es'" (ionChange)="buscar($event)" placeholder="Busca algun Hipódromo.."></ion-input>
+                            <!--espanol-->
+                            <!--ingl;es-->
+                            <ion-input *ngIf="MyLangIs === 'en'" (ionChange)="buscar($event)" placeholder="Search for a Racetrack.."></ion-input>
+                            <!--ingles-->
+                            <!--otro idioma-->
+                            <ion-input *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" (ionChange)="buscar($event)" placeholder="Busca algun Hipódromo.."></ion-input>
+                            <!--otro idioma-->
+                        </div>
+                        <div class="search-icon" style="color: white;" (click)="hipodromoToSearchClose()">
+                            <!--  <div class="close-dia">
+                              <span>.</span>
+                          </div>
+                          <div class="close-dia-dos">
+                              <span>.</span>
+                          </div>-->
+                            <ion-icon name="close"></ion-icon>
+                        </div>
+
+                    </div>
+                    <div class="filter-episodios">
+
+                        <span *ngIf="MyLangIs === 'es'" class="spanm">{{hipodromosTitle}} </span>
+
+                        <span *ngIf="MyLangIs === 'en'" class="spanm">{{hipodromosTitleIng}} </span>
+                        <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" class="spanm">{{hipodromosTitle}} </span>
+
+                        <div class="filtro" (click)="HipodromoFiltroAction()">
+
+                            <!--espanol-->
+                            <span *ngIf="MyLangIs === 'es'">Filtros</span>
+                            <!--espanol-->
+                            <!--ingles-->
+                            <span *ngIf="MyLangIs === 'en'">Filters</span>
+                            <!--ingles-->
+                            <!--otro idioma-->
+                            <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'">Filtros</span>
+                            <!--otro idioma-->
+
+                            <ion-icon name="options"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="episodios-list" infiniteScroll [scrollWindow]="false" (scrolled)="doInfiniteHipodromo()">
+                        <ion-list>
+                            <div class="episodios-item" style="height: 12vh;" *ngFor="let item of (hipodromosAll | slice : 0 : indexOfHipodromo ) | searchHipodromo:textoBuscar">
+
+
+                                <div (click)="openHipodromo(item)" class="item-img">
+                                    <!--   <div class="item-img-dia"  >
+                                      <span>.</span>
+                                  </div>
+                                 -->
+                                    <img src="{{item.cover}} " alt="">
+                                </div>
+                                <div style=" display: flex;
+                                              width: 70%;
+                                              height: 75%;
+                                              justify-content: space-evenly;
+                                              align-items: center;
+                                              border-bottom: 1px solid #313131 ;">
+                                    <div (click)="openHipodromo(item)" class="item-content" style="height: 95%;">
+                                        <div class="other-info">
+
+                                            <!--espanol
+                                            <span *ngIf="MyLangIs === 'es'">{{item.diaEnVivo}} </span>
+                                          
+                                            <span *ngIf="MyLangIs === 'en'">{{item.diaEnVivoIng}} </span>
+                                            
+                                            <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'">{{item.diaEnVivo}} </span>
+-->
+
+                                            <span style="    text-transform: capitalize;">{{item.pais}}</span>
+
+                                            <!--otro idioma-->
+
+                                            <!--
+                                            <span> <ion-icon name="eye-outline"></ion-icon> {{item.nrocarreras}}</span>-->
+                                        </div>
+                                        <div class="titulo-episodio" style="display: flex;">
+                                            <span style="text-align: initial;">{{item.nombre}} </span>
+                                        </div>
+                                        <!--espanol-->
+                                        <div *ngIf="MyLangIs === 'es'" class="other-info">
+                                            <span *ngIf="item.enVivo === true" class="parpadea" style="color: red;">En Vivo Hoy</span>
+                                            <span *ngIf="item.enVivo === false" class="parpadea">Toca para más Información</span>
+                                            <!--
+                                            <span> <ion-icon name="eye-outline"></ion-icon> {{item.nrocarreras}}</span>-->
+                                        </div>
+                                        <!--espanol-->
+
+                                        <!--ingles-->
+                                        <div *ngIf="MyLangIs === 'en'" class="other-info">
+                                            <span *ngIf="item.enVivo === true" class="parpadea" style="color: red;">Live Now</span>
+                                            <span *ngIf="item.enVivo === false" class="parpadea">Tap for more information</span>
+                                            <!--
+                                            <span> <ion-icon name="eye-outline"></ion-icon> {{item.nrocarreras}}</span>-->
+                                        </div>
+                                        <!--Ingles-->
+
+                                        <!--otro idioma-->
+                                        <div *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" class="other-info">
+                                            <span *ngIf="item.enVivo === true" class="parpadea" style="color: red;">En Vivo Hoy</span>
+                                            <span *ngIf="item.enVivo === false" class="parpadea">Toca para más Información</span>
+                                            <!--
+                                            <span> <ion-icon name="eye-outline"></ion-icon> {{item.nrocarreras}}</span>-->
+                                        </div>
+                                        <!--otro idioma-->
+
+                                    </div>
+                                    <div (click)="openHipodromo(item)" id="play-hipodromo" class="play-item">
+                                        <ion-icon *ngIf="item.enVivo === true" style="color: red;" class="parpadea" name="radio-outline"></ion-icon>
+                                        <ion-icon *ngIf="item.enVivo === false" name="radio-outline"></ion-icon>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                        </ion-list>
+
+                    </div>
+                </div>
+
+
+            </ion-slide>
+
+            <ion-slide>
+                <!--Gaceta Turf-->
+                <div class="content">
+                    <div *ngIf="!ToSearchG" class="header-title" style="    background: #000000d6;
+                  backdrop-filter: blur(5px);    margin-top: 0;">
+                        <div class="logo-place" style="
+                   height: 70%;
+                   width: 20%;
+                   border-radius: 50%;
+                   display: flex;
+                   justify-content: center;
+                   align-items: center;">
+                            <!--     <div class="logo-dia">
+                           <span>.</span>
+                       </div>
+                     <div class="logo-dia-dos">
+                           <span>.</span>
+                       </div>  (click)="openAddEpisodio()"-->
+                            <img (click)="onEnVivo()" style="    width: 70%;
+                       margin: auto;" src="../../assets/logo/grtv.png" alt="">
+                        </div>
+                        <div class="titulo">
+                            <!--  <div class="title-dia"  >
+                              <span>.</span>
+                          </div>
+                          <div class="title-dia-dos"  >
+                              <span>.</span>
+                          </div>
+                          <div class="title-dia-tres" style="      height: 2%;
+                          top: 7.3%; " >
+                              <span>.</span>
+                          </div>-->
+                            <h3>Gaceta Turf</h3>
+                        </div>
+
+                        <div style="color: white;" class="search-icon" (click)="GacetaToSearch()">
+                            <!--   <div class="close-dia" style="background: #1f1f1f;" >
+                              <span style="opacity: 0;" >.</span>
+                          </div>
+                          <div class="close-dia-dos" style="border: 2px solid #c7c7c7;" >
+                              <span style="opacity: 0;" >.</span>
+                          </div>-->
+                            <ion-icon name="search"></ion-icon>
+                        </div>
+                    </div>
+                    <div *ngIf="ToSearchG" class="header-title" style="    background: #000000d6;
+                  backdrop-filter: blur(5px);    margin-top: 0;">
+                        <div class="onsearch">
+                            <!--  <div class="search-dia">
+                              <span>.</span>
+                          </div>-->
+
+                            <!--Espanol-->
+                            <ion-input *ngIf="MyLangIs === 'es'" (ionChange)="buscarG($event)" placeholder="Busca algun Hipodromo.."></ion-input>
+                            <!--Espanol-->
+                            <!--ingles-->
+                            <ion-input *ngIf="MyLangIs === 'en'" (ionChange)="buscarG($event)" placeholder="Search for a Racetrack.."></ion-input>
+                            <!--ingles-->
+                            <!--otro idioma-->
+                            <ion-input *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" (ionChange)="buscarG($event)" placeholder="Busca algun Hipodromo.."></ion-input>
+                            <!--otro idioma-->
+                        </div>
+                        <div class="search-icon" style="color: white;" (click)="GacetaToSearchClose()">
+                            <!--  <div class="close-dia">
+                              <span>.</span>
+                          </div>
+                          <div class="close-dia-dos">
+                              <span>.</span>
+                          </div>-->
+                            <ion-icon name="close"></ion-icon>
+                        </div>
+
+                    </div>
+                    <div class="filter-episodios">
+                        <span *ngIf="MyLangIs === 'es'" class="spanm">{{gacetaTitle}}</span>
+                        <span *ngIf="MyLangIs === 'en'" class="spanm">{{gacetaTitleIng}}</span>
+                        <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" class="spanm">{{gacetaTitle}}</span>
+                        <div class="filtro" (click)="GacetaFiltroAction()">
+                            <!--espanol-->
+                            <span *ngIf="MyLangIs === 'es'">Filtros</span>
+                            <!--espanol-->
+                            <!--ingles-->
+                            <span *ngIf="MyLangIs === 'en'">Filters</span>
+                            <!--ingles-->
+                            <!--otro idioma-->
+                            <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'">Filtros</span>
+                            <!--otro idioma-->
+                            <ion-icon name="options"></ion-icon>
+                        </div>
+                    </div>
+
+                    <div class="episodios-list " infiniteScroll [scrollWindow]="false" (scrolled)="doInfiniteGaceta()">
+                        <ion-list>
+                            <div class="episodios-item" style="height: 12vh;" *ngFor="let item of (gacetaHipodromos | slice : 0 : indexOfGaceta) | searchHipodromo:textoGaceta">
+                                <div *ngIf="item.actividad === true" (click)=" openGaceta(item)" class="item-img parpadea">
+                                    <!--   <div class="item-img-dia"  >
+                                      <span>.</span>
+                                  </div>
+                                 -->
+                                    <img style="border:2px solid #ff3c3c;" [src]="item.cover" alt="">
+                                </div>
+                                <div *ngIf="item.actividad === false" (click)=" openGaceta(item)" class="item-img ">
+                                    <!--   <div class="item-img-dia"  >
+                                      <span>.</span>
+                                  </div>
+                                 -->
+                                    <img [src]="item.cover" alt="">
+                                </div>
+                                <div style=" display: flex;
+                                              width: 70%;
+                                              height: 75%;
+                                              justify-content: space-evenly;
+                                              align-items: center;
+                                              border-bottom: 1px solid #313131 ;">
+                                    <div (click)=" openGaceta(item)" class="item-content">
+                                        <div class="other-info">
+                                            <span>Gaceta Turf</span>
+                                            <span style="    text-transform: capitalize;">{{item.pais}}</span>
+                                        </div>
+                                        <div class="titulo-episodio" style="display: flex;">
+                                            <span style="text-align: initial;">{{item.nombre}} </span>
+                                        </div>
+                                        <div *ngIf="item.actividad == true" class="other-info">
+                                            <!--espanol-->
+                                            <span *ngIf="MyLangIs === 'es'" class="parpadea" style="color: red;">{{item.nrocarreras}} Carreras</span>
+                                            <!--espanol-->
+                                            <!--ingles-->
+                                            <span *ngIf="MyLangIs === 'en'" class="parpadea" style="color: red;">{{item.nrocarreras}} Races</span>
+                                            <!--ingles-->
+                                            <!--otro idioma-->
+                                            <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" class="parpadea" style="color: red;">{{item.nrocarreras}} Carreras</span>
+                                            <!--otro idioma-->
+                                            <span> {{item.clima}}°</span>
+                                        </div>
+
+                                        <div *ngIf="item.actividad == false" class="other-info">
+                                            <!--espanol-->
+                                            <span *ngIf="MyLangIs === 'es'" style="color: #787878;">Hoy no hay actividad</span>
+                                            <!--espanol-->
+                                            <!--ingles-->
+                                            <span *ngIf="MyLangIs === 'en'" style="color: #787878;">Today there is no activity </span>
+                                            <!--ingles-->
+                                            <!--otro idioma-->
+                                            <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" style="color: #787878;">Hoy no hay actividad </span>
+                                            <!--otro idioma-->
+                                        </div>
+
+                                    </div>
+                                    <div *ngIf="item.actividad === true " (click)=" openGaceta(item)" id="play-hipodromo" class="play-item parpadea" style="color:#ff3c3c;">
+                                        <ion-icon name="enter"></ion-icon>
+                                    </div>
+                                    <div *ngIf="item.actividad === false " (click)=" openGaceta(item)" id="play-hipodromo" class="play-item">
+                                        <ion-icon name="enter"></ion-icon>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                        </ion-list>
+                    </div>
+
+                </div>
+            </ion-slide>
+
+
+            <ion-slide>
+                <!--Comunidad-->
+                <div class="content">
+                    <div class="header-title" style="    background: #000000d6;
+                  backdrop-filter: blur(5px);    margin-top: 0;">
+                        <div class="logo-place" style="
+                   height: 70%;
+                   width: 20%;
+                   border-radius: 50%;
+                   display: flex;
+                   justify-content: center;
+                   align-items: center;">
+                            <!--     <div class="logo-dia">
+                           <span>.</span>
+                       </div>
+                     <div class="logo-dia-dos">
+                           <span>.</span>
+                       </div>  (click)="openAddEpisodio()"-->
+                            <img (click)="onEnVivo()" style="    width: 70%;
+                       margin: auto;" src="../../assets/logo/grtv.png" alt="">
+                        </div>
+                        <div class="titulo">
+                            <!--  <div class="title-dia">
+                              <span>.</span>
+                          </div>
+                          <div class="title-dia-dos">
+                              <span>.</span>
+                          </div>
+                          <div class="title-dia-tres">
+                              <span>.</span>
+                          </div>-->
+
+                            <!--espanol-->
+                            <h3 *ngIf="MyLangIs === 'es'">Comunidad</h3>
+                            <!--espanol-->
+
+                            <!--ingles-->
+                            <h3 *ngIf="MyLangIs === 'en'">Community</h3>
+                            <!--ingles-->
+
+                            <!--otro idioma-->
+                            <h3 *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'">Comunidad</h3>
+                            <!--otro idioma-->
+                        </div>
+
+                        <div (click)="openmenuPerfil()" style="color: white;" class="search-icon">
+                            <!--   <div class="close-dia" style="background: #1f1f1f;" >
+                              <span style="opacity: 0;" >.</span>
+                          </div>
+                          <div class="close-dia-dos" style="    border:2px solid #c7c7c7;" >
+                              <span style="opacity: 0;" >.</span>
+                          </div>-->
+                            <ion-icon name="person"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="episodios-list" *ngIf="accActive && encuestaActive">
+                        <!--Aqui va a mostrar un menu estilo la gaceta, con slider al hacer click sobre alguien-->
+                        <div class="juego-item" (click)="openSobreNosotros()">
+                            <div class="juego-port" *ngIf="qsConfig">
+                                <img [src]="qsConfig.photoPortada" alt="">
+                            </div>
+                            <div *ngIf="qsConfig" class="juego-titl">
+                                <!--espanol-->
+                                <h3 *ngIf="MyLangIs === 'es'">{{qsConfig.name}} </h3>
+                                <!--espanol-->
+                                <!--ingles-->
+                                <h3 *ngIf="MyLangIs === 'en'">{{qsConfig.nameIng}} </h3>
+                                <!--ingles-->
+                                <!--otro idioma-->
+                                <h3 *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'">{{qsConfig.name}} </h3>
+                                <!--otro idioma-->
+                            </div>
+                        </div>
+                        <div class="juego-item" (click)="openMisionVision()">
+                            <div class="juego-port">
+                                <img [src]="misionvision.photoUrl" alt="">
+                            </div>
+                            <div class="juego-titl">
+
+                                <h3 *ngIf="MyLangIs === 'es'">Mision | Vision </h3>
+                                <h3 *ngIf="MyLangIs === 'en'">Mission | Vision</h3>
+                                <h3 *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'">Mision | Vision </h3>
+
+
+                            </div>
+                        </div>
+                        <div class="juego-item" (click)="openAtreveANarrar()">
+                            <div class="juego-port">
+                                <img [src]="atreveteConfig.photoPortada" alt="">
+                            </div>
+                            <div class="juego-titl">
+                                <!--espanol-->
+                                <h3 *ngIf="atreveteConfig && MyLangIs === 'es'">{{atreveteConfig.name}} </h3>
+                                <!--espanol-->
+                                <!--ingles-->
+                                <h3 *ngIf="atreveteConfig && MyLangIs === 'en'">{{atreveteConfig.nameIng}} </h3>
+                                <!--ingles-->
+                                <!--otro idioma-->
+                                <h3 *ngIf="atreveteConfig && MyLangIs !== 'en' && MyLangIs !== 'es'">{{atreveteConfig.name}} </h3>
+                                <!--otro  idioma-->
+                                <div class="sub-info" *ngIf="atreveteConfig">
+                                    <!--espanol-->
+                                    <span *ngIf="MyLangIs === 'es'" style="font-size: 10px;
+                                    text-align: initial;">{{atreveteConfig.subInfo}}</span>
+                                    <!--espanol-->
+                                    <!--ingles-->
+                                    <span *ngIf="MyLangIs === 'en'" style="font-size: 10px;
+                                     text-align: initial;">{{atreveteConfig.subInfoIng}}</span>
+                                    <!--ingles-->
+                                    <!--otro idioma-->
+                                    <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" style="font-size: 10px;
+                                      text-align: initial;">{{atreveteConfig.subInfo}}</span>
+                                    <!--otro idioma-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="juego-item" (click)="openEncuesta()">
+                            <div class="juego-port" *ngIf="encuestaConfig">
+                                <img [src]="encuestaConfig.photoPortada" alt="">
+                            </div>
+                            <div class="juego-titl">
+                                <!--espanol-->
+                                <h3 *ngIf="encuestaConfig && MyLangIs === 'es' ">{{encuestaConfig.name}} </h3>
+                                <!--espanol-->
+                                <!--ingles-->
+                                <h3 *ngIf="encuestaConfig && MyLangIs === 'en' ">{{encuestaConfig.nameIng}} </h3>
+                                <!--ingles-->
+                                <!--otro idioma-->
+                                <h3 *ngIf="encuestaConfig && MyLangIs !== 'en' && MyLangIs !== 'es' ">{{encuestaConfig.name}} </h3>
+                                <!--otro idioma-->
+
+                                <div class="sub-info">
+                                    <span *ngIf="encuestas && MyLangIs === 'es'">Encuestas Activas: {{encuestas.length}} </span>
+                                    <span *ngIf="encuestas && MyLangIs === 'en'">Active Surveys: {{encuestas.length}} </span>
+                                    <span *ngIf="encuestas && MyLangIs !== 'en' && MyLangIs !== 'es'">Encuestas Activas: {{encuestas.length}} </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="juego-item" (click)="openJuego()">
+                            <div class="juego-port">
+                                <img *ngIf="accConfig" [src]="accConfig.photoPortada" alt="">
+                            </div>
+                            <div class="juego-titl">
+                                <h3 *ngIf="accConfig"> {{accConfig.name}} </h3>
+                                <div class="sub-info">
+                                    <span *ngIf="salaAllArray">Salas Activas: {{salaAllArray.length}} </span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!--A este hay que configurarle su componente para poder desplegar videos, nota: Copiar y pegar del componente de Pronostico, subir parchos para los admins luego-->
+                        <div class="juego-item" (click)="openFundacion()">
+                            <div *ngIf="fundacionConfigu" class="juego-port">
+                                <img [src]="fundacionConfigu.photoPortada" alt="">
+                            </div>
+                            <div *ngIf="fundacionConfigu" class="juego-titl">
+                                <!--espanol-->
+                                <h3 *ngIf="MyLangIs === 'es'">{{fundacionConfigu.name}} </h3>
+                                <!--espanol-->
+                                <!--ingles-->
+                                <h3 *ngIf="MyLangIs === 'en'">{{fundacionConfigu.nameIng}} </h3>
+                                <!--ingles-->
+                                <!--otro idioma-->
+                                <h3 *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'">{{fundacionConfigu.name}} </h3>
+                                <!--otro idioma-->
+
+                            </div>
+                        </div>
+
+
+                        <!--Aqui vamos a crear un menu, con las tres principales redes sociales de la aplicacion y con informacion sobre cada una, link directo-->
+                        <div class="juego-item" (click)="redesSocialesOpen()">
+                            <div *ngIf="rsConfigu" class="juego-port">
+                                <img [src]="rsConfigu.photoPortada" alt="">
+                            </div>
+                            <div *ngIf="rsConfigu" class="juego-titl">
+                                <!--espanol-->
+                                <h3 *ngIf="MyLangIs === 'es'">{{rsConfigu.name}} </h3>
+                                <!--espanol-->
+                                <!--ingles-->
+                                <h3 *ngIf="MyLangIs === 'en'">{{rsConfigu.nameIng}} </h3>
+                                <!--ingles-->
+                                <!--otro idioma-->
+                                <h3 *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'">{{rsConfigu.name}} </h3>
+                                <!--otro idioma-->
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+
+                </div>
+            </ion-slide>
+
+
+        </ion-slides>
+    </div>
+
+
+
+    <div class="botones" style="transition: 1s;    bottom: 0; {{botonScale}} ">
+        <div class="first-dia" style="    transition: 1s;
+      width: 100%;
+      transform: none;background: white;bottom: -1px; ">
+            <span>.</span>
+        </div>
+        <div class="fade-final">
+            <span>..</span>
+        </div>
+        <!--
+      <div class="first-dos" style="transition: 1s; {{EnCentro}}" >
+          <span>.</span>
+      </div>
+      <div class="first-tres" style="transition: 1.5s; {{EnCentro}}" >
+          <span>.</span>
+      </div>-->
+        <div (click)="onEnVivo()" class="boton-item {{EnVivoActive}}">
+            <!--  <div *ngIf="EnVivoActive" class="span-active">
+                  <span>..</span>
+              </div>-->
+            <ion-icon name="videocam"></ion-icon>
+            <!--espanol-->
+            <span *ngIf="MyLangIs === 'es'" [style]="botonFix">En Vivo</span>
+            <!--espanol-->
+            <!--ingles-->
+            <span *ngIf="MyLangIs === 'en'" [style]="botonFix">Live</span>
+            <!--ingles-->
+            <!--otro idioma-->
+            <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" [style]="botonFix">En Vivo</span>
+            <!--otro idioma-->
+
+        </div>
+
+        <div (click)="onEpisodios()" class="boton-item {{EpisodiosActive}}">
+            <!-- <div *ngIf="EpisodiosActive" class="span-active">
+                  <span>..</span>
+              </div>-->
+            <ion-icon name="play-circle"></ion-icon>
+            <!--espanol-->
+            <span *ngIf="MyLangIs === 'es'" [style]="botonFix">Episodios</span>
+            <!--espanol-->
+            <!--ingles-->
+            <span *ngIf="MyLangIs === 'en'" [style]="botonFix">Episodes</span>
+            <!--ingles-->
+            <!--otro idioma-->
+            <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" [style]="botonFix">Episodios</span>
+            <!--otro idioma-->
+        </div>
+
+        <div (click)="onHipodromos()" class="boton-item {{HipodromosActive}}">
+            <!--  <div *ngIf="HipodromosActive" class="span-active"  >
+                  <span>..</span>
+              </div>-->
+            <img style="    height: 50%; {{gacetaIcon}}    filter: invert(1);" src="../../assets/icon/track.png" alt="">
+            <!--espanol-->
+            <span *ngIf="MyLangIs === 'es'" [style]="botonFix">Hipodromos</span>
+            <!--espanol-->
+            <!--ingles-->
+            <span *ngIf="MyLangIs === 'en'" [style]="botonFix">Racetracks</span>
+            <!--ingles-->
+            <!--otro idioma-->
+            <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" [style]="botonFix">Hipodromos</span>
+            <!--otro idioma-->
+        </div>
+        <div (click)="onGaceTurf()" class="boton-item {{gacetaActive}}">
+            <!--  <div *ngIf="HipodromosActive" class="span-active"  >
+                  <span>..</span>
+              </div>-->
+            <img style="    height: 50%; {{turfIcon}} " src="../../assets/icon/horse-run.svg" alt="">
+            <span [style]="botonFix">Gaceta Turf</span>
+        </div>
+        <div (click)="onJuegos()" class="boton-item {{JuegosActive}}">
+            <!--  <div *ngIf="JuegosActive" class="span-active">
+                  <span>..</span>
+              </div>-->
+            <ion-icon name="people-circle"></ion-icon>
+            <!--espanol-->
+            <span *ngIf="MyLangIs === 'es'" [style]="botonFix">Comunidad</span>
+            <!--espanol-->
+            <!--ingles-->
+            <span *ngIf="MyLangIs === 'en'" [style]="botonFix">Community</span>
+            <!--ingles-->
+            <!--otro idioma-->
+            <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" [style]="botonFix">Comunidad</span>
+            <!--otro idioma-->
+        </div>
+
+
+    </div>
+
+
+
+
+    <div class="news-content " [style]="newCont">
+        <div *ngIf="newData " style="position: absolute; left: 4%; font-weight: 600; top: 3%; ">
+            <span *ngIf="newData.accion==='Ver Gaceta' " (click)="onGacetaTurfromNews(newData.hip) " style="color: #7b7b7b; ">{{newData.accion}} </span>
+
+            <span *ngIf="newData.accion==='Ver Hipodromo' " (click)="onHipodromosFromNew(newData.hip) " style="color: #7b7b7b; ">{{newData.accion}} </span>
+
+            <span *ngIf="newData.accion==='Ver Repeticion' " (click)="onHipodromosFromNew(newData.hip) " style="color: #7b7b7b; ">{{newData.accion}} </span>
+        </div>
+
+        <div class="dissmiss " (click)="dismissNews() " style="width: max-content;position: absolute;right: 4%;top: 3%;font-size: 20px; ">
+            <ion-icon name="chevron-down-outline"></ion-icon>
+
+        </div>
+        <h3 style="margin-top: 8%; " *ngIf="newData ">{{newData.title}} </h3>
+        <span style="overflow-y: scroll; height: 70%; display: block; " *ngIf="newData ">{{newData.content}} </span>
+
+    </div>
+
+    <div class="miniplayer " *ngIf="userAny && streamConfig && streamCount> 0 " cdkDrag>
+        <div class="miniclose">
+            <!--espanol-->
+            <span *ngIf="MyLangIs === 'es'" class="parpadea" (click)="goLiveMini()" style="font-size: 13px;"> <ion-icon slot="start" name="radio"></ion-icon> En Vivo</span>
+            <!--espanol-->
+            <!--ingles-->
+            <span *ngIf="MyLangIs === 'en'" class="parpadea" (click)="goLiveMini()" style="font-size: 13px;"> <ion-icon slot="start" name="radio"></ion-icon> Live</span>
+            <!--ingles-->
+            <!--otro idioma-->
+            <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es'" class="parpadea" (click)="goLiveMini()" style="font-size: 13px;"> <ion-icon slot="start" name="radio"></ion-icon> En Vivo</span>
+            <!--otro idioma-->
+            <ion-icon (click)="askDismissVidMini()" name="close"></ion-icon>
+        </div>
+        <video style="height: 70%;width: 100%;" controls id="miniplay" preload="metadata" playsinline webkit-playsinline class="video-js vjs-default-skin"></video>
+        <div class="nombre" style="width: 100%;position: relative;height: 10%;">
+            <ion-slides #cintillo [options]="miniInfo" style="height: 100%;width: 100%;">
+                <ion-slide>
+                    <span id="minicintillo">{{streamConfig[0].hipodromo}} </span>
+                </ion-slide>
+                <ion-slide>
+                    <span id="minicintillo">{{streamConfig[0].pais}} </span>
+                </ion-slide>
+            </ion-slides>
+        </div>
+    </div>
+    -->
+</ion-router-outlet>

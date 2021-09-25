@@ -1,0 +1,89 @@
+<div class="contenido-modal" *ngIf="episodioItem && !onFullscreen" style="    backdrop-filter: blur(6px);-webkit-backdrop-filter: blur(6px);
+background: #000000cf; padding-top: 0;  padding-bottom: 0;">
+    <!-- <div class="modal-dia">
+    <span>.</span>
+  </div>-->
+    <div (click)="dissmissModal()" class="dissmiss" style="width: max-content;
+  margin-left: auto;margin-right: 4%;
+  margin-top: 2%;position:initial">
+        <ion-icon name="chevron-down-outline"></ion-icon>
+    </div>
+    <div class="reproductor" [style]="reproductoIs">
+        <ion-spinner name="lines-small"></ion-spinner>
+        <div class="view" [style]="viewIs">
+
+            <cloudflare-stream *ngIf="isDestacado === false" [controls]="true" [autoplay]="true" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" [src]="episodioItem.link"></cloudflare-stream>
+            <video *ngIf="isDestacado === true" style=" height: 100%;width: 100%; " id="episodio" preload="metadata" playsinline webkit-playsinline autoplay muted controls allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" class="video-js vjs-default-skin "></video>
+        </div>
+
+    </div>
+    <div class="fecha-info category" style="margin-top: 5%;">
+        <span>{{episodioItem.pais}} </span>
+        <span style="margin-left: 10%; ">Episodio {{episodioItem.capitulo}} </span>
+    </div>
+    <h3 class="titulo ">{{episodioItem.nombre}} </h3>
+    <div class="fecha-info ">
+        <span>{{episodioItem.longDate}} </span>
+        <span style="margin-left: 10%; ">{{episodioItem.horario}} </span>
+    </div>
+    <div class="descripcion ">
+        <span>{{episodioItem.descripcion}}</span>
+    </div>
+    <div class="quemas " *ngIf="episodioItem.semanaActiva===true && episodiosMas ">
+        <span *ngIf="episodiosMas.length> 0">¿Que se transmite a esta hora?</span>
+        <ion-item *ngFor=" let item of episodiosMas ">
+            <ion-thumbnail slot="start ">
+                <img [src]="item.cover " alt=" ">
+            </ion-thumbnail>
+            <ion-label>
+                <h3>{{item.nombre}} </h3>
+                <p>{{item.startHour}} | Duracion: {{item.duracion}} | {{item.pais}} </p>
+            </ion-label>
+        </ion-item>
+    </div>
+
+    <!--
+    <h3 *ngIf="otherEpisodios " class="titulo " style="margin-bottom: 1%; ">Mas Episodios </h3>
+    <div *ngIf="otherEpisodios " class="otros-slides ">
+        <ion-slides #masCapitulos [options]="masEpisodios ">
+            <ion-slide *ngFor="let item of otherEpisodios ">
+                <div class="episodio-item ">
+                     <div class="item-dia ">
+                        <span>.</span>
+                    </div>
+                    <div class="item-dia-dos ">
+                        <span>.</span>
+                    </div>
+                    <div class="item-img ">
+                        <img [src]="item.cover " alt=" ">
+                    </div>
+                    <div class="content-item ">
+                        <span>Episodio {{item.capitulo}} </span>
+                    </div>
+                </div>
+            </ion-slide>
+        </ion-slides>
+    </div>
+
+-->
+
+
+
+</div>
+
+
+
+
+<div class="contenido " *ngIf="onFullscreen">
+    <div class="reproductor ">
+        <div class="view ">
+            <div class="playpaus " [style]="toPause" (click)="playPuaseAction()">
+                <ion-icon (click)="pauseStreFull()" *ngIf="estaEnPlay" class="pla" name="pause"></ion-icon>
+                <ion-icon (click)="playStreaFullscreen()" *ngIf="!estaEnPlay" class="pla" name="play"></ion-icon>
+                <ion-icon (click)="closeFullScreen()" class="fullscree" name="contract"></ion-icon>
+            </div>
+            <video style="height: 100%;width: 100%; " id="episodioFulll" preload="metadata" playsinline webkit-playsinline class="video-js vjs-default-skin "></video>
+        </div>
+
+    </div>
+</div>
