@@ -251,6 +251,7 @@ export class HomePage {
   public myHipodromoVivo : any = [] 
   public slideStyle : string
   public howToVideos : any;
+  public videoLinkId : string;
 
 
   episodios={
@@ -295,6 +296,8 @@ export class HomePage {
  async getDeviceLanguage() {
     const storage = await this.storageInterna.create();
     this._storage = storage;
+
+    this.videoLinkId = await this._storage?.get('tvLink')
   /*  this.app.getEnVivoConfig().subscribe(item =>{
       let config:any  = item
  
@@ -522,28 +525,104 @@ export class HomePage {
     console.log(whatLanIs)
   }
 
+ async setTvLink(link){
+    await this._storage?.set('tvLink', link)
+    this.getDeviceLanguage()
+  }
+
   ionViewDidEnter(){
     this.player = videojs(document.getElementById('video-player'))
     this.player.poster('../../../assets/other/poster1.jpg')
 
-  let link:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(this.VivoConfig)
-             
-    const web:string = link.changingThisBreaksApplicationSecurity
+    if(this.videoLinkId !== null){
 
-    console.log(link.changingThisBreaksApplicationSecurity + 'en el ionViewDidEnter')
-   this.player.src({
-     type: 'video/youtube',
-     src: web,
-   })
-   this.player.play()
+      let link:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(this.videoLinkId)
+               
+        const web:string = link.changingThisBreaksApplicationSecurity
+    
+        console.log(link.changingThisBreaksApplicationSecurity + ' en el ionViewDidEnter')
+       this.player.src({
+         type: 'video/youtube',
+         src: web,
+       })
+       this.player.play()
+    
+    
+       this.isMudo = this.player.muted()
 
 
-   this.isMudo = this.player.muted()
+       console.log('tienes el link registrado')
+
+       this.db.collection('canalconfig').doc('S0VujcLdWg9EEJyPVfPA').valueChanges().subscribe(item => {
+        let res : any = item
+  
+        console.log(res.tvLink)
+
+        if(res.tvLink === this.videoLinkId){
+            console.log('es el mismo link que esta corriendo ahora')
+        }else{
+          //Funcion para escribir en la base de datos interna
+
+          console.log('hay que cambiar el link')
+          this.setTvLink(res.tvLink)
+          let link:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(res.tvLink)
+               
+        const web:string = link.changingThisBreaksApplicationSecurity
+    
+        console.log(link.changingThisBreaksApplicationSecurity + ' en el ionViewDidEnter')
+       this.player.src({
+         type: 'video/youtube',
+         src: web,
+       })
+       this.player.play()
+    
+    
+       this.isMudo = this.player.muted()
+
+        }
+  
+        
+      })
+
+       
 
 
-   this.player.on('play', () => {
-     this.knowIfPlay = true
-    });
+    }else{
+
+      console.log('No tienes el link registrado')
+      this.db.collection('canalconfig').doc('S0VujcLdWg9EEJyPVfPA').valueChanges().subscribe(item => {
+        let res : any = item
+  
+        console.log(res.tvLink)
+
+        this.setTvLink(res.tvLink)
+
+        
+  
+        let link:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(res.tvLink)
+               
+        const web:string = link.changingThisBreaksApplicationSecurity
+    
+        console.log(link.changingThisBreaksApplicationSecurity + ' en el ionViewDidEnter')
+       this.player.src({
+         type: 'video/youtube',
+         src: web,
+       })
+       this.player.play()
+    
+    
+       this.isMudo = this.player.muted()
+    
+    
+       this.player.on('play', () => {
+         this.knowIfPlay = true
+        });
+      })
+    }
+
+   
+
+ 
 
     
 
@@ -1048,283 +1127,6 @@ export class HomePage {
       this.myHipodromoVivo = this.hipodromosAll.filter(item => item.enVivo === true)
 
 
-     // console.log(myHipodromoVivo[0].link)
-
-      
-/*
-
-      if(this.myHipodromoVivo[0]){
-       // this.hip = myHipodromoVivo[0]
-        this.playerTwwwoo = videojs(document.getElementById('hipodromo1'))
-        this.playerTwwwoo.poster('../../../assets/other/poster1.jpg')
-    
-        let linkone:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(this.myHipodromoVivo[0].link)
-                 
-        const webtwo:string = linkone.changingThisBreaksApplicationSecurity
-    
-        console.log(linkone.changingThisBreaksApplicationSecurity + 'en el ionViewDidEnter')
-       this.playerTwwwoo.src({
-         type: 'video/youtube',
-         src: webtwo,
-       })
-    
-       this.playerTwwwoo.play()
-      }
-
-      if(this.myHipodromoVivo[1]){
-      //  this.hip2 = myHipodromoVivo[1]
-        this.playerHip2 = videojs(document.getElementById('hipodromo2'))
-        this.playerHip2.poster('../../../assets/other/poster1.jpg')
-    
-        let linktwo:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(this.myHipodromoVivo[1].link)
-                 
-        const webtwo:string = linktwo.changingThisBreaksApplicationSecurity
-    
-        console.log(linktwo.changingThisBreaksApplicationSecurity + 'en el ionViewDidEnter')
-       this.playerHip2.src({
-         type: 'video/youtube',
-         src: webtwo,
-       })
-    
-       this.playerHip2.play()
-      }
-
-      if(this.myHipodromoVivo[2]){
-        //  this.hip2 = myHipodromoVivo[1]
-          this.playerHip3 = videojs(document.getElementById('hipodromo3'))
-          this.playerHip3.poster('../../../assets/other/poster1.jpg')
-      
-          let link3:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(this.myHipodromoVivo[2].link)
-                   
-          const web3:string = link3.changingThisBreaksApplicationSecurity
-      
-          console.log(link3.changingThisBreaksApplicationSecurity + 'en el ionViewDidEnter')
-         this.playerHip3.src({
-           type: 'video/youtube',
-           src: web3,
-         })
-      
-         this.playerHip3.play()
-        }
-
-        if(this.myHipodromoVivo[3]){
-          //  this.hip2 = myHipodromoVivo[1]
-            this.playerHip4 = videojs(document.getElementById('hipodromo4'))
-            this.playerHip4.poster('../../../assets/other/poster1.jpg')
-        
-            let link4:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(this.myHipodromoVivo[3].link)
-                     
-            const web4:string = link4.changingThisBreaksApplicationSecurity
-        
-            console.log(link4.changingThisBreaksApplicationSecurity + 'en el ionViewDidEnter')
-           this.playerHip4.src({
-             type: 'video/youtube',
-             src: web4,
-           })
-        
-           this.playerHip4.play()
-          }
-
-          if(this.myHipodromoVivo[4]){
-            //  this.hip2 = myHipodromoVivo[1]
-              this.playerHip5 = videojs(document.getElementById('hipodromo5'))
-              this.playerHip5.poster('../../../assets/other/poster1.jpg')
-          
-              let link5:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(this.myHipodromoVivo[4].link)
-                       
-              const web5:string = link5.changingThisBreaksApplicationSecurity
-          
-              console.log(link5.changingThisBreaksApplicationSecurity + 'en el ionViewDidEnter')
-             this.playerHip5.src({
-               type: 'video/youtube',
-               src: web5,
-             })
-          
-             this.playerHip5.play()
-            }
-
-            if(this.myHipodromoVivo[5]){
-              //  this.hip2 = myHipodromoVivo[1]
-                this.playerHip6 = videojs(document.getElementById('hipodromo6'))
-                this.playerHip6.poster('../../../assets/other/poster1.jpg')
-            
-                let link6:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(this.myHipodromoVivo[5].link)
-                         
-                const web6:string = link6.changingThisBreaksApplicationSecurity
-            
-                console.log(link6.changingThisBreaksApplicationSecurity + 'en el ionViewDidEnter')
-               this.playerHip6.src({
-                 type: 'video/youtube',
-                 src: web6,
-               })
-            
-               this.playerHip6.play()
-              }
-
-              if(this.myHipodromoVivo[6]){
-                //  this.hip2 = myHipodromoVivo[1]
-                  this.playerHip7 = videojs(document.getElementById('hipodromo7'))
-                  this.playerHip7.poster('../../../assets/other/poster1.jpg')
-              
-                  let link7:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(this.myHipodromoVivo[6].link)
-                           
-                  const web7:string = link7.changingThisBreaksApplicationSecurity
-              
-                  console.log(link7.changingThisBreaksApplicationSecurity + 'en el ionViewDidEnter')
-                 this.playerHip7.src({
-                   type: 'video/youtube',
-                   src: web7,
-                 })
-              
-                 this.playerHip7.play()
-                }
-
-                if(this.myHipodromoVivo[7]){
-                  //  this.hip2 = myHipodromoVivo[1]
-                    this.playerHip8 = videojs(document.getElementById('hipodromo8'))
-                    this.playerHip8.poster('../../../assets/other/poster1.jpg')
-                
-                    let link8:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(this.myHipodromoVivo[7].link)
-                             
-                    const web8:string = link8.changingThisBreaksApplicationSecurity
-                
-                    console.log(link8.changingThisBreaksApplicationSecurity + 'en el ionViewDidEnter')
-                   this.playerHip8.src({
-                     type: 'video/youtube',
-                     src: web8,
-                   })
-                
-                   this.playerHip8.play()
-                  }
-                  if(this.myHipodromoVivo[8]){
-                    //  this.hip2 = myHipodromoVivo[1]
-                      this.playerHip9 = videojs(document.getElementById('hipodromo9'))
-                      this.playerHip9.poster('../../../assets/other/poster1.jpg')
-                  
-                      let link9:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(this.myHipodromoVivo[8].link)
-                               
-                      const web9:string = link9.changingThisBreaksApplicationSecurity
-                  
-                      console.log(link9.changingThisBreaksApplicationSecurity + 'en el ionViewDidEnter')
-                     this.playerHip9.src({
-                       type: 'video/youtube',
-                       src: web9,
-                     })
-                  
-                     this.playerHip9.play()
-                    }
-
-                    if(this.myHipodromoVivo[9]){
-                      //  this.hip2 = myHipodromoVivo[1]
-                        this.playerHip10 = videojs(document.getElementById('hipodromo10'))
-                        this.playerHip10.poster('../../../assets/other/poster1.jpg')
-                    
-                        let link10:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(this.myHipodromoVivo[9].link)
-                                 
-                        const web10:string = link10.changingThisBreaksApplicationSecurity
-                    
-                        console.log(link10.changingThisBreaksApplicationSecurity + 'en el ionViewDidEnter')
-                       this.playerHip10.src({
-                         type: 'video/youtube',
-                         src: web10,
-                       })
-                    
-                       this.playerHip10.play()
-                      }
-
-                      if(this.myHipodromoVivo[10]){
-                        //  this.hip2 = myHipodromoVivo[1]
-                          this.playerHip11 = videojs(document.getElementById('hipodromo11'))
-                          this.playerHip11.poster('../../../assets/other/poster1.jpg')
-                      
-                          let link11:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(this.myHipodromoVivo[10].link)
-                                   
-                          const web11:string = link11.changingThisBreaksApplicationSecurity
-                      
-                          console.log(link11.changingThisBreaksApplicationSecurity + 'en el ionViewDidEnter')
-                         this.playerHip11.src({
-                           type: 'video/youtube',
-                           src: web11,
-                         })
-                      
-                         this.playerHip11.play()
-                        }
-
-                        if(this.myHipodromoVivo[11]){
-                          //  this.hip2 = myHipodromoVivo[1]
-                            this.playerHip12 = videojs(document.getElementById('hipodromo12'))
-                            this.playerHip12.poster('../../../assets/other/poster1.jpg')
-                        
-                            let link12:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(this.myHipodromoVivo[11].link)
-                                     
-                            const web12:string = link12.changingThisBreaksApplicationSecurity
-                        
-                            console.log(link12.changingThisBreaksApplicationSecurity + 'en el ionViewDidEnter')
-                           this.playerHip12.src({
-                             type: 'video/youtube',
-                             src: web12,
-                           })
-                        
-                           this.playerHip12.play()
-                          }
-
-
-                          if(this.myHipodromoVivo[12]){
-                            //  this.hip2 = myHipodromoVivo[1]
-                              this.playerHip13 = videojs(document.getElementById('hipodromo13'))
-                              this.playerHip13.poster('../../../assets/other/poster1.jpg')
-                          
-                              let link13:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(this.myHipodromoVivo[12].link)
-                                       
-                              const web13:string = link13.changingThisBreaksApplicationSecurity
-                          
-                              console.log(link13.changingThisBreaksApplicationSecurity + 'en el ionViewDidEnter')
-                             this.playerHip13.src({
-                               type: 'video/youtube',
-                               src: web13,
-                             })
-                          
-                             this.playerHip13.play()
-                            }
-
-                            if(this.myHipodromoVivo[13]){
-                              //  this.hip2 = myHipodromoVivo[1]
-                                this.playerHip14 = videojs(document.getElementById('hipodromo14'))
-                                this.playerHip14.poster('../../../assets/other/poster1.jpg')
-                            
-                                let link14:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(this.myHipodromoVivo[13].link)
-                                         
-                                const web14:string = link14.changingThisBreaksApplicationSecurity
-                            
-                                console.log(link14.changingThisBreaksApplicationSecurity + 'en el ionViewDidEnter')
-                               this.playerHip14.src({
-                                 type: 'video/youtube',
-                                 src: web14,
-                               })
-                            
-                               this.playerHip14.play()
-                              }
-
-                              if(this.myHipodromoVivo[14]){
-                                //  this.hip2 = myHipodromoVivo[1]
-                                  this.playerHip15 = videojs(document.getElementById('hipodromo15'))
-                                  this.playerHip15.poster('../../../assets/other/poster1.jpg')
-                              
-                                  let link15:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(this.myHipodromoVivo[14].link)
-                                           
-                                  const web15:string = link15.changingThisBreaksApplicationSecurity
-                              
-                                  console.log(link15.changingThisBreaksApplicationSecurity + 'en el ionViewDidEnter')
-                                 this.playerHip15.src({
-                                   type: 'video/youtube',
-                                   src: web15,
-                                 })
-                              
-                                 this.playerHip15.play()
-                                }
-                    */
-   
-
     })
   }
 
@@ -1607,7 +1409,7 @@ export class HomePage {
 
   async verplayerMini(){
 
-    await this.sleep(500)
+    await this.sleep(1000)
 
     this.cint.update()
     
