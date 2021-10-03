@@ -1,0 +1,13 @@
+<div class="contenido">
+    <div class="reproductor">
+        <div class="view">
+            <div #playPauseFullscreen class="playpaus" [style]="toPause" (click)="playPuaseAction()">
+                <ion-icon (click)="pauseStre()" *ngIf="estaEnPlay" class="pla" name="pause"></ion-icon>
+                <ion-icon (click)="playStrea()" *ngIf="!estaEnPlay" class="pla" name="play"></ion-icon>
+                <ion-icon (click)="closeFullScreen()" class="fullscree" name="contract"></ion-icon>
+            </div>
+            <video style="height: 100%;width: 100%;" id="video-full" preload="metadata" playsinline webkit-playsinline class="video-js vjs-default-skin"></video>
+        </div>
+
+    </div>
+</div>

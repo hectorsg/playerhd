@@ -1,0 +1,169 @@
+<div class="contenido-modal" *ngIf="!adLive" style="    backdrop-filter: blur(6px);-webkit-backdrop-filter: blur(8px);
+background: #000000e3; padding-top: 0;    padding: 0;  padding-bottom: 0;">
+    <!-- <div class="modal-dia">
+    <span>.</span>
+  </div>-->
+    <div (click)="dismissModal()" class="dissmiss" style="width: max-content;
+  margin-left: auto;
+  margin-top: 2%;position:initial">
+        <ion-icon name="chevron-down-outline"></ion-icon>
+    </div>
+    <ion-spinner *ngIf="!sliderLoad" style="position: absolute;
+  width: 20%;
+  height: inherit;
+  left: 40%;
+  color: white;" name="crescent"></ion-spinner>
+    <ion-slides [options]="hipodromoSlide" #hipodromo style="height: 95%;width: 100%;">
+        <!--Aqui va la info del hipodromo-->
+
+        <!--Aqui va la info de la carrera-->
+
+        <!--Aqui va la Gaceta-->
+        <ion-slide *ngIf="sliderLoad">
+            <div class="gaceta-content">
+                <div class="header">
+                    <div (click)="openInfoHipodromo()" class="hipodromo-name">
+
+                        <span>{{hip.nombre}} </span>
+                    </div>
+                    <div class="time-info" style="text-align: center;">
+                        <span *ngIf="dateFalta">En {{dateFalta}} </span>
+                        <span class="parpadea" style="color: red;" *ngIf="!dateFalta">En Proceso</span>
+                    </div>
+                </div>
+                <div class="carreras-list">
+                    <div class="carrera-item">
+                        <div class="item-header">
+                            <span *ngIf="day == 'Lun'; else isLun" style="border-right: 1px solid #c7c7c7;background: #c7c7c7;color: #3c3c3c;">Lun</span>
+                            <ng-template #isLun>
+                                <span (click)="changeDay('Lun')" style="border-right: 1px solid #c7c7c7;">Lun</span>
+                            </ng-template>
+                            <span *ngIf="day == 'Mar';else isMar" style="border-right: 1px solid #c7c7c7;background: #c7c7c7;color: #3c3c3c;">Mar</span>
+                            <ng-template #isMar>
+                                <span (click)="changeDay('Mar')" style="border-right:1px solid #c7c7c7">Mar</span>
+                            </ng-template>
+                            <span *ngIf="day == 'Mie'; else isMie" style="border-right: 1px solid #c7c7c7;background: #c7c7c7;color: #3c3c3c;">Mie</span>
+                            <ng-template #isMie>
+                                <span (click)="changeDay('Mie')" style="border-right:1px solid #c7c7c7">Mie</span>
+                            </ng-template>
+                            <span *ngIf="day == 'Jue';else isJue" style="border-right: 1px solid #c7c7c7;background: #c7c7c7;color: #3c3c3c;">Jue</span>
+                            <ng-template #isJue>
+                                <span (click)="changeDay('Jue')" style="border-right: 1px solid #c7c7c7;">Jue</span>
+                            </ng-template>
+                            <span *ngIf="day == 'Vie';else isVie" style="border-right: 1px solid #c7c7c7;background: #c7c7c7;color: #3c3c3c;">Vie</span>
+                            <ng-template #isVie>
+                                <span (click)="changeDay('Vie')" style="border-right: 1px solid #c7c7c7;">Vie</span>
+                            </ng-template>
+                            <span *ngIf="day == 'Sab';else isSab" style="border-right: 1px solid #c7c7c7;background: #c7c7c7;color: #3c3c3c;">Sab</span>
+                            <ng-template #isSab>
+                                <span (click)="changeDay('Sab')" style="border-right: 1px solid #c7c7c7;">Sab</span>
+                            </ng-template>
+                            <span *ngIf="day == 'Dom';else isDom" style="border-right: 1px solid #c7c7c7;background: #c7c7c7;color: #3c3c3c;">Dom</span>
+                            <ng-template #isDom>
+                                <span (click)="changeDay('Dom')">Dom</span>
+                            </ng-template>
+                        </div>
+                        <div *ngFor="let item of raceAll" class="item-horse" (click)="abrirRetrospecto(item)">
+                            <div class="horse-num">
+                                <!-- <div class="num" style="background: {{ite.color}} ;" >
+                <span>.</span>
+              </div>-->
+                                <span>{{item.shortRaceName}} </span>
+                            </div>
+                            <div class="item-horse-name">
+                                <div class="name">
+                                    <span>{{item.type}} </span>
+                                    <div class="more-info">
+                                        <span>${{item.pote}}</span>
+                                        <span> {{item.distancia}}</span>
+                                    </div>
+                                </div>
+                                <div class="odds">
+                                    <span>{{item.lastype}} </span>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <span style="    color: white;
+                margin-top: auto;
+                display: flex;
+                height: 55%;
+                justify-content: center;
+                align-items: center;
+                font-weight: 600;
+                font-size: 24px;
+                width: 75%;
+                margin-left: auto;
+                margin-right: auto;" *ngIf="SinCarreras"> No hay carreras en este dia.</span>
+
+                <br>
+                <br>
+            </div>
+        </ion-slide>
+
+        <!--Aqui va el caballo-->
+        <ion-slide *ngIf="sliderLoad">
+            <div class="gaceta-content">
+                <div (click)="VolverGaceta()" class="volver">
+
+                    <span>Volver</span>
+                    <span *ngIf="raceInfo">{{raceInfo.shortDate}} </span>
+                </div>
+
+                <div class="header">
+                    <div class="hipodromo-name" style="    width: 65%;">
+
+                        <span>Retrospecto </span>
+                    </div>
+                    <div class="time-info" style="text-align: center;
+          width: 30%;">
+                        <span style="opacity: 0;">.</span>
+                        <!--  <span>Descargar PDF</span>
+                        <span>{{CurrentRaceHorse.odds}} </span>-->
+                    </div>
+                </div>
+                <div class="pdf-place" style="height:85%;position:relative">
+                    <ion-slides #retroP [options]="retro" zoom style="width: 100%;height: 100%;">
+                        <ion-slide>
+                            <ion-spinner id="spin" style="position: absolute;
+                            width: 20%;
+                            height: inherit;
+                            left: 40%;
+                            color: white;" name="crescent"></ion-spinner>
+                            <img id="retpecT" style="margin: 0;" [src]="retroPng" alt="">
+                        </ion-slide>
+                    </ion-slides>
+                </div>
+
+
+
+            </div>
+        </ion-slide>
+    </ion-slides>
+
+</div>
+
+
+<div class="adwaiter" *ngIf="adLive && patrocinador && ress">
+    <ion-avatar style="position: absolute;z-index: 1100000;top: 2%;left: 5%;">
+        <img src="../../../assets/other/poster1.jpg" alt="">
+    </ion-avatar>
+    <div *ngIf="ress.type === 'img' " class="adcontain" (click)="goToLink(patrocinador.linkEpisodio)">
+        <img [src]="patrocinador.episodioVerticalBanner" alt="">
+    </div>
+    <div *ngIf="ress.type === 'video' " class="adcontain" (click)="goToLink(patrocinador.linkEpisodio)">
+
+        <video [src]="patrocinador.episodioVideo" [loop]="true" [autoplay]="true" playsinline webkit-playsinline></video>
+    </div>
+    <div class="skipcontain">
+        <ion-button *ngIf="!canDismiss">Saltar en {{waitFor}} seg</ion-button>
+        <ion-button (click)="puedeCerrar()" *ngIf="canDismiss">Cerrar</ion-button>
+        <ion-button (click)="goToLink(patrocinador.linkEpisodio)">Ver Mas</ion-button>
+    </div>
+
+</div>
