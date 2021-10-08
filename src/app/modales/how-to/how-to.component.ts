@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NavParams } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
 
 declare var videojs : any ;
 
@@ -14,12 +14,12 @@ export class HowToComponent implements OnInit {
   public howToData : any
   public howToVideoPlayer : any;
 
-  constructor(public nav : NavParams, public sanitaizer : DomSanitizer) { }
+  constructor(public nav : NavParams, public sanitaizer : DomSanitizer, public modal : ModalController) { }
 
   ngOnInit() {
     this.howToData = this.nav.get('item')
 
-    //console.log(this.howToData)
+    console.log(this.howToData)
   }
 
 
@@ -43,6 +43,10 @@ export class HowToComponent implements OnInit {
 
     
     this.howToVideoPlayer.play();
+  }
+
+  dismissModal(){
+    this.modal.dismiss()
   }
 
 }
