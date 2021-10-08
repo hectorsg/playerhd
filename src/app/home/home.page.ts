@@ -3000,7 +3000,10 @@ async  goToLive(){
     this.modal.create({
       component: HowToComponent,
       cssClass:'my-custom-class', 
-      componentProps: item     
+       componentProps:{
+        item:item,
+        
+      }   
     }).then((modal)=> modal.present())
   }
 
