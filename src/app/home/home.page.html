@@ -337,6 +337,11 @@
           font-weight: 600;
           width: 95%;
           margin-top: 5%;" (click)="openAdminHipodromo()">Admin Hipodromo</ion-button>
+          <ion-button *ngIf="userAny.admin" style="--background: white;
+          color: black;
+          font-weight: 600;
+          width: 95%;
+          margin-top: 5%;" (click)="openStreamAdmin()">Admin Stream</ion-button>
 
         <ion-button *ngIf="userAny.admin" style="--background: white;
         color: black;
@@ -990,45 +995,27 @@
     <span>..</span>
 </div>
 <ion-router-outlet id="main">
-
-
-
-
     <div class="contenido" id="cont" [style]="viewheight">
 
         <ion-slides #contenido [options]="contenidos">
             <ion-slide>
-                <!--En Vivo-->
                 <div class="content">
 
                     <div class="header" style="    background: #000000d6;
                   backdrop-filter: blur(5px);    margin-top: 0;">
-                        <div class="logo-place" style="
+                        <div  class="logo-place" style="
                       height: 100%;
                       width: 17%;
                       border-radius: 50%;
                       display: flex;
                       justify-content: center;
                       align-items: center; {{logoT}} ">
-                            <!--     <div class="logo-dia">
-                              <span>.</span>
-                          </div>
-                        <div class="logo-dia-dos">
-                              <span>.</span>
-                          </div>  (click)="openAddEpisodio()"-->
+                           
                             <img style="    width: 80%;
                           margin: auto;" src="../../assets/logo/grtv.png" alt="">
                         </div>
                         <div class="config" (click)="openMenu()">
-                            <!--  
-                                (click)=""
-                                
-                                <div class="logo-dia">
-                              <span>.</span>
-                          </div>
-                          <div class="logo-dia-dos">
-                              <span>.</span>
-                          </div>-->
+                            
                             <ion-icon name="menu"></ion-icon>
                         </div>
                     </div>
@@ -1072,7 +1059,7 @@
                             </div>
 
                             <!-- <cloudflare-stream [controls]="true" src="e520bc99468997e8b1e6d786ef816c65"></cloudflare-stream>-->
-                            <video style="height: 100%;width: 100%;" id="video-player" preload="metadata" playsinline webkit-playsinline autoplay muted class="video-js vjs-default-skin"></video>
+                            <video style="height: 100%;width: 100%;" id="video-player" preload="metadata" playsinline webkit-playsinline autoplay muted  class="video-js vjs-default-skin"></video>
 
                         </div>
 
@@ -1554,10 +1541,10 @@
                                     <br>
                                     <br>
                                 </div>
-                                <div class="programacion-list" style="height: 90%;">
-                                    <div class="programacion-item">
+                                <div class="programacion-list" style="height: 90%;overflow-y:scroll;">
+                                    <div class="programacion-item" style="display: block;height:100%; "  id="scrollMe" >
 
-                                        <div class="episodios-item" *ngFor="let item of episodiosByDay" style="margin-bottom: 2vh;">
+                                        <div class="episodios-item" *ngFor="let item of episodiosByDay" id="{{item.id}}" style="margin-bottom: 2vh;">
                                             <div *ngIf="item.aHour === aHourComp" (click)="openEpisodio(item)" class="item-img parpadea">
                                                 <!--   <div class="item-img-dia">
                                                   <span>.</span>
