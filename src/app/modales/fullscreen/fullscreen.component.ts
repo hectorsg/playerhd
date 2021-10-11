@@ -43,7 +43,7 @@ export class FullscreenComponent implements OnInit {
 
        const web:string = link.changingThisBreaksApplicationSecurity
       this.playerFull.src({
-        type: 'video/youtube',
+        type: config[0].type,
         src: web,
       });
 
