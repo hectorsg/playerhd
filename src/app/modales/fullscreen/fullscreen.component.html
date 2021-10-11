@@ -6,7 +6,7 @@
                 <ion-icon (click)="playStrea()" *ngIf="!estaEnPlay" class="pla" name="play"></ion-icon>
                 <ion-icon (click)="closeFullScreen()" class="fullscree" name="contract"></ion-icon>
             </div>
-            <video style="height: 100%;width: 100%;" id="video-full" preload="metadata" playsinline webkit-playsinline class="video-js vjs-default-skin"></video>
+            <video style="height: 100%;width: 100%;" id="video-full" preload="metadata" autoplay playsinline webkit-playsinline class="video-js vjs-default-skin"></video>
         </div>
 
     </div>
