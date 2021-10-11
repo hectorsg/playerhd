@@ -35,7 +35,6 @@ import { Globalization } from '@ionic-native/globalization/ngx';
 import { Storage } from '@ionic/storage-angular';
 import { MisionvisionComponent } from '../modales/misionvision/misionvision.component';
 import { HowToComponent } from '../modales/how-to/how-to.component';
-import { StreamadminComponent } from '../admin/streamadmin/streamadmin.component';
 
 
 declare var videojs : any ;
@@ -3055,10 +3054,10 @@ async  goToLive(){
   openStreamAdmin(){
     this.estaEnPlay = false
     this.player.pause()
-    this.modal.create({
+   /* this.modal.create({
       component: StreamadminComponent,
       cssClass:'my-custom-class',    
-    }).then((modal)=> modal.present())
+    }).then((modal)=> modal.present())*/
   }
 
   backToconfigFromMision(){
