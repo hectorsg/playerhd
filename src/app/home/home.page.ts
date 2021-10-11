@@ -35,6 +35,7 @@ import { Globalization } from '@ionic-native/globalization/ngx';
 import { Storage } from '@ionic/storage-angular';
 import { MisionvisionComponent } from '../modales/misionvision/misionvision.component';
 import { HowToComponent } from '../modales/how-to/how-to.component';
+import { StreamadminComponent } from '../admin/streamadmin/streamadmin.component';
 
 
 declare var videojs : any ;
@@ -57,6 +58,9 @@ export class HomePage {
 
 
   @ViewChild('enVivoActtion') EnvivoActionClick : ElementRef;
+
+
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
 
   
@@ -318,10 +322,18 @@ export class HomePage {
     this._storage = storage;
 
     this.videoLinkId = await this._storage?.get('tvLink')
+    
 
     this.typeOfVideoLink = await this._storage?.get('tvTypeOfLink')
+    
+    
 
     this.myUserNoLog  = await this._storage?.get('noLoginUser');
+
+    
+    this.openPrincipalVideo()
+
+
   /*  this.app.getEnVivoConfig().subscribe(item =>{
       let config:any  = item
  
@@ -556,104 +568,13 @@ export class HomePage {
 
 
   async setTvTypeOfLink(type){
+    
     await this._storage?.set('tvTypeOfLink', type)
     this.getDeviceLanguage()
   }
 
   ionViewDidEnter(){
-    this.player = videojs(document.getElementById('video-player'))
-    this.player.poster('../../../assets/other/poster1.jpg')
-
-    if(this.videoLinkId !== null && this.typeOfVideoLink !== null ){
-
-      let link:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(this.videoLinkId)
-               
-        const web:string = link.changingThisBreaksApplicationSecurity
     
-        console.log(link.changingThisBreaksApplicationSecurity + ' en el ionViewDidEnter')
-       this.player.src({
-         type: this.typeOfVideoLink,
-         src: web,
-       })
-       this.player.play()
-    
-    
-       this.isMudo = this.player.muted()
-
-
-       console.log('tienes el link registrado y el tipo')
-
-
-       this.db.collection('canalconfig').doc('S0VujcLdWg9EEJyPVfPA').valueChanges().subscribe(item => {
-        let res : any = item
-  
-        console.log(res.tvLink)
-
-        if(res.tvLink === this.videoLinkId && res.type === this.typeOfVideoLink){
-            console.log('es el mismo link que esta corriendo ahora y el mismo tipo')
-        }else{
-          //Funcion para escribir en la base de datos interna
-
-          console.log('hay que cambiar el link')
-          this.setTvLink(res.tvLink)
-          this.setTvTypeOfLink(res.type)
-          let link:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(res.tvLink)
-               
-        const web:string = link.changingThisBreaksApplicationSecurity
-    
-        console.log(link.changingThisBreaksApplicationSecurity + ' en el ionViewDidEnter')
-       this.player.src({
-         type: res.type,
-         src: web,
-       })
-       this.player.play()
-    
-    
-       this.isMudo = this.player.muted()
-
-        }
-  
-        
-      })
-
-       
-
-
-    }else{
-
-      console.log('No tienes el link registrado o el tipo registrado')
-      this.db.collection('canalconfig').doc('S0VujcLdWg9EEJyPVfPA').valueChanges().subscribe(item => {
-        let res : any = item
-  
-        console.log(res.tvLink)
-        console.log(res.type)
-
-        this.setTvLink(res.tvLink)
-        this.setTvTypeOfLink(res.type)
-
-        
-  
-        let link:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(res.tvLink)
-               
-        const web:string = link.changingThisBreaksApplicationSecurity
-    
-        console.log(link.changingThisBreaksApplicationSecurity + ' en el ionViewDidEnter')
-       this.player.src({
-         type: res.type,
-         src: web,
-       })
-       this.player.play()
-    
-    
-       this.isMudo = this.player.muted()
-    
-    
-       this.player.on('play', () => {
-         this.knowIfPlay = true
-        });
-      })
-    }
-
    
 
  
@@ -677,9 +598,7 @@ export class HomePage {
   // this.isMudotwo = this.playerTwwwoo.muted()
 
 
-   this.player.on('play', () => {
-     this.knowIfPlay = true
-    });
+   
    // this.knoMyLANG()
     this.newCont = 'bottom:-41%;'
     this.toPause = 'opacity:0;'
@@ -836,7 +755,7 @@ export class HomePage {
     let myHour = d.getHours()
 
     this.aHourComp = myHour
-
+    console.log(this.aHourComp)
     this.knowMyDates()
 
   
@@ -1019,6 +938,8 @@ export class HomePage {
       let secondFilter = this.episodiosAll.filter(item => item.semanaActiva === true);
       this.episodiosByDay = secondFilter.filter(item => item.day === this.day) 
       this.episodiosByDay.sort(sortBy('horaEnd'));
+
+      console.log(this.episodiosByDay)
       
    // this.episodiosAll = this.episodiosAll.filter(item=> item.semanaActiva === true)
 
@@ -1111,6 +1032,126 @@ export class HomePage {
 
   }
 
+  openPrincipalVideo(){
+    this.player = videojs(document.getElementById('video-player'))
+    this.player.poster('../../../assets/other/poster1.jpg')
+
+    if(this.videoLinkId !== null && this.typeOfVideoLink !== null ){
+
+      
+
+      console.log(this.typeOfVideoLink, ' aqui hace la peticion en el viewdidenter')
+
+      let link:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(this.videoLinkId)
+               
+        const web:string = link.changingThisBreaksApplicationSecurity
+    
+        console.log(link.changingThisBreaksApplicationSecurity + ' en el ionViewDidEnter')
+       this.player.src({
+         type: this.typeOfVideoLink,
+         src: web,
+       })
+       this.player.play()
+    
+    
+       this.isMudo = this.player.muted()
+
+
+       console.log('tienes el link registrado y el tipo')
+
+
+       this.db.collection('canalconfig').doc('S0VujcLdWg9EEJyPVfPA').valueChanges().subscribe(item => {
+        let res : any = item
+  
+
+        if(res.tvLink === this.videoLinkId && res.type === this.typeOfVideoLink){
+            console.log('es el mismo link que esta corriendo ahora y el mismo tipo')
+           
+        }else{
+          //Funcion para escribir en la base de datos interna
+
+          console.log('hay que cambiar el link')
+          this.setTvLink(res.tvLink)
+          this.setTvTypeOfLink(res.type)
+          let link:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(res.tvLink)
+               
+        const web:string = link.changingThisBreaksApplicationSecurity
+    
+        console.log(link.changingThisBreaksApplicationSecurity + ' en el ionViewDidEnter')
+       this.player.src({
+         type: res.type,
+         src: web,
+       })
+       this.player.play()
+    
+    
+       this.isMudo = this.player.muted()
+
+        }
+  
+        
+      })
+
+       
+
+
+    }else{
+
+      console.log('No tienes el link registrado o el tipo registrado')
+      this.db.collection('canalconfig').doc('S0VujcLdWg9EEJyPVfPA').valueChanges().subscribe(item => {
+        let res : any = item
+  
+        console.log(res.tvLink)
+        console.log(res.type)
+
+        this.setTvLink(res.tvLink)
+        this.setTvTypeOfLink(res.type)
+
+        
+  
+        let link:any =  this.sanitaizer.bypassSecurityTrustResourceUrl(res.tvLink)
+               
+        const web:string = link.changingThisBreaksApplicationSecurity
+    
+        console.log(link.changingThisBreaksApplicationSecurity + ' en el ionViewDidEnter')
+       this.player.src({
+         type: res.type,
+         src: web,
+       })
+       this.player.play()
+    
+    
+       this.isMudo = this.player.muted()
+    
+    
+       this.player.on('play', () => {
+         this.knowIfPlay = true
+        });
+      })
+    }
+
+    this.player.on('play', () => {
+      this.knowIfPlay = true
+     });
+  }
+
+  ScrollCtrl($scope, $location, $anchorScroll) {
+    
+    $scope.gotoBottom = function (){
+      // set the location.hash to the id of
+      // the element you wish to scroll to.
+      $location.hash('Club Hipico de Santiago');
+  
+      // call $anchorScroll()
+      $anchorScroll();
+    };
+    
+  }
+
+  prueba(){
+    console.log(this.myScrollContainer)
+    this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+  }
  async uitarMudo(){
    this.player.muted(false)
   this.isMudo = false
@@ -1905,6 +1946,8 @@ export class HomePage {
     if(this.streamCount> 0){
       this.playerMin.pause()
     }
+
+
     this.modal.create({
       component: FullscreenComponent ,
       cssClass:'my-custom-class',
@@ -2997,13 +3040,24 @@ async  goToLive(){
   }
   
   openHowToVideo(item){
+    this.estaEnPlay = false
+    this.player.pause()
     this.modal.create({
       component: HowToComponent,
       cssClass:'my-custom-class', 
-       componentProps:{
+      componentProps:{
         item:item,
         
       }   
+    }).then((modal)=> modal.present())
+  }
+
+  openStreamAdmin(){
+    this.estaEnPlay = false
+    this.player.pause()
+    this.modal.create({
+      component: StreamadminComponent,
+      cssClass:'my-custom-class',    
     }).then((modal)=> modal.present())
   }
 
