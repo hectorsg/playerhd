@@ -4,4 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    background: #000000cf;
 }
