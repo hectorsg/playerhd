@@ -2602,9 +2602,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="juego-item" (click)="openJuego()">
+                        <div *ngIf="accConfig" class="juego-item" (click)="openJuego()">
                             <div class="juego-port">
-                                <img *ngIf="accConfig" [src]="accConfig.photoPortada" alt="">
+                                <img  [src]="accConfig.photoPortada" alt="">
                             </div>
                             <div class="juego-titl">
                                 <h3 *ngIf="accConfig"> {{accConfig.name}} </h3>
