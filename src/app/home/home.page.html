@@ -2550,7 +2550,7 @@
 
                             </div>
                         </div>
-                        <div class="juego-item" (click)="openAtreveANarrar()">
+                        <div *ngIf="atreveteConfig"  class="juego-item" (click)="openAtreveANarrar()">
                             <div class="juego-port">
                                 <img [src]="atreveteConfig.photoPortada" alt="">
                             </div>
@@ -2580,7 +2580,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="juego-item" (click)="openEncuesta()">
+                        <div *ngIf="encuestaConfig" class="juego-item" (click)="openEncuesta()">
                             <div class="juego-port" *ngIf="encuestaConfig">
                                 <img [src]="encuestaConfig.photoPortada" alt="">
                             </div>
