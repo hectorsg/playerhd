@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonSlides, LoadingController, ModalController } from '@ionic/angular';
+import { IonSlides, LoadingController, ModalController, ToastController } from '@ionic/angular';
 import { TriviaService } from 'src/app/servicios/trivia.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
@@ -35,7 +35,7 @@ export class AtreveanarrarComponent implements OnInit {
   public url2:string;
   constructor(public modal : ModalController, public app : TriviaService, 
               public storage : AngularFireStorage, public loadingController : LoadingController,
-              public db : AngularFirestore, public afAuth : AngularFireAuth) { }
+              public db : AngularFirestore, public afAuth : AngularFireAuth, public toast : ToastController) { }
 
   ngOnInit() {
 
@@ -102,14 +102,29 @@ export class AtreveanarrarComponent implements OnInit {
 
 
    enviarVideo(){
-     this.db.collection('atrevetean').doc(this.atreveteOpen.id).collection('participantes').doc(this.myUser.uid).set({
-       displayName : this.myUser.displayName,
-       pais: this.atreveteOpen.pais,
-       video: this.url,
-       dni: this.url2,
-       uid:this.myUser.uid
-     }).then(()=>{
-       this.atreveteOpen = null
-     })
+
+    if(this.myUser){
+      this.db.collection('atrevetean').doc(this.atreveteOpen.id).collection('participantes').doc(this.myUser.uid).set({
+        displayName : this.myUser.displayName,
+        pais: this.atreveteOpen.pais,
+        video: this.url,
+        dni: this.url2,
+        uid:this.myUser.uid
+      }).then(()=>{
+        this.atreveteOpen = null
+      })
+    }else{
+      this.LinkActualizado()
+    }
+   
    }
+
+   async LinkActualizado() {
+    const toast = await this.toast.create({
+      message: 'Inicia sesion o Registrate',
+      duration: 3500,
+      color:'danger'
+    });
+    toast.present();
+  }
 }
