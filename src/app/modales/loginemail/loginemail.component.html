@@ -1,0 +1,19 @@
+<div class="contenido-modal" style="    backdrop-filter: blur(6px);
+background: #000000ad; padding-top: 0;color: white;   padding: 0;  padding-bottom: 0;">
+
+    <div (click)="dismissModal()" class="dissmiss" style="width: max-content;
+margin-left: auto;
+margin-top: 2%;">
+        <ion-icon name="chevron-down-outline"></ion-icon>
+    </div>
+    <h3>Inicia Sesion</h3>
+    <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input [(ngModel)]="email" type="email"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input [(ngModel)]="password" type="password"></ion-input>
+    </ion-item>
+    <ion-button (click)="login()">Ingresar</ion-button>
+</div>
