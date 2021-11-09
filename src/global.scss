@@ -1,0 +1,107 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+
+/* Core CSS required for Ionic components to work properly */
+
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+ion-app {
+    margin-top: env(safe-area-inset-top);
+}
+
+.sc-ion-modal-md-h:first-of-type {
+    --backdrop-opacity: var(--ion-backdrop-opacity, 0.58);
+    backdrop-filter: blur(7px);
+    --width: 100%;
+    --height: 100%;
+}
+
+.sc-ion-modal-md-h:first-of-type {
+    --backdrop-opacity: var(--ion-backdrop-opacity, 0.58);
+    backdrop-filter: blur(7px);
+    --width: 100%;
+    --height: 100%;
+}
+
+.swiper-slide img {
+    margin-top: auto;
+}
+
+.menu-inner {
+    backdrop-filter: blur(6px);
+    background: #000000cc;
+}
+
+.my-custom-class .sc-ion-modal-ios {
+    background-color: transparent;
+    --width: 100%;
+    --height: 100%;
+}
+
+.my-custom-class .modal-wrapper {
+    background: transparent;
+}
+
+.video-player-dimensions {
+    height: 100%;
+    width: 100%;
+}
+
+.episodio-dimensions {
+    height: 100%;
+    width: 100%;
+}
+
+.range-slider .range-bar-active {
+    background: transparent;
+}
+
+.range-bar {
+    background: black;
+}
+
+.item-native {
+    padding: 0;
+}
+
+.swiper-pagination-bullet {
+    background: white;
+}
+
+.swiper-pagination-bullet-active {
+    background: white;
+}
+
+.reproductor .view .video-js .vjs-control-bar {
+    background-color: #929292db;
+    background: #929292db;
+    color: black;
+    z-index: 1000000;
+}
+
+.custom {
+    --width: 100%;
+}

@@ -1,0 +1,45 @@
+<div class="newscont" *ngIf="!addNew">
+    <div class="head">
+        <span>News Admin</span>
+        <span (click)="opcion()">Opciones</span>
+    </div>
+    <ion-list style="height: 92vh;
+    width: 100%;
+    overflow-y: scroll;">
+        <ion-item *ngFor="let item of newsArray" (click)="opcionItem(item)">
+            <ion-label *ngIf="item.type === 'Normal' ">
+                <h2>{{item.title}} </h2>
+                <p>{{item.content}} </p>
+            </ion-label>
+            <ion-label *ngIf="item.type === 'En Vivo' " style="background:rgb(255, 59, 59); padding:2%;">
+                <h2>{{item.title}} </h2>
+                <p>{{item.content}} </p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</div>
+
+
+<div class="newscont" *ngIf="addNew">
+    <div class="head">
+        <span>Agregar News</span>
+        <span (click)="volverNew()">Volver</span>
+    </div>
+    <ion-list style="height: 92vh;
+  width: 100%;
+  overflow-y: scroll;">
+        <ion-item>
+            <ion-label position="floating">
+                Titulo
+            </ion-label>
+            <ion-input [(ngModel)]="titulo" placeholder="Hoy en Vivo Club Hipico de Concepcion, Chile"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">
+                Contenido
+            </ion-label>
+            <ion-textarea [(ngModel)]="contenido"></ion-textarea>
+        </ion-item>
+        <ion-button *ngIf="titulo && contenido" (click)="addNoticia()">Agregar Noticia</ion-button>
+    </ion-list>
+</div>
