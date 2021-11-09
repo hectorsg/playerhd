@@ -1151,8 +1151,12 @@ export class HomePage {
               console.log('playing!')
             })
     
-            this.player.addEventListener('suspend', ()=>{
-              this.goToLive()
+            this.player.addEventListener('suspend', async()=>{
+            
+
+              this.isClosedthePlay = false
+              await this.sleep(500)
+              this.isClosedthePlay = true
             })
           })
           document.head.appendChild(script)
