@@ -1,0 +1,38 @@
+<ion-header *ngIf="!hipodromoOpen" >
+  <ion-toolbar>
+    <ion-title>autoHipodromos</ion-title>
+    <ion-button routerLink="/auto-principal" slot="end">
+      Ir a transmision principal
+    </ion-button>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="!hipodromoOpen" >
+
+  <div class="myLiveHipodromos">
+
+    <div class="myHipodr" *ngFor="let item of hipodromosAll" (click)="openHipodromo(item)" >
+      <img [src]="item.cover" alt="">
+      <h3>{{item.nombre}} </h3>
+    </div>
+  </div>
+</ion-content>
+
+<ion-content *ngIf="hipodromoOpen" >
+  <ion-slides #onHipPlay [options]="slideOpts" style="height: 100%;width: 100%;" >
+    <ion-slide>
+      <div class="faltann">
+        <span>Faltan</span>
+        <h3>{{hipodromoOpen.cuantoFalta}} <span style="font-size: 22px;" >Min</span></h3>
+        <span>{{hipodromoOpen.carreraNro}} Carrera </span>
+      </div>
+      <video  style=" height: 100%;width: 100%; " id="waitingVideoHipodromo" preload="metadata" loop playsinline webkit-playsinline autoplay  controls allow="accelerometer; gyroscope; autoplay; muted; encrypted-media; picture-in-picture;loop;" class="video-js vjs-default-skin "></video>
+           
+    </ion-slide>
+    <ion-slide>
+      <video  style=" height: 100%;width: 100%; " id="LiveVideoHipodromo" preload="metadata" loop playsinline webkit-playsinline autoplay muted controls allow="accelerometer; gyroscope; autoplay; muted; encrypted-media; picture-in-picture;loop;" class="video-js vjs-default-skin "></video>
+    </ion-slide>
+  </ion-slides>
+  
+</ion-content>

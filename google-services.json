@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1028327965443",
+    "project_id": "grtv-2c63e",
+    "storage_bucket": "grtv-2c63e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1028327965443:android:423018b0dd87dc7c811f36",
+        "android_client_info": {
+          "package_name": "com.grtv.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1028327965443-js06s6alh1dsjp7j2659mul8gdqvllcs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.grtv.dev",
+            "certificate_hash": "707efc4389964d0db45da3bc0319af7fbb08c30a"
+          }
+        },
+        {
+          "client_id": "1028327965443-f4fuo0vhm29qrtofe0lafg316m8rellh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0D4Z7qY9H55ZlwGli22cFk23dJBXJsiM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1028327965443-f4fuo0vhm29qrtofe0lafg316m8rellh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1028327965443-4m7nsdaj2f2rqacqdp0h2jabgfgd7l3m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.grtv.us"
+              }
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-1546004963529341~8417246498"
+    }
+  ],
+  "configuration_version": "1"
+}

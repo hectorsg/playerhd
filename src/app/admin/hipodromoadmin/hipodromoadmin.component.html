@@ -1,0 +1,778 @@
+<div class="content" *ngIf="!addHipodromo && !theHipodromo">
+    <div class="header-title" style="    background: #000000d6;
+backdrop-filter: blur(5px);    margin-top: 0;">
+
+        <div class="titulo">
+            <!--  <div class="title-dia"  >
+            <span>.</span>
+        </div>
+        <div class="title-dia-dos"  >
+            <span>.</span>
+        </div>
+        <div class="title-dia-tres" style="      height: 2%;
+        top: 7.3%; " >
+            <span>.</span>
+        </div>-->
+            <h3>Hipodromos</h3>
+        </div>
+        <span (click)="cerrarModal()" style="    color: white;
+        margin-right: 5%;
+        font-weight: 600;">Volver</span>
+    </div>
+    <div class="filter-episodios">
+        <div (click)="addHipo()" class="filtro">
+            <span>Añadir Hipodromo</span>
+        </div>
+    </div>
+
+    <div class="episodios-list">
+
+
+        <div class="episodios-item" *ngFor="let item of hipodromosAll " (click)="viewHipodromo(item)">
+
+
+
+
+            <div *ngIf="item.actividad === true" class="item-img parpadea">
+                <!--   <div class="item-img-dia"  >
+                  <span>.</span>
+              </div>
+             -->
+                <img style="border:2px solid #ff3c3c;" [src]="item.cover" alt="">
+            </div>
+            <div *ngIf="item.actividad === false" class="item-img ">
+                <!--   <div class="item-img-dia"  >
+                  <span>.</span>
+              </div>
+             -->
+                <img [src]="item.cover" alt="">
+            </div>
+            <div style=" display: flex;
+                        width: 70%;
+                        height: 75%;
+                        justify-content: space-evenly;
+                        align-items: center;
+                        border-bottom: 1px solid #313131 ;">
+                <div class="item-content">
+                    <div class="other-info">
+                        <span>{{item.diaEnVivo}} </span>
+                        <!--
+                        <span> <ion-icon name="eye-outline"></ion-icon> {{item.nrocarreras}}</span>-->
+                    </div>
+                    <div class="titulo-episodio" style="display: flex;">
+                        <span style="text-align: initial;">{{item.nombre}} </span>
+                    </div>
+                    <div class="other-info">
+                        <span *ngIf="item.enVivo === true" class="parpadea" style="color: red;">En Vivo Hoy</span>
+                        <span *ngIf="item.enVivo === false && item.actividad === false">Ultima carrera el {{item.lastDay}}</span>
+                        <span *ngIf="item.actividad === true" class="parpadea" style="color: red;">Hoy {{item.nrocarreras}} Carreras</span>
+                        <span>{{item.pais}}</span>
+                        <!--
+                      <span> <ion-icon name="eye-outline"></ion-icon> {{item.nrocarreras}}</span>-->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+</div>
+
+
+
+<div class="content" *ngIf="addHipodromo && !theHipodromo">
+    <div class="two">
+        <span style="margin-left: 3%;">Estas creando un hipodromo</span>
+        <span (click)="volverAddHipodromo()" style="margin-right: 3%;">Volver</span>
+    </div>
+    <ion-list style="    height: 90%;
+    overflow-y: scroll;">
+        <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input [(ngModel)]="nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Pais</ion-label>
+            <ion-input [(ngModel)]="pais"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Link</ion-label>
+            <ion-input [(ngModel)]="link"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Resumen Wiki</ion-label>
+            <ion-input [(ngModel)]="resumen"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Historia</ion-label>
+            <ion-input [(ngModel)]="historia"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Clima</ion-label>
+            <ion-input [(ngModel)]="clima"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Web Hipodromo</ion-label>
+            <ion-input [(ngModel)]="webHipodromo"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Semana Activa</ion-label>
+            <ion-toggle [(ngModel)]="semanaActiva"></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label>Actividad Hoy</ion-label>
+            <ion-toggle [(ngModel)]="actividadHoy"></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label>Video en Vivo</ion-label>
+            <ion-toggle [(ngModel)]="videoEnVivo"></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Nro Carreras</ion-label>
+            <ion-input [(ngModel)]="carreras"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Dia</ion-label>
+            <ion-select [(ngModel)]="dia" placeholder="Select One">
+                <ion-select-option value="1">1</ion-select-option>
+                <ion-select-option value="2">2</ion-select-option>
+
+                <ion-select-option value="3">3</ion-select-option>
+                <ion-select-option value="4">4</ion-select-option>
+                <ion-select-option value="5">5</ion-select-option>
+                <ion-select-option value="6">6</ion-select-option>
+                <ion-select-option value="7">7</ion-select-option>
+
+                <ion-select-option value="8">8</ion-select-option>
+                <ion-select-option value="9">9</ion-select-option>
+
+                <ion-select-option value="10">10</ion-select-option>
+                <ion-select-option value="11">11</ion-select-option>
+
+                <ion-select-option value="12">12</ion-select-option>
+                <ion-select-option value="13">13</ion-select-option>
+
+                <ion-select-option value="14">14</ion-select-option>
+
+                <ion-select-option value="15">15</ion-select-option>
+                <ion-select-option value="16">16</ion-select-option>
+                <ion-select-option value="17">17</ion-select-option>
+                <ion-select-option value="18">18</ion-select-option>
+
+                <ion-select-option value="19">19</ion-select-option>
+                <ion-select-option value="20">20</ion-select-option>
+                <ion-select-option value="21">21</ion-select-option>
+                <ion-select-option value="22">22</ion-select-option>
+
+                <ion-select-option value="23">23</ion-select-option>
+                <ion-select-option value="24">24</ion-select-option>
+                <ion-select-option value="25">25</ion-select-option>
+                <ion-select-option value="26">26</ion-select-option>
+                <ion-select-option value="27">27</ion-select-option>
+                <ion-select-option value="28">28</ion-select-option>
+                <ion-select-option value="29">29</ion-select-option>
+                <ion-select-option value="30">30</ion-select-option>
+                <ion-select-option value="31">31</ion-select-option>
+
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Mes</ion-label>
+            <ion-select [(ngModel)]="mes" placeholder="Select One">
+                <ion-select-option value="January">Enero</ion-select-option>
+                <ion-select-option value="February">Febrero</ion-select-option>
+                <ion-select-option value="March">Marzo</ion-select-option>
+                <ion-select-option value="April">Abril</ion-select-option>
+                <ion-select-option value="May">Mayo</ion-select-option>
+                <ion-select-option value="June">Junio</ion-select-option>
+                <ion-select-option value="July">Julio</ion-select-option>
+                <ion-select-option value="August">Agosto</ion-select-option>
+                <ion-select-option value="September">Septiembre</ion-select-option>
+                <ion-select-option value="October">Octubre</ion-select-option>
+                <ion-select-option value="November">Noviembre</ion-select-option>
+                <ion-select-option value="December">Diciembre</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Hora</ion-label>
+            <ion-input [(ngModel)]="hora"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Cover Image</ion-label>
+            <ion-card *ngIf="!url">
+                <ion-icon name="add-circle"></ion-icon>
+                <input style="    width: 80%;" type="file" accept=".png, .jpg" (change)="onUpload($event)">
+            </ion-card>
+
+            <span *ngIf="url"> Imagen subida </span>
+            <span *ngIf="uploadPercent" style="width: 130px;
+     height: 20px;
+     background: green;
+     border-radius: 10px;
+     color: white;
+     font-weight: 600;">{{ uploadPercent| async}}%</span>
+            <ion-input [(ngModel)]="url" type="hidden" [value]="urlImage | async"></ion-input>
+        </ion-item>
+
+
+    </ion-list>
+    <ion-button *ngIf="nombre && pais && link && resumen && historia &&  clima && carreras && dia && mes && hora &&url " (click)="addedHipodromo()" style="height: 5%;
+    width: 100%;">Agregar Hipodromo</ion-button>
+</div>
+
+<div class="content" *ngIf="!addHipodromo && theHipodromo">
+    <h3 *ngIf="!ingresarRaces">Que deseas hacer con {{theHipodromo.nombre}} </h3>
+    <ion-button *ngIf="!ingresarRaces" (click)="enterActualizar()">Actualizar Data</ion-button>
+    <ion-button *ngIf="!ingresarRaces" (click)="enterRace()">Ingresar Carreras</ion-button>
+    <ion-button *ngIf="!ingresarRaces" (click)="theHipodromo = null">Volver</ion-button>
+    <h3 *ngIf="dateFalta && !ingresarRaces" >Faltan {{dateFalta}} para el proximo evento</h3>
+    <h3 *ngIf="!dateFalta && !ingresarRaces" >Este hipodromo esta en proceso o no tiene actividad</h3>
+
+
+    <div class="two" *ngIf="ingresarRaces=='actualizar'">
+
+        <span style="margin-left: 3%; ">Estas Actualizando {{theHipodromo.nombre}} </span>
+        <span (click)="ingresarRaces=null " style="margin-right: 3%; ">Volver</span>
+    </div>
+
+    <ion-list style="    height: 95%;
+    overflow-y: scroll;" *ngIf="ingresarRaces == 'actualizar' ">
+        <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input [(ngModel)]="nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Pais</ion-label>
+            <ion-input [(ngModel)]="pais"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Resumen Wiki</ion-label>
+            <ion-input [(ngModel)]="resumen"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Web Hipodromo</ion-label>
+            <ion-input [(ngModel)]="webHipodromo"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Historia</ion-label>
+            <ion-input [(ngModel)]="historia"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Clima</ion-label>
+            <ion-input [(ngModel)]="clima"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Semana Activa</ion-label>
+            <ion-toggle [(ngModel)]="semanaActiva"></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label>Actividad Hoy</ion-label>
+            <ion-toggle [(ngModel)]="actividadHoy"></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Nro Carreras</ion-label>
+            <ion-input [(ngModel)]="carreras"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Dia</ion-label>
+            <ion-select [(ngModel)]="dia" placeholder="Select One">
+                <ion-select-option value="1">1</ion-select-option>
+                <ion-select-option value="2">2</ion-select-option>
+
+                <ion-select-option value="3">3</ion-select-option>
+                <ion-select-option value="4">4</ion-select-option>
+                <ion-select-option value="5">5</ion-select-option>
+                <ion-select-option value="6">6</ion-select-option>
+                <ion-select-option value="7">7</ion-select-option>
+
+                <ion-select-option value="8">8</ion-select-option>
+                <ion-select-option value="9">9</ion-select-option>
+
+                <ion-select-option value="10">10</ion-select-option>
+                <ion-select-option value="11">11</ion-select-option>
+
+                <ion-select-option value="12">12</ion-select-option>
+                <ion-select-option value="13">13</ion-select-option>
+
+                <ion-select-option value="14">14</ion-select-option>
+
+                <ion-select-option value="15">15</ion-select-option>
+                <ion-select-option value="16">16</ion-select-option>
+                <ion-select-option value="17">17</ion-select-option>
+                <ion-select-option value="18">18</ion-select-option>
+
+                <ion-select-option value="19">19</ion-select-option>
+                <ion-select-option value="20">20</ion-select-option>
+                <ion-select-option value="21">21</ion-select-option>
+                <ion-select-option value="22">22</ion-select-option>
+
+                <ion-select-option value="23">23</ion-select-option>
+                <ion-select-option value="24">24</ion-select-option>
+                <ion-select-option value="25">25</ion-select-option>
+                <ion-select-option value="26">26</ion-select-option>
+                <ion-select-option value="27">27</ion-select-option>
+                <ion-select-option value="28">28</ion-select-option>
+                <ion-select-option value="29">29</ion-select-option>
+                <ion-select-option value="30">30</ion-select-option>
+                <ion-select-option value="31">31</ion-select-option>
+
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Mes</ion-label>
+            <ion-select [(ngModel)]="mes" placeholder="Select One">
+                <ion-select-option value="January">Enero</ion-select-option>
+                <ion-select-option value="February">Febrero</ion-select-option>
+                <ion-select-option value="March">Marzo</ion-select-option>
+                <ion-select-option value="April">Abril</ion-select-option>
+                <ion-select-option value="May">Mayo</ion-select-option>
+                <ion-select-option value="June">Junio</ion-select-option>
+                <ion-select-option value="July">Julio</ion-select-option>
+                <ion-select-option value="August">Agosto</ion-select-option>
+                <ion-select-option value="September">Septiembre</ion-select-option>
+                <ion-select-option value="October">Octubre</ion-select-option>
+                <ion-select-option value="November">Noviembre</ion-select-option>
+                <ion-select-option value="December">Diciembre</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Hora</ion-label>
+            <ion-input [(ngModel)]="hora"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Cover Image</ion-label>
+            <ion-card *ngIf="!url">
+                <ion-icon name="add-circle"></ion-icon>
+                <input style="    width: 80%;" type="file" accept=".png, .jpg" (change)="onUpload($event)">
+            </ion-card>
+
+            <span *ngIf="url"> Imagen subida </span>
+            <span *ngIf="uploadPercent" style="width: 130px;
+     height: 20px;
+     background: green;
+     border-radius: 10px;
+     color: white;
+     font-weight: 600;">{{ uploadPercent| async}}%</span>
+            <ion-input [(ngModel)]="url" type="hidden" [value]="urlImage | async"></ion-input>
+        </ion-item>
+        <ion-button (click)="updateHipodromo()" *ngIf="ingresarRaces == 'actualizar' " style="height: 5%;
+        width: 90%;">Actualizar Hipodromo</ion-button>
+
+        <h3>Listado de carreras activas</h3>
+        <div class="carrera-item">
+            <div class="item-header">
+                <span *ngIf="diaDeLaSemana == 'Lun'; else isLun" style="border-right: 1px solid #c7c7c7;background:  #3c3c3c;color:#c7c7c7 ;">Lun</span>
+                <ng-template #isLun>
+                    <span (click)="changeDay('Lun')" style="border-right: 1px solid #c7c7c7;{{dayActiveLun}} ">Lun</span>
+                </ng-template>
+                <span *ngIf="diaDeLaSemana == 'Mar';else isMar" style="border-right: 1px solid #c7c7c7;background:  #3c3c3c;color:#c7c7c7 ;">Mar</span>
+                <ng-template #isMar>
+                    <span (click)="changeDay('Mar')" style="border-right:1px solid #c7c7c7;{{dayActiveMar}} ">Mar</span>
+                </ng-template>
+                <span *ngIf="diaDeLaSemana == 'Mie'; else isMie" style="border-right: 1px solid #c7c7c7;background:  #3c3c3c;color:#c7c7c7 ;">Mie</span>
+                <ng-template #isMie>
+                    <span (click)="changeDay('Mie')" style="border-right:1px solid #c7c7c7;{{dayActiveMie}} ">Mie</span>
+                </ng-template>
+                <span *ngIf="diaDeLaSemana == 'Jue';else isJue" style="border-right: 1px solid #c7c7c7;background:  #3c3c3c;color:#c7c7c7 ;">Jue</span>
+                <ng-template #isJue>
+                    <span (click)="changeDay('Jue')" style="border-right: 1px solid #c7c7c7;{{dayActiveJue}} ">Jue</span>
+                </ng-template>
+                <span *ngIf="diaDeLaSemana == 'Vie';else isVie" style="border-right: 1px solid #c7c7c7;background:  #3c3c3c;color:#c7c7c7 ;">Vie</span>
+                <ng-template #isVie>
+                    <span (click)="changeDay('Vie')" style="border-right: 1px solid #c7c7c7;{{dayActiveVie}} ">Vie</span>
+                </ng-template>
+                <span *ngIf="diaDeLaSemana == 'Sab';else isSab" style="border-right: 1px solid #c7c7c7;background:  #3c3c3c;color:#c7c7c7 ;">Sab</span>
+                <ng-template #isSab>
+                    <span (click)="changeDay('Sab')" style="border-right: 1px solid #c7c7c7;{{dayActiveSab}} ">Sab</span>
+                </ng-template>
+                <span *ngIf="diaDeLaSemana == 'Dom';else isDom" style="border-right: 1px solid #c7c7c7;background:  #3c3c3c;color:#c7c7c7 ;">Dom</span>
+                <ng-template #isDom>
+                    <span (click)="changeDay('Dom')" [style]="dayActiveDom">Dom</span>
+                </ng-template>
+            </div>
+        </div>
+        <ion-item *ngFor="let item of carrerasArray" (click)="openRaceEdit(item)">
+            <h3> {{item.shortRaceName}}</h3>
+            <span slot="end">{{item.shortDate}} </span>
+        </ion-item>
+
+
+
+        <br>
+        <br>
+        <br>
+
+
+
+    </ion-list>
+
+    <div *ngIf="ingresarRaces == 'actualizar' " class="editrace" style="transition: 1s; {{editRaceModal}} ">
+        <h3 style="text-align: center;">Edita esta Carrera</h3>
+
+        <ion-list style=" height: 75%; overflow-y: scroll;background: transparent; ">
+            <ion-item style="--background: transparent;">
+                <ion-label>Nombre de Carrera</ion-label>
+                <ion-select [(ngModel)]="shortRace" (ionChange)="verUid()" placeholder="Select One ">
+                    <ion-select-option value="C1">Carrera 1</ion-select-option>
+                    <ion-select-option value="C2">Carrera 2</ion-select-option>
+                    <ion-select-option value="C3">Carrera 3</ion-select-option>
+                    <ion-select-option value="C4">Carrera 4</ion-select-option>
+                    <ion-select-option value="C5">Carrera 5</ion-select-option>
+                    <ion-select-option value="C6">Carrera 6</ion-select-option>
+                    <ion-select-option value="C7">Carrera 7</ion-select-option>
+                    <ion-select-option value="C8">Carrera 8</ion-select-option>
+                    <ion-select-option value="C9">Carrera 9</ion-select-option>
+                    <ion-select-option value="C10">Carrera 10</ion-select-option>
+                    <ion-select-option value="C11">Carrera 11</ion-select-option>
+                    <ion-select-option value="C12">Carrera 12</ion-select-option>
+                    <ion-select-option value="C13">Carrera 13</ion-select-option>
+                    <ion-select-option value="C14">Carrera 14</ion-select-option>
+                    <ion-select-option value="C15">Carrera 15</ion-select-option>
+                    <ion-select-option value="C16">Carrera 16</ion-select-option>
+                    <ion-select-option value="C17">Carrera 17</ion-select-option>
+                    <ion-select-option value="C18">Carrera 18</ion-select-option>
+                    <ion-select-option value="C19">Carrera 19</ion-select-option>
+                    <ion-select-option value="C20">Carrera 20</ion-select-option>
+                    <ion-select-option value="C21">Carrera 21</ion-select-option>
+                    <ion-select-option value="C22">Carrera 22</ion-select-option>
+                    <ion-select-option value="C23">Carrera 23</ion-select-option>
+                    <ion-select-option value="C24">Carrera 24</ion-select-option>
+                    <ion-select-option value="C25">Carrera 25</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item style="--background: transparent;">
+                <ion-label position="floating ">Pote</ion-label>
+                <ion-input [(ngModel)]="pote "></ion-input>
+            </ion-item>
+            <ion-item style="--background: transparent;">
+                <ion-label>Dia de semana</ion-label>
+                <ion-select [(ngModel)]="dayOfTheWeek " placeholder="Select One ">
+                    <ion-select-option value="Lun">Lunes</ion-select-option>
+                    <ion-select-option value="Mar">Martes</ion-select-option>
+                    <ion-select-option value="Mie">Miercoles</ion-select-option>
+                    <ion-select-option value="Jue">Jueves</ion-select-option>
+                    <ion-select-option value="Vie">Viernes</ion-select-option>
+                    <ion-select-option value="Sab">Sabado</ion-select-option>
+                    <ion-select-option value="Dom">Domingo</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item style="--background: transparent;">
+                <ion-label position="floating ">Distancia</ion-label>
+                <ion-input [(ngModel)]="distancia "></ion-input>
+            </ion-item>
+            <ion-item style="--background: transparent;">
+                <ion-label position="floating ">Terreno</ion-label>
+                <ion-input [(ngModel)]="lastT "></ion-input>
+            </ion-item>
+            <ion-item style="--background: transparent;">
+                <ion-label position="floating ">Tipo de Carrera</ion-label>
+                <ion-input [(ngModel)]="type "></ion-input>
+            </ion-item>
+            <ion-item style="--background: transparent;">
+                <ion-label>Semana Activa</ion-label>
+                <ion-toggle [(ngModel)]="hipodromoActivo "></ion-toggle>
+            </ion-item>
+            <ion-item style="--background: transparent;">
+                <ion-label>Dia</ion-label>
+                <ion-select [(ngModel)]="dia" placeholder="Select One">
+                    <ion-select-option value="1">1</ion-select-option>
+                    <ion-select-option value="2">2</ion-select-option>
+
+                    <ion-select-option value="3">3</ion-select-option>
+                    <ion-select-option value="4">4</ion-select-option>
+                    <ion-select-option value="5">5</ion-select-option>
+                    <ion-select-option value="6">6</ion-select-option>
+                    <ion-select-option value="7">7</ion-select-option>
+
+                    <ion-select-option value="8">8</ion-select-option>
+                    <ion-select-option value="9">9</ion-select-option>
+
+                    <ion-select-option value="10">10</ion-select-option>
+                    <ion-select-option value="11">11</ion-select-option>
+
+                    <ion-select-option value="12">12</ion-select-option>
+                    <ion-select-option value="13">13</ion-select-option>
+
+                    <ion-select-option value="14">14</ion-select-option>
+
+                    <ion-select-option value="15">15</ion-select-option>
+                    <ion-select-option value="16">16</ion-select-option>
+                    <ion-select-option value="17">17</ion-select-option>
+                    <ion-select-option value="18">18</ion-select-option>
+
+                    <ion-select-option value="19">19</ion-select-option>
+                    <ion-select-option value="20">20</ion-select-option>
+                    <ion-select-option value="21">21</ion-select-option>
+                    <ion-select-option value="22">22</ion-select-option>
+
+                    <ion-select-option value="23">23</ion-select-option>
+                    <ion-select-option value="24">24</ion-select-option>
+                    <ion-select-option value="25">25</ion-select-option>
+                    <ion-select-option value="26">26</ion-select-option>
+                    <ion-select-option value="27">27</ion-select-option>
+                    <ion-select-option value="28">28</ion-select-option>
+                    <ion-select-option value="29">29</ion-select-option>
+                    <ion-select-option value="30">30</ion-select-option>
+                    <ion-select-option value="31">31</ion-select-option>
+
+                </ion-select>
+            </ion-item>
+            <ion-item style="--background: transparent;">
+                <ion-label>Mes</ion-label>
+                <ion-select [(ngModel)]="mes" placeholder="Select One">
+                    <ion-select-option value="Enero">Enero</ion-select-option>
+                    <ion-select-option value="Febrero">Febrero</ion-select-option>
+                    <ion-select-option value="Marzo">Marzo</ion-select-option>
+                    <ion-select-option value="Abril">Abril</ion-select-option>
+                    <ion-select-option value="Mayo">Mayo</ion-select-option>
+                    <ion-select-option value="Junio">Junio</ion-select-option>
+                    <ion-select-option value="Julio">Julio</ion-select-option>
+                    <ion-select-option value="Agosto">Agosto</ion-select-option>
+                    <ion-select-option value="Septiembre">Septiembre</ion-select-option>
+                    <ion-select-option value="Octubre">Octubre</ion-select-option>
+                    <ion-select-option value="Noviembre">Noviembre</ion-select-option>
+                    <ion-select-option value="Diciembre">Diciembre</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item style="--background: transparent;">
+                <ion-label position="floating">Retrospecto Imagen</ion-label>
+                <ion-card *ngIf="!url">
+                    <ion-icon name="add-circle"></ion-icon>
+                    <input style="    width: 80%;" type="file" accept=".png, .jpg" (change)="onUpload($event)">
+                </ion-card>
+
+                <span *ngIf="url"> Imagen subida </span>
+                <span *ngIf="uploadPercent" style="width: 130px;
+   height: 20px;
+   background: green;
+   border-radius: 10px;
+   color: white;
+   font-weight: 600;">{{ uploadPercent| async}}%</span>
+                <ion-input [(ngModel)]="url" type="hidden" [value]="urlImage | async"></ion-input>
+            </ion-item>
+
+            <ion-item style="--background: transparent;">
+                <ion-label position="floating">Retrospecto PDF</ion-label>
+                <ion-card *ngIf="!url2">
+                    <ion-icon name="add-circle"></ion-icon>
+                    <input style="    width: 80%;" type="file" accept=".pdf" (change)="onUploads($event)">
+                </ion-card>
+
+                <span *ngIf="url2"> PDF subido </span>
+                <span *ngIf="uploadPercent2" style="width: 130px;
+ height: 20px;
+ background: green;
+ border-radius: 10px;
+ color: white;
+ font-weight: 600;">{{ uploadPercent2| async}}%</span>
+                <ion-input [(ngModel)]="url2" type="hidden" [value]="urlImage2 | async"></ion-input>
+            </ion-item>
+        </ion-list>
+        <div class="dos-boton">
+            <ion-button (click)="eliminarCarrera()">Eliminar</ion-button>
+            <ion-button (click)=" updateRaces()">Actualizar</ion-button>
+            <ion-button (click)="cerrarRaceEdit()">Cerrar</ion-button>
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <div class=" two " *ngIf="ingresarRaces=='ingresar' ">
+        <span style="margin-left: 3%; ">Estas subiendo una carrera</span>
+        <span (click)="ingresarRaces=null " style="margin-right: 3%; ">Volver</span>
+    </div>
+    <ion-list style=" height: 90%; overflow-y: scroll; " *ngIf="ingresarRaces=='ingresar' ">
+        <ion-item>
+            <ion-label>Nombre de Carrera</ion-label>
+            <ion-select [(ngModel)]="shortRace" (ionChange)="verUid()" placeholder="Select One ">
+                <ion-select-option value="C1">Carrera 1</ion-select-option>
+                <ion-select-option value="C2">Carrera 2</ion-select-option>
+                <ion-select-option value="C3">Carrera 3</ion-select-option>
+                <ion-select-option value="C4">Carrera 4</ion-select-option>
+                <ion-select-option value="C5">Carrera 5</ion-select-option>
+                <ion-select-option value="C6">Carrera 6</ion-select-option>
+                <ion-select-option value="C7">Carrera 7</ion-select-option>
+                <ion-select-option value="C8">Carrera 8</ion-select-option>
+                <ion-select-option value="C9">Carrera 9</ion-select-option>
+                <ion-select-option value="C10">Carrera 10</ion-select-option>
+                <ion-select-option value="C11">Carrera 11</ion-select-option>
+                <ion-select-option value="C12">Carrera 12</ion-select-option>
+                <ion-select-option value="C13">Carrera 13</ion-select-option>
+                <ion-select-option value="C14">Carrera 14</ion-select-option>
+                <ion-select-option value="C15">Carrera 15</ion-select-option>
+                <ion-select-option value="C16">Carrera 16</ion-select-option>
+                <ion-select-option value="C17">Carrera 17</ion-select-option>
+                <ion-select-option value="C18">Carrera 18</ion-select-option>
+                <ion-select-option value="C19">Carrera 19</ion-select-option>
+                <ion-select-option value="C20">Carrera 20</ion-select-option>
+                <ion-select-option value="C21">Carrera 21</ion-select-option>
+                <ion-select-option value="C22">Carrera 22</ion-select-option>
+                <ion-select-option value="C23">Carrera 23</ion-select-option>
+                <ion-select-option value="C24">Carrera 24</ion-select-option>
+                <ion-select-option value="C25">Carrera 25</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating ">Pote</ion-label>
+            <ion-input [(ngModel)]="pote "></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Dia de semana</ion-label>
+            <ion-select [(ngModel)]="dayOfTheWeek " placeholder="Select One ">
+                <ion-select-option value="Lun">Lunes</ion-select-option>
+                <ion-select-option value="Mar">Martes</ion-select-option>
+                <ion-select-option value="Mie">Miercoles</ion-select-option>
+                <ion-select-option value="Jue">Jueves</ion-select-option>
+                <ion-select-option value="Vie">Viernes</ion-select-option>
+                <ion-select-option value="Sab">Sabado</ion-select-option>
+                <ion-select-option value="Dom">Domingo</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating ">Distancia</ion-label>
+            <ion-input [(ngModel)]="distancia "></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating ">Terreno</ion-label>
+            <ion-input [(ngModel)]="lastT "></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating ">Tipo de Carrera</ion-label>
+            <ion-input [(ngModel)]="type "></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Semana Activa</ion-label>
+            <ion-toggle [(ngModel)]="hipodromoActivo "></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label>Dia</ion-label>
+            <ion-select [(ngModel)]="dia" placeholder="Select One">
+                <ion-select-option value="1">1</ion-select-option>
+                <ion-select-option value="2">2</ion-select-option>
+
+                <ion-select-option value="3">3</ion-select-option>
+                <ion-select-option value="4">4</ion-select-option>
+                <ion-select-option value="5">5</ion-select-option>
+                <ion-select-option value="6">6</ion-select-option>
+                <ion-select-option value="7">7</ion-select-option>
+
+                <ion-select-option value="8">8</ion-select-option>
+                <ion-select-option value="9">9</ion-select-option>
+
+                <ion-select-option value="10">10</ion-select-option>
+                <ion-select-option value="11">11</ion-select-option>
+
+                <ion-select-option value="12">12</ion-select-option>
+                <ion-select-option value="13">13</ion-select-option>
+
+                <ion-select-option value="14">14</ion-select-option>
+
+                <ion-select-option value="15">15</ion-select-option>
+                <ion-select-option value="16">16</ion-select-option>
+                <ion-select-option value="17">17</ion-select-option>
+                <ion-select-option value="18">18</ion-select-option>
+
+                <ion-select-option value="19">19</ion-select-option>
+                <ion-select-option value="20">20</ion-select-option>
+                <ion-select-option value="21">21</ion-select-option>
+                <ion-select-option value="22">22</ion-select-option>
+
+                <ion-select-option value="23">23</ion-select-option>
+                <ion-select-option value="24">24</ion-select-option>
+                <ion-select-option value="25">25</ion-select-option>
+                <ion-select-option value="26">26</ion-select-option>
+                <ion-select-option value="27">27</ion-select-option>
+                <ion-select-option value="28">28</ion-select-option>
+                <ion-select-option value="29">29</ion-select-option>
+                <ion-select-option value="30">30</ion-select-option>
+                <ion-select-option value="31">31</ion-select-option>
+
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Mes</ion-label>
+            <ion-select [(ngModel)]="mes" placeholder="Select One">
+                <ion-select-option value="Enero">Enero</ion-select-option>
+                <ion-select-option value="Febrero">Febrero</ion-select-option>
+                <ion-select-option value="Marzo">Marzo</ion-select-option>
+                <ion-select-option value="Abril">Abril</ion-select-option>
+                <ion-select-option value="Mayo">Mayo</ion-select-option>
+                <ion-select-option value="Junio">Junio</ion-select-option>
+                <ion-select-option value="Julio">Julio</ion-select-option>
+                <ion-select-option value="Agosto">Agosto</ion-select-option>
+                <ion-select-option value="Septiembre">Septiembre</ion-select-option>
+                <ion-select-option value="Octubre">Octubre</ion-select-option>
+                <ion-select-option value="Noviembre">Noviembre</ion-select-option>
+                <ion-select-option value="Diciembre">Diciembre</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Retrospecto Imagen</ion-label>
+            <ion-card *ngIf="!url">
+                <ion-icon name="add-circle"></ion-icon>
+                <input style="    width: 80%;" type="file" accept=".png, .jpg" (change)="onUpload($event)">
+            </ion-card>
+
+            <span *ngIf="url"> Imagen subida </span>
+            <span *ngIf="uploadPercent" style="width: 130px;
+   height: 20px;
+   background: green;
+   border-radius: 10px;
+   color: white;
+   font-weight: 600;">{{ uploadPercent| async}}%</span>
+            <ion-input [(ngModel)]="url" type="hidden" [value]="urlImage | async"></ion-input>
+        </ion-item>
+
+    <!--    <ion-item>
+            <ion-label position="floating">Retrospecto PDF</ion-label>
+            <ion-card *ngIf="!url2">
+                <ion-icon name="add-circle"></ion-icon>
+                <input style="    width: 80%;" type="file" accept=".pdf" (change)="onUploads($event)">
+            </ion-card>
+
+            <span *ngIf="url2"> PDF subido </span>
+            <span *ngIf="uploadPercent2" style="width: 130px;
+ height: 20px;
+ background: green;
+ border-radius: 10px;
+ color: white;
+ font-weight: 600;">{{ uploadPercent2| async}}%</span>
+            <ion-input [(ngModel)]="url2" type="hidden" [value]="urlImage2 | async"></ion-input>
+        </ion-item>-->
+        <!--
+        <ion-item>
+            <ion-label position="floating ">Retrospecto Imagen</ion-label>
+            <ion-card *ngIf="!url ">
+                <ion-icon name="add-circle "></ion-icon>
+                <input style=" width: 80%; " type="file " accept=".png, .jpg " (change)="onUpload($event) ">
+            </ion-card>
+
+            <span *ngIf="url "> Imagen subida </span>
+            <span *ngIf="uploadPercent " style="width: 130px; height: 20px; background: green; border-radius: 10px; color: white; font-weight: 600; ">{{ uploadPercent| async}}%</span>
+            <ion-input [(ngModel)]="url " type="hidden " [value]="urlImage | async "></ion-input>
+        </ion-item>
+
+
+        <ion-item>
+            <ion-label position="floating ">Retrospecto PDF</ion-label>
+            <ion-card *ngIf="!url2">
+                <ion-icon name="add-circle "></ion-icon>
+                <input style=" width: 80%; " type="file " accept=".pdf " (change)="onUploads($event) ">
+            </ion-card>
+
+            <span *ngIf="url2"> PDF subido </span>
+            <span *ngIf="uploadPercent2" style="width: 130px; height: 20px; background: green; border-radius: 10px; color: white; font-weight: 600; ">{{ uploadPercent2| async}}%</span>
+            <ion-input [(ngModel)]="url2" type="hidden" [value]="urlImage2 | async "></ion-input>
+        </ion-item>
+
+-->
+    </ion-list>
+    <ion-button style="height: 5%; width: 100%; " *ngIf="ingresarRaces=='ingresar' && dayOfTheWeek &&distancia&&lastT&&pote &&url&&hipodromoActivo&&shortRace&&type " (click)="addCarrera() ">Agregar Carrera</ion-button>
+</div>
