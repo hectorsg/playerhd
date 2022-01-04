@@ -1,0 +1,46 @@
+.myLiveHipodromos{
+    width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr  ;
+  margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.myLiveHipodromos .myHipodr{
+    margin: 5%;
+    width: 90%;
+    height: max-content;
+    background: #c1c1c1;
+    border-radius: 20px;
+    border: 3px solid red;
+}
+
+.faltann{
+    position: absolute;
+    z-index: 10000;
+    bottom: 40px;
+    left: 5%;
+    background: #f14762;
+    width: 247px;
+    height: 160px;
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 2px solid white;
+    box-shadow: 3px 4px 10px #5c61ba;
+}
+.faltann span{
+    font-weight: 600;
+    color: #ededed;
+    text-shadow: 2px 2px 2px #272a5d;
+    font-size: 30px;
+}
+.faltann h3{
+    margin: 0;
+    font-size: 66px;
+    font-weight: 600;
+    color: white;
+    text-shadow: 3px 3px 7px #272a5d;
+}

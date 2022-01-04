@@ -1,0 +1,215 @@
+.atrevecont {
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    background: #000000cf;
+    color: white;
+}
+
+.portadi {
+    padding: 5%;
+}
+
+.portadi p {
+    font-size: 15px;
+    text-align: justify;
+}
+
+.portadi h3 {
+    color: #dfedc4;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.portadi ion-button {
+    --background: #787878;
+    width: 85%;
+    font-weight: 600;
+}
+
+.parpadea {
+    animation-name: parpadeo;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: parpadeo;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+}
+
+.listcont {
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.listcont .headeratrev {
+    width: 100%;
+    position: absolute;
+    height: 7vh;
+    display: flex;
+    justify-content: space-between;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 100;
+    align-items: center;
+}
+
+@-moz-keyframes parpadeo {
+    0% {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 1.0;
+    }
+}
+
+@-webkit-keyframes parpadeo {
+    0% {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 1.0;
+    }
+}
+
+@keyframes parpadeo {
+    0% {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 1.0;
+    }
+}
+
+.listcont .episodios-item {
+    display: flex;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 10vh;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    background: #4c4c4c;
+    border-radius: 20px;
+}
+
+.listcont .episodios-item .item-img {
+    height: 90%;
+    margin-left: 2%;
+    width: 25%;
+    z-index: 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.listcont .episodios-item .item-img .item-img-dia {
+    position: absolute;
+    z-index: -1;
+    background: black;
+    width: 25%;
+    height: 70%;
+    transform: skewx(12deg);
+}
+
+.listcont .episodios-item .item-img img {
+    height: 80%;
+    width: 95%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    margin: 0;
+    border: 2px solid black;
+}
+
+.listcont .episodios-item .item-content {
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: baseline;
+    width: 95%;
+    margin-right: 5%;
+    height: 85%;
+}
+
+.listcont .episodios-item .item-dia {
+    position: absolute;
+    background: #f93154;
+    width: 94%;
+    left: 3%;
+    height: 60%;
+    z-index: 1;
+    transform: skewx(10deg);
+}
+
+.listcont .episodios-item .item-content .titulo-episodio span {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+}
+
+.listcont .episodios-item .item-content .other-info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    font-weight: 600;
+    color: white;
+}
+
+.listcont .episodios-item .play-item {
+    width: 15%;
+    height: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 6;
+    color: white;
+}
+
+.listcont .episodios-item .item-double-dia {
+    width: 70%;
+    height: 75%;
+    position: absolute;
+    left: 30%;
+    display: flex;
+    z-index: 3;
+}
+
+.listcont .episodios-item .item-double-dia span {
+    width: 70%;
+    height: 65%;
+    margin-top: -2%;
+    background: #280432;
+    border: 2px solid #e4e000;
+    margin-left: 5%;
+    transform: skewx(10deg);
+    color: white;
+}
+
+.icon-size {
+    font-size: 24px;
+}
+
+.content .two {
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.content .two span {
+    font-weight: 600;
+}

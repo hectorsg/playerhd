@@ -1,0 +1,20 @@
+<div class="streamcont">
+  <div class="streamhead">
+    <span>Stream Admin *ten cuidado*</span>
+    <span (click)="dismissModal()" >Cerrar</span>
+  </div>
+
+  <ion-item>
+    <ion-label position="floating" >Link de la transmision</ion-label>
+    <ion-input [(ngModel)]="link" ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label  >Tipo de transmision</ion-label>
+    <ion-select [(ngModel)]="type" placeholder="Selecciona un tipo">
+      <ion-select-option  value="video/youtube">Youtube</ion-select-option>
+      <ion-select-option  value="application/x-mpegURL">M3U8</ion-select-option>
+  </ion-select>
+  </ion-item>
+
+  <ion-button *ngIf="link && type" (click)="changeLink()" >Cambiar link</ion-button>
+</div>
