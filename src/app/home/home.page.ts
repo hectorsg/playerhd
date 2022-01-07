@@ -174,7 +174,7 @@ export class HomePage {
   public gacetaTitle:string;
   public gacetaTitleIng : string;
   public gacetaHipodromos:any;
-  public splashScreen:string = 'background: url(../../assets/other/SPLASH-fix.png);  background-position: center;background-repeat: no-repeat;background-size: cover;transition-timing-function: linear;'
+  public splashScreen:string = 'background: url(../../assets/other/SPLASH2.png);  background-position: center;background-repeat: no-repeat;background-size: cover;transition-timing-function: linear;'
   public episodiosPropios : any;
   public ProgramaName : any;
   public episodioDestacadoOtros : any;
@@ -2034,7 +2034,7 @@ async seEliminoelEpidosio(){
 
  
  async dismissSplash(){
-    this.splashScreen = 'background: url(../../assets/other/SPLASH-fix.png);  background-position: center;background-repeat: no-repeat;background-size: cover;transition-timing-function: linear;top:100%;'
+    this.splashScreen = 'background: url(../../assets/other/SPLASH2.png);  background-position: center;background-repeat: no-repeat;background-size: cover;transition-timing-function: linear;top:100%;'
 
   await this.sleep(1300)
  //   this.darlePlayalVideo()
