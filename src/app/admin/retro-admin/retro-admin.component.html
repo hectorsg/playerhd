@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Panel para nuevas funciones</ion-title>
+    <ion-button (click)="dismiss()" >Volver</ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <h3>Formulario para rellenar Plataformas de apuestas</h3>
+  <ion-item>
+    <ion-select [(ngModel)]="hipodromoSelected" placeholder="Selecciona un Hipodromo">
+        <ion-select-option *ngFor="let item of allHipodromos" value="{{item.nombre}}">{{item.nombre}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+<ion-item >
+  <ion-label position="floating" >Nombre de la Plataforma</ion-label>
+  <ion-input [(ngModel)]="nombreApuesta" ></ion-input>
+</ion-item>
+<ion-item >
+  <ion-label position="floating" >Link de la Plataforma</ion-label>
+  <ion-input [(ngModel)]="link" ></ion-input>
+</ion-item>
+<ion-item >
+  <ion-label position="floating" >Slogan</ion-label>
+  <ion-input [(ngModel)]="hook" ></ion-input>
+</ion-item>
+<ion-item>
+  <ion-select [(ngModel)]="pais2" placeholder="Selecciona el Pais">
+      <ion-select-option *ngFor="let item of paises" value="{{item.name}}">{{item.name}}</ion-select-option>
+  </ion-select>
+</ion-item>
+<ion-item >
+  <ion-label>Cover Image</ion-label>
+  <ion-card *ngIf="!url">
+      <ion-icon name="add-circle"></ion-icon>
+      <input style="    width: 80%;" type="file" accept=".png, .jpg" (change)="onUpload($event)">
+  </ion-card>
+
+  <span *ngIf="url"> Imagen subida </span>
+  <span *ngIf="uploadPercent" style="width: 130px;
+height: 20px;
+background: green;
+border-radius: 10px;
+color: white;
+font-weight: 600;">{{ uploadPercent| async}}%</span>
+  <ion-input [(ngModel)]="url" type="hidden" [value]="urlImage | async"></ion-input>
+</ion-item>
+
+<ion-button *ngIf=" url" (click)="addApuesta()" >Agregar Plataforma de Apuesta</ion-button>
+<br>
+
+<h3>Formulario para rellenar Plataformas de Retrospectos</h3>
+
+<span  >Ya puedes ingresar los datos de {{hipodromo}}</span>
+<ion-item >
+  <ion-label position="floating" >Nombre de la Plataforma</ion-label>
+  <ion-input [(ngModel)]="nombreRetro" ></ion-input>
+</ion-item>
+<ion-item >
+  <ion-label position="floating" >Link de la Plataforma</ion-label>
+  <ion-input [(ngModel)]="linkRetro" ></ion-input>
+</ion-item>
+<ion-item >
+  <ion-label position="floating" >Slogan</ion-label>
+  <ion-input [(ngModel)]="hookRetro" ></ion-input>
+</ion-item>
+<ion-item>
+  <ion-select [(ngModel)]="pais" placeholder="Selecciona el Pais">
+      <ion-select-option *ngFor="let item of paises" value="{{item.name}}">{{item.name}}</ion-select-option>
+  </ion-select>
+</ion-item>
+<ion-item >
+  <ion-label>Cover Image</ion-label>
+  <ion-card *ngIf="!url2">
+      <ion-icon name="add-circle"></ion-icon>
+      <input style="    width: 80%;" type="file" accept=".png, .jpg" (change)="onUpload2($event)">
+  </ion-card>
+
+  <span *ngIf="url2"> Imagen subida </span>
+  <span *ngIf="uploadPercent2" style="width: 130px;
+height: 20px;
+background: green;
+border-radius: 10px;
+color: white;
+font-weight: 600;">{{ uploadPercent2| async}}%</span>
+  <ion-input [(ngModel)]="url2" type="hidden" [value]="urlImage2 | async"></ion-input>
+</ion-item>
+
+<ion-button *ngIf=" url2" (click)="addRetros()" >Agregar Plataforma de Retrospecto</ion-button>
+<br>
+
+</ion-content>

@@ -1,0 +1,222 @@
+.content {
+    width: 100%;
+    height: 100%;
+    background: white;
+    overflow-y: scroll;
+}
+
+.content h3 {
+    margin-left: 5%;
+}
+
+.content .listado ion-button {
+    width: 100%;
+    margin: 0;
+}
+
+.content .head {
+    height: 8vh;
+    background: #000000d6;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: 600;
+}
+
+.content .two-div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.twoopcion {
+    margin-top: 2%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.content .two-div .type {
+    width: 100%;
+    height: 40%;
+}
+
+.programacion-list {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    padding-left: 2%;
+}
+
+.programacion-list .programacion-item {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    position: relative;
+}
+
+.programacion-list .programacion-item h3 {
+    margin-left: 5%;
+    color: #313131;
+    font-weight: 600;
+}
+
+.programacion-list::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.programacion-list::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 4px;
+}
+
+.programacion-list::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 4px;
+}
+
+.programacion-list .programacion-item .episodios-item {
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.programacion-list .programacion-item .episodios-item .item-img {
+    height: 80%;
+    margin-left: 2%;
+    width: 25%;
+    z-index: 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.programacion-list .programacion-item .episodios-item .item-img .item-img-dia {
+    position: absolute;
+    z-index: -1;
+    background: black;
+    width: 25%;
+    height: 65%;
+    transform: skewx(12deg);
+}
+
+.programacion-list .programacion-item .episodios-item .item-img .item-img-dia span {
+    opacity: 0;
+}
+
+.programacion-list .programacion-item .episodios-item .item-img img {
+    height: 95%;
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    margin: 0;
+    border: 2px solid black;
+}
+
+.programacion-list .programacion-item .episodios-item .item-content {
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: baseline;
+    width: 80%;
+    margin-right: 5%;
+    height: 85%;
+}
+
+.programacion-list .programacion-item .episodios-item .item-dia {
+    position: absolute;
+    background: #00beb4;
+    width: 94%;
+    left: 3%;
+    height: 60%;
+    z-index: 1;
+    transform: skewx(10deg);
+}
+
+.programacion-list .programacion-item .episodios-item .item-dia span {
+    opacity: 0;
+}
+
+.programacion-list .programacion-item .episodios-item .item-content .titulo-episodio span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #313131;
+}
+
+.profile-cont .log-out {
+    margin-top: auto;
+    --background: #eb445a;
+    width: 100%;
+    margin-bottom: 0;
+    --border-radius: 0;
+    font-weight: 600;
+}
+
+.programacion-list .programacion-item .episodios-item .item-content .other-info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 600;
+    color: #313131;
+}
+
+.programacion-list .programacion-item .episodios-item .play-item {
+    width: 10%;
+    height: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 6;
+    color: #6d6d6d;
+}
+
+.programacion-list .programacion-item .episodios-item .item-double-dia {
+    width: 70%;
+    height: 75%;
+    position: absolute;
+    left: 30%;
+    display: flex;
+    z-index: 3;
+}
+
+.programacion-list .programacion-item .episodios-item .item-double-dia span {
+    width: 70%;
+    height: 65%;
+    margin-top: -2%;
+    background: #f93154;
+    border: 2px solid #e4e000;
+    margin-left: 5%;
+    transform: skewx(10deg);
+    color: #f93154;
+}
+
+.icon-size {
+    font-size: 24px;
+}
+
+.agenda-item {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-weight: 600;
+}
+
+.agenda-item span {
+    padding-bottom: 5%;
+    padding-top: 5%;
+    font-size: 14px;
+    text-align: center;
+}
