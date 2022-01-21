@@ -1655,7 +1655,9 @@
                                      
                                                         <div  class="other-info">
                                                             <!--espanol-->
-                                                            <span   >Toca para ver informacion sobre este pais </span>
+                                                            <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es' "  >Toca para ver informacion sobre este pais </span>
+                                                          <span *ngIf="MyLangIs === 'en' "  >Touch to see information of this country. </span>
+                                                          <span *ngIf="MyLangIs === 'es' "  >Toca para ver informacion sobre este pais </span>
                                                         </div>
 
                                        
@@ -1841,7 +1843,9 @@
                                      
                                                         <div  class="other-info">
                                                             <!--espanol-->
-                                                            <span   >Toca para ver Jugadas en este pais </span>
+                                                            <span  *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es' " >Toca para ver Jugadas en este pais </span>
+                                                          <span *ngIf="MyLangIs === 'en' "  >Touch to see plays of this country. </span>
+                                                          <span *ngIf="MyLangIs === 'es' "  >Toca para ver Jugadas en este pais </span>
                                                         </div>
 
                                        
@@ -2346,6 +2350,12 @@
                                           <!--otro idioma-->
                                           <div  class="other-info">
                                             <span   style="margin-left:auto;">Toca para ver retrospectos de este pais </span>
+                                            
+                                            
+                                                            <span  *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es' " >Toca para ver retrospectos de este pais  </span>
+                                                          <span *ngIf="MyLangIs === 'en' "  >Touch to see Race Programs of this country. </span>
+                                                          <span *ngIf="MyLangIs === 'es' "  >Toca para ver retrospectos de este pais  </span>
+                                            
                                               <!--
                                               <span> <ion-icon name="eye-outline"></ion-icon> {{item.nrocarreras}}</span>-->
                                           </div>
