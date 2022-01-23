@@ -1,0 +1,349 @@
+<div *ngIf="!data && !onFullscreen && !adLive" id="hipodromoslide" class="contenido-modal" style="    backdrop-filter: blur(6px);-webkit-backdrop-filter: blur(6px);
+background: #000000e3; padding-top: 0;    padding: 0;  padding-bottom: 0;">
+    <!-- <div class="modal-dia">
+    <span>.</span>
+  </div>-->
+   
+    <div *ngIf="!isLive" class="hipodromo-mant parpadea">
+        <ion-icon name="radio"></ion-icon>
+        <span style="margin-left: 2%;">Repeticion de {{newDataRepe.longDate}} </span>
+    </div>
+    <div (click)="dismissModal()" class="dissmiss" style="width: max-content;
+  margin-left: auto;
+  margin-top: 2%;position:initial">
+        <ion-icon name="chevron-down-outline"></ion-icon>
+    </div>
+
+
+    <div class="gaceta-content" [style]="slideStyle">
+        <div class="header">
+            <div class="hipodromo-name" style="    width: 75%;">
+                <img style="    height: 50%;
+            margin-top: 0;
+            margin-right: 4%;" src="../../assets/icon/track.png" alt="">
+                <span style="text-align: initial;">{{hip.nombre}} </span>
+            </div>
+            <div *ngIf="hip.enVivo === false" class="time-info" style="text-align: center;width: 20%;">
+                <ion-icon id="enVivoActtionHipodr" name="cloud"></ion-icon>
+                <span>{{hip.clima}}° </span>
+            </div>
+            <div *ngIf="hip.enVivo === true" class="time-info" style="text-align: center;width: 23%;">
+                <!--espanol-->
+                <span *ngIf="MyLangIs === 'es' " (click)="goToLivee()" class="parpadea" style="    width: 100%;
+                font-size: 12px;
+                padding: 4px;
+                background: red;
+                border-radius: 10px;display: flex;
+    justify-content: space-evenly;
+    align-items: center;"> <ion-icon name="radio"></ion-icon> En Vivo </span>
+                <!--espanol-->
+
+                <!--ingles-->
+                <span *ngIf="MyLangIs === 'en' " (click)="goToLivee()" class="parpadea" style="    width: 100%;
+               font-size: 12px;
+               padding: 4px;
+               background: red;
+               border-radius: 10px;display: flex;
+   justify-content: space-evenly;
+   align-items: center;"> <ion-icon name="radio"></ion-icon> Live </span>
+                <!--ingles-->
+
+
+                <!--otro idioma-->
+                <span *ngIf="MyLangIs !== 'en' && MyLangIs !== 'es' " (click)="goToLivee()" class="parpadea" style="    width: 100%;
+               font-size: 12px;
+               padding: 4px;
+               background: red;
+               border-radius: 10px;display: flex;
+   justify-content: space-evenly;
+   align-items: center;"> <ion-icon name="radio"></ion-icon> En Vivo </span>
+                <!--otro idioma-->
+
+
+            </div>
+        </div>
+        <div class="reproductor" [style]="specialStyleRepro" >
+ 
+            <div class="view" [style]="specialStyleRepro" >
+              
+                <!--  <cloudflare-stream [controls]="true" [autoplay]="true" [muted]="true" allow="accelerometer; gyroscope;autoplay;muted; encrypted-media; picture-in-picture;" src="2cef72215b6f84f5d21b0db0efea72bc"></cloudflare-stream>
+                <video *ngIf="hip.linkType === 'Normal'" style="height: 100%;width: 100%;" id="video-hipodromo" preload="metadata" playsinline webkit-playsinline autoplay muted controls allow="accelerometer; gyroscope; autoplay; muted; encrypted-media; picture-in-picture;" class="video-js vjs-default-skin"></video>
+                <cloudflare-stream *ngIf="hip.linkType === 'Cloudflare' " [controls]="true"  allow="accelerometer; gyroscope; encrypted-media; picture-in-picture;" [src]="hip.linkCloudflare"></cloudflare-stream>-->
+
+                <cloudflare-stream *ngIf="hip.linkType === 'Cloudflare'" [controls]="true"  allow="accelerometer; gyroscope; encrypted-media; picture-in-picture;" [src]="hip.linkCloudflare"></cloudflare-stream>
+
+                <iframe *ngIf="hip.linkType === 'Normal'" style="height: 100%;
+                width: 100%;" [src]="testlink" 
+                title="YouTube video player" frameborder="0" autoplay 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="adondeir">
+            <span (click)="openLinkBrowser()">Ir al sitio Web</span>
+
+            <div class="redes">
+                <ion-icon (click)="openLinkBrowserred(hip.instagramLink)" name="logo-instagram"></ion-icon>
+                <ion-icon (click)="openLinkBrowserred(hip.facebookLink)" name="logo-facebook"></ion-icon>
+                <ion-icon (click)="openLinkBrowserred(hip.youtubeLink)" name="logo-youtube"></ion-icon>
+            </div>
+        </div>
+
+        <ion-segment style="--background:grey;" value="actividad" (ionChange)="slideMaker($event)">
+            <ion-segment-button value="repetici">
+                <ion-label>Repeticiones</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="actividad">
+                <ion-label>Actividad</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="historia">
+                <ion-label>Historia</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+
+        <ion-slides #hipodromo [options]="hipodromoSlide" style="width: 100%;height: 45%;">
+
+            <ion-slide>
+                <div class="calen-tab" style="display: block;
+                overflow-y: scroll;">
+                    <div class="tabbed" style="    height: 15%;
+                    display: flex;
+                    align-items: center;" *ngFor="let item of repetecionH" (click)="AskPermisoCambiarVideo(item)">
+                        <span id="repeHip">Repeticion del {{item.longDate}} </span>
+                        <ion-icon name="play"></ion-icon>
+                    </div>
+                </div>
+            </ion-slide>
+
+
+            <ion-slide style="display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;" >
+                <div class="calen-tab" style="align-items: flex-start;
+                padding-top: 10%;
+                padding-bottom: 10%;
+                height: max-content;
+                margin-top: 5%;" >
+
+                    <div class="tabbed"  style="    height: 5vh; align-items: center;"  >
+                        <span *ngIf="!hip.estaSemanaNohay" style="font-size: 16px;" >Este Hipodromo tiene actividad los dias:</span>
+                        <span *ngIf="hip.estaSemanaNohay" style="font-size: 16px;" >Este Hipodromo no tiene actividad esta semana</span>
+                    </div>
+                    <div class="tabbed"  style="    height: 5vh; align-items: center;" *ngFor="let item of hip.actividadHipodromo" >
+                        <span>{{item.dia}} </span>
+                        <span >{{item.status}} </span>
+                    </div>
+
+                </div>
+            </ion-slide>
+            <ion-slide>
+                <div class="historia-tab">
+                    <h3 style="color: white;">Historia</h3>
+                    <div *ngIf="hip.historiauno" class="horse-info" style="transition:1s;text-align: initial;
+                color: white;">
+                        <span>{{hip.historiauno}} </span>
+                    </div>
+
+
+                    <div *ngIf="hip.historiados" class="horse-info" style="transition:1s;text-align: initial;
+                color: white;">
+                        <span>{{hip.historiados}} </span>
+                    </div>
+
+
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </ion-slide>
+
+
+        </ion-slides>
+        <br>
+        <br>
+
+        <ion-segment style="--background:grey;" value="prono" (ionChange)="slidetwo($event)">
+            <ion-segment-button value="resum">
+                <ion-label>Resumen</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="prono">
+                <ion-label>Pronosticos</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="noticia">
+                <ion-label>Noticias</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+
+        <ion-slides #hipodromoTwo [options]="hipodromoSlide" style="width: 100%;height: 45%;">
+
+            <ion-slide>
+                <!--Resumen-->
+                <div class="calen-tab" style="display: block;
+                overflow-y: scroll;">
+                    <ion-item *ngFor="let item of resumen" (click)="verPost(item)" style="--border-radius: 15px;
+                    margin-bottom: 10px;
+                    --background: #ffffffb8;">
+                        <ion-avatar slot="start">
+                            <img [src]="item.talentPhoto" alt="">
+                        </ion-avatar>
+                        <ion-label>
+                            <h3 style="font-weight: 600;">{{item.talentName}} </h3>
+                            <p style="font-weight: 600;">{{item.date}} a las {{item.hour}} </p>
+                        </ion-label>
+                        <ion-icon style="color: #7a7a7a;" name="play"></ion-icon>
+                    </ion-item>
+                </div>
+            </ion-slide>
+            <!--Pronostico-->
+            <ion-slide>
+                <div class="calen-tab" style="display: block;
+                overflow-y: scroll;">
+                    <ion-item *ngFor="let item of pronostico" (click)="verPost(item)" style="--border-radius: 15px;
+                    margin-bottom: 10px;
+                    --background: #ffffffb8;">
+                        <ion-avatar slot="start">
+                            <img [src]="item.talentPhoto" alt="">
+                        </ion-avatar>
+                        <ion-label>
+                            <h3 style="font-weight: 600;">{{item.talentName}} </h3>
+                            <p style="font-weight: 600;">{{item.date}} a las {{item.hour}} </p>
+                        </ion-label>
+                        <ion-icon style="color: #7a7a7a;" name="play"></ion-icon>
+                    </ion-item>
+                </div>
+            </ion-slide>
+            <ion-slide>
+                <!--Noticias-->
+                <div class="calen-tab" style="display: block;
+                overflow-y: scroll;">
+                    <ion-item *ngFor="let item of noticia" (click)="verPost(item)" style="--border-radius: 15px;
+                    margin-bottom: 10px;
+                    --background: #ffffffb8;">
+                        <ion-avatar slot="start">
+                            <img [src]="item.talentPhoto" alt="">
+                        </ion-avatar>
+                        <ion-label>
+                            <h3 style="font-weight: 600;">{{item.talentName}} </h3>
+                            <p style="font-weight: 600;">{{item.date}} a las {{item.hour}} </p>
+                        </ion-label>
+                        <ion-icon style="color:#7a7a7a;" name="play"></ion-icon>
+                    </ion-item>
+                </div>
+            </ion-slide>
+
+
+        </ion-slides>
+
+        <br>
+        <br>
+
+
+
+
+
+    </div>
+
+
+</div>
+
+<div class="adwaiter" *ngIf="adLive && patrocinador && ress">
+    <ion-avatar style="position: absolute;z-index: 1100000;top: 2%;left: 5%;">
+        <img src="../../../assets/other/poster1.jpg" alt="">
+    </ion-avatar>
+    <div *ngIf="ress.type === 'img' " class="adcontain" (click)="goToLink(patrocinador.linkEpisodio)">
+        <img [src]="patrocinador.episodioVerticalBanner" alt="">
+    </div>
+    <div *ngIf="ress.type === 'video' " class="adcontain" (click)="goToLink(patrocinador.linkEpisodio)">
+
+        <video [src]="patrocinador.episodioVideo" [loop]="true" [autoplay]="true" playsinline webkit-playsinline></video>
+    </div>
+    <div class="skipcontain">
+        <ion-button *ngIf="!canDismiss">Saltar en {{waitFor}} seg</ion-button>
+        <ion-button (click)="puedeCerrar()" *ngIf="canDismiss">Cerrar</ion-button>
+        <ion-button (click)="goToLink(patrocinador.linkEpisodio)">Ver Mas</ion-button>
+    </div>
+
+</div>
+
+
+<!--Aqui va el storie de pronosticos-->
+
+<div *ngIf="data && !onFullscreen && !adLive" class="contenido" style="background: black;color: white;width: 100%;height: 100%;">
+    <!--  <video style="height: 100%;width: 100%;object-fit: cover;" loop autoplay src="https://firebasestorage.googleapis.com/v0/b/grtv-2c63e.appspot.com/o/pronosticos%2FWhatsApp%20Video%202021-07-20%20at%204.24.52%20PM.mp4?alt=media&token=261b4aca-e15f-4495-b328-da2446f5aeb1"></video>
+-->
+    <video style="height: 100%;width: 100%;object-fit: cover;" id="vioenHipo" loop playsinline webkit-playsinline preload="metadata" class="video-js vjs-default-skin"></video>
+
+    <div style="height: 100%;width: 100%; display: flex;justify-content: center;align-items: center; position: absolute;z-index: 100000;top: 0;{{blur}} " (click)="playPauseVideo()">
+        <ion-icon *ngIf="blur" style="    font-size: 72px;
+        color: #ffffff6b;" name="play"></ion-icon>
+    </div>
+    <span *ngIf="currentVideoDuration " style="position: absolute;
+    bottom: 1%;
+    color: #ffffffad;
+    left: 4%;
+    font-weight: 600;
+    z-index: 1210000;
+    text-shadow: 2px 2px 4px black;
+    opacity: 0.4;">{{currentVideoDuration}} </span>
+
+    <ion-avatar style="position: absolute;z-index: 1100000;top: 2%;left: 5%;">
+        <img src="../../../assets/other/poster1.jpg" alt="">
+    </ion-avatar>
+
+    <span (click)="cerrarPronos()" style="position: absolute;z-index: 1100000;top: 2%;right: 2%;font-size: 22px;"> 
+      <ion-icon name="chevron-down-outline"></ion-icon>
+     </span>
+
+    <div class="info" *ngIf="data">
+        <div class="first">
+            <div class="linet">
+                <span>{{data.talentName}} </span>
+                <span>{{data.pais}} </span>
+            </div>
+
+
+
+            <span>{{data.descripcion}} </span>
+
+            <div class="linet" style="margin-bottom: 0;margin-top: 5%;">
+                <ion-slides style="width: 100%;height: 100%;" #pronosticoEnHipodromo [options]="hipoDate">
+                    <ion-slide style="    justify-content: flex-start;
+                    font-size: 14px;margin-right: 10%;">
+                        <span>{{data.type}} </span>
+                    </ion-slide>
+                    <ion-slide style="    justify-content: flex-start;
+                    font-size: 14px;margin-right: 10%;">
+                        <span style="margin-left:2px">{{data.hipodromo}} </span>
+                    </ion-slide>
+                    <ion-slide style="    justify-content: flex-start;
+                    font-size: 16px;">
+                        <span style="margin-left:2px">{{data.date}} a las {{data.hour}} </span>
+                    </ion-slide>
+                </ion-slides>
+
+            </div>
+
+        </div>
+        <div class="profile">
+            <ion-avatar>
+                <img [src]="data.talentPhoto" alt="">
+            </ion-avatar>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="contenido" *ngIf="onFullscreen && !adLive ">
+    <div class="reproductor">
+        <div class="view">
+            <div class="playpaus" [style]="toPause" (click)="playPuaseAction()">
+                <ion-icon (click)="pauseStreFull()" *ngIf="estaEnPlay" class="pla" name="pause"></ion-icon>
+                <ion-icon (click)="playStreaFullscreen()" *ngIf="!estaEnPlay" class="pla" name="play"></ion-icon>
+                <ion-icon (click)="closeFullScreen()" class="fullscree" name="contract"></ion-icon>
+            </div>
+            <video style="height: 100%;width: 100%;" id="hipodromoFull" preload="metadata" playsinline webkit-playsinline class="video-js vjs-default-skin"></video>
+        </div>
+
+    </div>
+</div>

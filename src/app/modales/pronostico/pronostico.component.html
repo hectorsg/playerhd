@@ -1,0 +1,97 @@
+<div *ngIf="!adLive" class="contenido" style="background: black;color: white;width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;">
+    <!--  <video style="height: 100%;width: 100%;object-fit: cover;" loop autoplay src="https://firebasestorage.googleapis.com/v0/b/grtv-2c63e.appspot.com/o/pronosticos%2FWhatsApp%20Video%202021-07-20%20at%204.24.52%20PM.mp4?alt=media&token=261b4aca-e15f-4495-b328-da2446f5aeb1"></video>
+-->
+    <video id="pronpruebapruebaaaa" style="width: 100%;object-fit: contain;height: 100%;" autoplay loop playsinline webkit-playsinline  class="video-js vjs-default-skin"></video>
+    <!--  <cloudflare-stream id="pronpruebapruebaaaa"  [controls]="{play:'true', pause:'true'}" [loop]="true" [autoplay]="true" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" src="b7c6ee124dcf77feeaee712ddede1be4"></cloudflare-stream>-->
+    <div #playpausOnPronostico style="height: 100%;width: 100%; display: flex;justify-content: center;align-items: center; position: absolute;z-index: 100000;top: 0;{{blur}} " (click)="playPauseVideo()">
+        <ion-icon *ngIf="blur" style="    font-size: 72px;
+        color: #ffffff6b;" name="play"></ion-icon>
+    </div>
+    <span *ngIf="currentVideoDuration " style="position: absolute;
+    bottom: 1%;
+    color: #ffffffad;
+    left: 4%;
+    font-weight: 600;
+    z-index: 1210000;
+    text-shadow: 2px 2px 4px black;
+    opacity: 0.4;">{{currentVideoDuration}} </span>
+
+    <ion-avatar style="position: absolute;z-index: 1100000;top: 2%;left: 5%;">
+        <img src="../../../assets/other/poster1.jpg" alt="">
+    </ion-avatar>
+
+    <span (click)="closeModal()" style="position: absolute;z-index: 1100000;top: 2%;right: 2%;font-size: 22px;"> 
+      <ion-icon name="chevron-down-outline"></ion-icon>
+     </span>
+
+    <div class="info" *ngIf="data">
+        <div class="first">
+            <div class="linet">
+                <span>{{data.talentName}} </span>
+                <span>{{data.pais}} </span>
+            </div>
+
+
+
+            <span>{{data.descripcion}} </span>
+
+            <div class="linet" style="margin-bottom: 0;margin-top: 5%;">
+                <ion-slides style="width: 100%;height: 100%;" #hipDate [options]="hipoDate">
+                    <ion-slide style="    justify-content: flex-start;
+                    font-size: 14px;margin-right: 10%;">
+                        <span>{{data.type}} </span>
+                    </ion-slide>
+                    <ion-slide style="    justify-content: flex-start;
+                    font-size: 14px;margin-right: 10%;">
+                        <span style="margin-left:2px">{{data.hipodromo}} </span>
+                    </ion-slide>
+                    <ion-slide style="    justify-content: flex-start;
+                    font-size: 16px;">
+                        <span style="margin-left:2px">{{data.date}} a las {{data.hour}} </span>
+                    </ion-slide>
+                </ion-slides>
+
+            </div>
+
+        </div>
+        <div class="profile">
+            <ion-avatar *ngIf="data.picks" (click)="presentPopover()" style="display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #b1b1b1;
+            font-size: 22px;margin-bottom: 15px;" >
+                <ion-icon name="flash-outline"></ion-icon>
+            </ion-avatar>
+            <div class="spons" style="margin-bottom: 15px;" *ngIf="jugadaSponsor" (click)="openLinkJuega()" >
+                <span>{{jugadaSponsor.nameSponsor}} </span>
+                <ion-avatar >
+                    <img class="pulse" [src]="jugadaSponsor.pronosticoCover" alt="">
+                </ion-avatar>
+                <span>Juega ya</span>
+            </div>
+            
+            <ion-avatar class="avatar" >
+                <img [src]="data.talentPhoto" alt="">
+            </ion-avatar>
+        </div>
+    </div>
+</div>
+
+<div class="adwaiter" *ngIf="adLive && patrocinador && ress">
+    <ion-avatar style="position: absolute;z-index: 1100000;top: 2%;left: 5%;">
+        <img src="../../../assets/other/poster1.jpg" alt="">
+    </ion-avatar>
+    <div *ngIf="ress.type === 'img' " class="adcontain" (click)="goToLink(patrocinador.linkpronostico)">
+        <img [src]="patrocinador.pronosticoVerticalBanner" alt="">
+    </div>
+    <div *ngIf="ress.type === 'video' " class="adcontain" (click)="goToLink(patrocinador.linkpronostico)">
+
+        <video [src]="patrocinador.pronosticoVideo" [loop]="true" [autoplay]="true" playsinline webkit-playsinline></video>
+    </div>
+    <div class="skipcontain">
+        <ion-button *ngIf="!canDismiss">Saltar en {{waitFor}} seg</ion-button>
+        <ion-button (click)="puedeCerrar()" *ngIf="canDismiss">Cerrar</ion-button>
+        <ion-button (click)="goToLink(patrocinador.linkpronostico)">Ver Mas</ion-button>
+    </div>
+
+</div>

@@ -1,0 +1,1145 @@
+
+    <ion-slides *ngIf="!preview" style="width: 100%;height: 100%;" #cont>
+    <ion-slide>
+        <div class="pronadmin" >
+            <div class="proheader">
+                <img  src="../../../assets/logo/grtv.png" alt="">
+                <span (click)="dismissModal()"> <ion-icon name="chevron-down-outline"></ion-icon> </span>
+            </div>
+            <ion-list style="height: 90%;
+            overflow-y: scroll;">
+                <ion-item>
+                    <ion-select [(ngModel)]="hipodroName" placeholder="Selecciona el Hipodromo">
+                        <ion-select-option *ngFor="let item of hipodromos" value="{{item.nombre}}">{{item.nombre}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-select [(ngModel)]="pais" placeholder="Selecciona el Pais">
+                        <ion-select-option *ngFor="let item of paises" value="{{item.name}}">{{item.name}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-select (ionChange)="seraPronostico()" [(ngModel)]="type" placeholder="Tipo de Post">
+                        <ion-select-option value="Pronostico">Pronostico</ion-select-option>
+        
+                        <ion-select-option value="Noticia">Noticia</ion-select-option>
+        
+                        <ion-select-option value="Resumen">Resumen</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                
+        
+                <ion-item>
+                    <ion-label position="floating">Descripcion del video</ion-label>
+                    <ion-textarea [(ngModel)]="descripcion" rows="3" maxlength="140" placeholder="Maximo 140 caracteres"></ion-textarea>
+                </ion-item>
+
+                <ion-item *ngIf="type == 'Pronostico'" style="margin-bottom: 15px;--background: #cfcfcf;">
+                    <ion-label>Que tipo de Jugada promueves?</ion-label>
+                    <ion-select [(ngModel)]="tipoDeJugada" (ionChange)="whatJugadaIS($event)" placeholder="Selecciona una Jugada">
+                        <ion-select-option *ngFor="let item of jugadasName" [value]="item">{{item.name}}</ion-select-option>        
+                    </ion-select>
+                </ion-item>
+                <ion-item style="--background: #cfcfcf;" *ngIf="type === 'Pronostico' && typePlay === 'unico' ">
+                    <ion-label>De que carrera es?</ion-label>
+                    <ion-select [(ngModel)]="raceSelect">
+                        <ion-select-option value="C1">Carrera 1</ion-select-option>
+                        <ion-select-option value="C2">Carrera 2</ion-select-option>
+        
+                        <ion-select-option value="C3">Carrera 3</ion-select-option>
+                        <ion-select-option value="C4">Carrera 4</ion-select-option>
+                        <ion-select-option value="C5">Carrera 5</ion-select-option>
+                        <ion-select-option value="C6">Carrera 6</ion-select-option>
+                        <ion-select-option value="C7">Carrera 7</ion-select-option>
+        
+                        <ion-select-option value="C8">Carrera 8</ion-select-option>
+                        <ion-select-option value="C9">Carrera 9</ion-select-option>
+        
+                        <ion-select-option value="C10">Carrera 10</ion-select-option>
+                        <ion-select-option value="C11">Carrera 11</ion-select-option>
+        
+                        <ion-select-option value="C12">Carrera 12</ion-select-option>
+                        <ion-select-option value="C13">Carrera 13</ion-select-option>
+        
+                        <ion-select-option value="C14">Carrera 14</ion-select-option>
+        
+                        <ion-select-option value="C15">Carrera 15</ion-select-option>
+                        <ion-select-option value="C16">Carrera 16</ion-select-option>
+                        <ion-select-option value="C17">Carrera 17</ion-select-option>
+                        <ion-select-option value="C18">Carrera 18</ion-select-option>
+        
+                        <ion-select-option value="C19">Carrera 19</ion-select-option>
+                        <ion-select-option value="C20">Carrera 20</ion-select-option>
+                        <ion-select-option value="C21">Carrera 21</ion-select-option>
+                        <ion-select-option value="C22">Carrera 22</ion-select-option>
+        
+                        <ion-select-option value="C23">Carrera 23</ion-select-option>
+                        <ion-select-option value="C24">Carrera 24</ion-select-option>
+                        <ion-select-option value="C25">Carrera 25</ion-select-option>
+        
+                    </ion-select>
+                </ion-item>
+                <ion-item *ngIf="type === 'Pronostico' && typePlay === 'unico' && raceSelect && tipoDeJugada" >
+                    <ion-label>Selecciona el {{tipoDeJugada.name}} </ion-label>
+                    <ion-select  [(ngModel)]="ganadorRace"  >
+                        <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);'}">1</ion-select-option>
+                        <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                        <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);'}">3</ion-select-option>
+                        <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                        <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);'}">5</ion-select-option>
+                        <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);'}">6</ion-select-option>
+                        <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);'}">7</ion-select-option>
+                        <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                        <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                        <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);'}">10</ion-select-option>
+                        <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);'}">11</ion-select-option>
+                        <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                        <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);'}">13</ion-select-option>
+                        <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);'}">14</ion-select-option>
+                        <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);'}">15</ion-select-option>
+                        <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);'}">16</ion-select-option>
+                        <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);'}">17</ion-select-option>
+                        <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);'}">18</ion-select-option>
+                        <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);'}">19</ion-select-option>
+                        <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);'}">20</ion-select-option>
+                        <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);'}">21</ion-select-option>
+                      </ion-select>
+                </ion-item>
+
+                <ion-item *ngIf="type == 'Pronostico' && typePlay === 'multiple' " >
+                    <ion-label>Debes Agregar un Pick</ion-label>
+                    <ion-toggle slot="end" [(ngModel)]="isPick" (ionChange)="agarraPick()" ></ion-toggle>
+                </ion-item>
+                <ion-item  *ngIf="isPick === true && typePlay === 'multiple'" (click)="agarraPick()" >
+                    <ion-label >Mirar mi Pick</ion-label>
+                </ion-item>
+                <ion-item>
+        
+                    <ion-card *ngIf="!url && !uploadPercent" style="    width: 100%;
+                    height: 75%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;">
+                        <span>Haz click aqui para subir tu video</span>
+                        <input style="width: 100%; position: absolute; height: 100%; opacity: 0;" type="file" (change)="onUpload($event)">
+                    </ion-card>
+        
+                    <span *ngIf="uploadPercent" style="width: 100%;
+        height: 20px;
+        background: green;
+        border-radius: 10px;
+        color: white;
+        font-weight: 600;">{{ uploadPercent| async }}%</span>
+                    <ion-input [(ngModel)]="url" type="hidden" [value]="urlImage | async"></ion-input>
+                </ion-item>
+        
+                <div class="two-buttons" *ngIf="hipodroName && pais && type && descripcion && url && tipoDeJugada ">
+                    <ion-button (click)="previewVideo()">Preview</ion-button>
+                    <ion-button  (click)="sendToCloudflare()">Publicar</ion-button>
+                </div>
+        
+        
+        
+            </ion-list>
+        </div>
+    </ion-slide>
+
+
+    <ion-slide>
+        <div class="pronadmin" >
+            <div class="proheader">
+               <span (click)="volverDePick()" >Volver</span>
+                <span (click)="dismissModal()"> <ion-icon name="chevron-down-outline"></ion-icon> </span>
+            </div>
+    
+            <ion-list style="height: 90vh;
+            overflow-y: scroll;">
+            <ion-item>
+                <ion-label>Carrera 1</ion-label>
+                <ion-select multiple="true" [(ngModel)]="race1" (ionChange)="carrera1Change()" >
+                    <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);--background:rgb(208, 2, 27);color:white;'}">1</ion-select-option>
+                    <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168);--background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                    <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);--background:rgb(66, 105, 181);color:white;'}">3</ion-select-option>
+                    <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);--background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                    <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);--background:rgb(23, 167, 87);color:white;'}">5</ion-select-option>
+                    <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);--background:rgb(0, 0, 0);color:white;'}">6</ion-select-option>
+                    <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);--background:rgb(244, 120, 68);color:white;'}">7</ion-select-option>
+                    <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);--background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                    <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);--background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                    <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);--background:rgb(103, 64, 115);color:white;'}">10</ion-select-option>
+                    <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);--background:rgb(105, 88, 88);color:white;'}">11</ion-select-option>
+                    <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);--background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                    <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);--background:rgb(175, 94, 18);color:white;'}">13</ion-select-option>
+                    <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);--background:rgb(138, 18, 175);color:white;'}">14</ion-select-option>
+                    <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);--background:rgb(77, 7, 120);color:white;'}">15</ion-select-option>
+                    <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);--background:rgb(125, 153, 43);color:white;'}">16</ion-select-option>
+                    <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);--background:rgb(181, 112, 103);color:white;'}">17</ion-select-option>
+                    <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);--background:rgb(161, 22, 82);color:white;'}">18</ion-select-option>
+                    <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);--background:rgb(74, 74, 74);color:white;'}">19</ion-select-option>
+                    <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);--background:rgb(69, 168, 122);color:white;'}">20</ion-select-option>
+                    <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);--background:rgb(44, 101, 105);color:white;'}">21</ion-select-option>
+                  </ion-select>
+            </ion-item>
+            <div class="order" *ngIf="race1" style="margin-top: 15px;">
+                <span>Ordena tu Pick de la carrera 1 de la forma que desees</span>
+            </div>
+
+            <ion-reorder-group *ngIf="race1" (ionItemReorder)="carrera1Reorder($event)" disabled="false" reorder='true' >
+                <!-- Default reorder icon, end aligned items -->
+                <ion-reorder *ngFor="let item of race1" >
+                    <ion-item [style]="item.color" >
+                        <ion-label>
+                          {{item.number}}
+                        </ion-label>
+                      </ion-item>
+                </ion-reorder>
+                
+           
+              </ion-reorder-group>
+            <ion-item>
+                <ion-label>Carrera 2</ion-label>
+                <ion-select multiple="true" [(ngModel)]="race2" (ngModelChange)="ngMode($event)" (ionChange)="carrera2Change()" >
+                    <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);--background:rgb(208, 2, 27);color:white;'}">1</ion-select-option>
+                    <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168);--background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                    <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);--background:rgb(66, 105, 181);color:white;'}">3</ion-select-option>
+                    <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);--background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                    <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);--background:rgb(23, 167, 87);color:white;'}">5</ion-select-option>
+                    <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);--background:rgb(0, 0, 0);color:white;'}">6</ion-select-option>
+                    <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);--background:rgb(244, 120, 68);color:white;'}">7</ion-select-option>
+                    <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);--background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                    <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);--background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                    <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);--background:rgb(103, 64, 115);color:white;'}">10</ion-select-option>
+                    <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);--background:rgb(105, 88, 88);color:white;'}">11</ion-select-option>
+                    <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);--background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                    <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);--background:rgb(175, 94, 18);color:white;'}">13</ion-select-option>
+                    <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);--background:rgb(138, 18, 175);color:white;'}">14</ion-select-option>
+                    <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);--background:rgb(77, 7, 120);color:white;'}">15</ion-select-option>
+                    <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);--background:rgb(125, 153, 43);color:white;'}">16</ion-select-option>
+                    <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);--background:rgb(181, 112, 103);color:white;'}">17</ion-select-option>
+                    <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);--background:rgb(161, 22, 82);color:white;'}">18</ion-select-option>
+                    <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);--background:rgb(74, 74, 74);color:white;'}">19</ion-select-option>
+                    <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);--background:rgb(69, 168, 122);color:white;'}">20</ion-select-option>
+                    <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);--background:rgb(44, 101, 105);color:white;'}">21</ion-select-option>
+                  </ion-select>
+            </ion-item>
+
+            <div class="order" *ngIf="race2" style="margin-top: 15px;">
+                <span>Ordena tu Pick de la carrera 2 de la forma que desees</span>
+            </div>
+
+            <ion-reorder-group *ngIf="race2" (ionItemReorder)="carrera2Reorder($event)" disabled="false" reorder='true' >
+                <!-- Default reorder icon, end aligned items -->
+                <ion-reorder *ngFor="let item of race2" >
+                    <ion-item [style]="item.color" >
+                        <ion-label>
+                          {{item.number}}
+                        </ion-label>
+                      </ion-item>
+                </ion-reorder>
+                
+           
+              </ion-reorder-group>
+
+            <ion-item>
+                <ion-label>Carrera 3</ion-label>
+                <ion-select multiple="true" [(ngModel)]="race3" (ionChange)="carrera3Change()" >
+                    <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);--background:rgb(208, 2, 27);color:white;'}">1</ion-select-option>
+                    <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168);--background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                    <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);--background:rgb(66, 105, 181);color:white;'}">3</ion-select-option>
+                    <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);--background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                    <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);--background:rgb(23, 167, 87);color:white;'}">5</ion-select-option>
+                    <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);--background:rgb(0, 0, 0);color:white;'}">6</ion-select-option>
+                    <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);--background:rgb(244, 120, 68);color:white;'}">7</ion-select-option>
+                    <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);--background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                    <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);--background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                    <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);--background:rgb(103, 64, 115);color:white;'}">10</ion-select-option>
+                    <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);--background:rgb(105, 88, 88);color:white;'}">11</ion-select-option>
+                    <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);--background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                    <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);--background:rgb(175, 94, 18);color:white;'}">13</ion-select-option>
+                    <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);--background:rgb(138, 18, 175);color:white;'}">14</ion-select-option>
+                    <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);--background:rgb(77, 7, 120);color:white;'}">15</ion-select-option>
+                    <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);--background:rgb(125, 153, 43);color:white;'}">16</ion-select-option>
+                    <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);--background:rgb(181, 112, 103);color:white;'}">17</ion-select-option>
+                    <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);--background:rgb(161, 22, 82);color:white;'}">18</ion-select-option>
+                    <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);--background:rgb(74, 74, 74);color:white;'}">19</ion-select-option>
+                    <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);--background:rgb(69, 168, 122);color:white;'}">20</ion-select-option>
+                    <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);--background:rgb(44, 101, 105);color:white;'}">21</ion-select-option>
+                  </ion-select>
+            </ion-item>
+            <div class="order" *ngIf="race3" style="margin-top: 15px;">
+                <span>Ordena tu Pick de la carrera 3 de la forma que desees</span>
+            </div>
+
+            <ion-reorder-group *ngIf="race3" (ionItemReorder)="carrera3Reorder($event)" disabled="false" reorder='true' >
+                <!-- Default reorder icon, end aligned items -->
+                <ion-reorder *ngFor="let item of race3" >
+                    <ion-item [style]="item.color" >
+                        <ion-label>
+                          {{item.number}}
+                        </ion-label>
+                      </ion-item>
+                </ion-reorder>
+                
+           
+              </ion-reorder-group>
+
+            <ion-item>
+                <ion-label>Carrera 4</ion-label>
+                <ion-select multiple="true" [(ngModel)]="race4" (ionChange)="carrera4Change()" >
+                    <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);--background:rgb(208, 2, 27);color:white;'}">1</ion-select-option>
+                    <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168);--background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                    <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);--background:rgb(66, 105, 181);color:white;'}">3</ion-select-option>
+                    <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);--background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                    <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);--background:rgb(23, 167, 87);color:white;'}">5</ion-select-option>
+                    <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);--background:rgb(0, 0, 0);color:white;'}">6</ion-select-option>
+                    <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);--background:rgb(244, 120, 68);color:white;'}">7</ion-select-option>
+                    <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);--background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                    <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);--background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                    <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);--background:rgb(103, 64, 115);color:white;'}">10</ion-select-option>
+                    <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);--background:rgb(105, 88, 88);color:white;'}">11</ion-select-option>
+                    <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);--background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                    <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);--background:rgb(175, 94, 18);color:white;'}">13</ion-select-option>
+                    <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);--background:rgb(138, 18, 175);color:white;'}">14</ion-select-option>
+                    <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);--background:rgb(77, 7, 120);color:white;'}">15</ion-select-option>
+                    <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);--background:rgb(125, 153, 43);color:white;'}">16</ion-select-option>
+                    <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);--background:rgb(181, 112, 103);color:white;'}">17</ion-select-option>
+                    <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);--background:rgb(161, 22, 82);color:white;'}">18</ion-select-option>
+                    <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);--background:rgb(74, 74, 74);color:white;'}">19</ion-select-option>
+                    <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);--background:rgb(69, 168, 122);color:white;'}">20</ion-select-option>
+                    <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);--background:rgb(44, 101, 105);color:white;'}">21</ion-select-option>
+                  </ion-select>
+            </ion-item>
+
+            <div class="order" *ngIf="race4" style="margin-top: 15px;">
+                <span>Ordena tu Pick de la carrera 4 de la forma que desees</span>
+            </div>
+
+            <ion-reorder-group *ngIf="race4" (ionItemReorder)="carrera4Reorder($event)" disabled="false" reorder='true' >
+                <!-- Default reorder icon, end aligned items -->
+                <ion-reorder *ngFor="let item of race4" >
+                    <ion-item [style]="item.color" >
+                        <ion-label>
+                          {{item.number}}
+                        </ion-label>
+                      </ion-item>
+                </ion-reorder>
+                
+           
+              </ion-reorder-group>
+
+            <ion-item>
+                <ion-label>Carrera 5</ion-label>
+                <ion-select multiple="true" [(ngModel)]="race5" (ionChange)="carrera5Change()" >
+                    <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);--background:rgb(208, 2, 27);color:white;'}">1</ion-select-option>
+                    <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168);--background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                    <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);--background:rgb(66, 105, 181);color:white;'}">3</ion-select-option>
+                    <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);--background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                    <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);--background:rgb(23, 167, 87);color:white;'}">5</ion-select-option>
+                    <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);--background:rgb(0, 0, 0);color:white;'}">6</ion-select-option>
+                    <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);--background:rgb(244, 120, 68);color:white;'}">7</ion-select-option>
+                    <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);--background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                    <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);--background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                    <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);--background:rgb(103, 64, 115);color:white;'}">10</ion-select-option>
+                    <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);--background:rgb(105, 88, 88);color:white;'}">11</ion-select-option>
+                    <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);--background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                    <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);--background:rgb(175, 94, 18);color:white;'}">13</ion-select-option>
+                    <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);--background:rgb(138, 18, 175);color:white;'}">14</ion-select-option>
+                    <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);--background:rgb(77, 7, 120);color:white;'}">15</ion-select-option>
+                    <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);--background:rgb(125, 153, 43);color:white;'}">16</ion-select-option>
+                    <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);--background:rgb(181, 112, 103);color:white;'}">17</ion-select-option>
+                    <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);--background:rgb(161, 22, 82);color:white;'}">18</ion-select-option>
+                    <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);--background:rgb(74, 74, 74);color:white;'}">19</ion-select-option>
+                    <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);--background:rgb(69, 168, 122);color:white;'}">20</ion-select-option>
+                    <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);--background:rgb(44, 101, 105);color:white;'}">21</ion-select-option>
+                  </ion-select>
+            </ion-item>
+
+            <div class="order" *ngIf="race5" style="margin-top: 15px;">
+                <span>Ordena tu Pick de la carrera 5 de la forma que desees</span>
+            </div>
+
+            <ion-reorder-group *ngIf="race5" (ionItemReorder)="carrera5Reorder($event)" disabled="false" reorder='true' >
+                <!-- Default reorder icon, end aligned items -->
+                <ion-reorder *ngFor="let item of race5" >
+                    <ion-item [style]="item.color" >
+                        <ion-label>
+                          {{item.number}}
+                        </ion-label>
+                      </ion-item>
+                </ion-reorder>
+                
+           
+              </ion-reorder-group>
+
+            <ion-item>
+                <ion-label>Carrera 6</ion-label>
+                <ion-select multiple="true" [(ngModel)]="race6" (ionChange)="carrera6Change()" >
+                    <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);--background:rgb(208, 2, 27);color:white;'}">1</ion-select-option>
+                    <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168);--background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                    <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);--background:rgb(66, 105, 181);color:white;'}">3</ion-select-option>
+                    <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);--background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                    <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);--background:rgb(23, 167, 87);color:white;'}">5</ion-select-option>
+                    <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);--background:rgb(0, 0, 0);color:white;'}">6</ion-select-option>
+                    <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);--background:rgb(244, 120, 68);color:white;'}">7</ion-select-option>
+                    <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);--background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                    <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);--background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                    <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);--background:rgb(103, 64, 115);color:white;'}">10</ion-select-option>
+                    <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);--background:rgb(105, 88, 88);color:white;'}">11</ion-select-option>
+                    <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);--background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                    <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);--background:rgb(175, 94, 18);color:white;'}">13</ion-select-option>
+                    <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);--background:rgb(138, 18, 175);color:white;'}">14</ion-select-option>
+                    <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);--background:rgb(77, 7, 120);color:white;'}">15</ion-select-option>
+                    <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);--background:rgb(125, 153, 43);color:white;'}">16</ion-select-option>
+                    <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);--background:rgb(181, 112, 103);color:white;'}">17</ion-select-option>
+                    <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);--background:rgb(161, 22, 82);color:white;'}">18</ion-select-option>
+                    <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);--background:rgb(74, 74, 74);color:white;'}">19</ion-select-option>
+                    <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);--background:rgb(69, 168, 122);color:white;'}">20</ion-select-option>
+                    <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);--background:rgb(44, 101, 105);color:white;'}">21</ion-select-option>
+                  </ion-select>
+            </ion-item>
+
+            <div class="order" *ngIf="race6" style="margin-top: 15px;">
+                <span>Ordena tu Pick de la carrera 6 de la forma que desees</span>
+            </div>
+
+            <ion-reorder-group *ngIf="race6" (ionItemReorder)="carrera6Reorder($event)" disabled="false" reorder='true' >
+                <!-- Default reorder icon, end aligned items -->
+                <ion-reorder *ngFor="let item of race6" >
+                    <ion-item [style]="item.color" >
+                        <ion-label>
+                          {{item.number}}
+                        </ion-label>
+                      </ion-item>
+                </ion-reorder>
+                
+           
+              </ion-reorder-group>
+
+            <ion-item>
+                <ion-label>Carrera 7</ion-label>
+                <ion-select multiple="true" [(ngModel)]="race7" (ionChange)="carrera7Change()" >
+                    <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);--background:rgb(208, 2, 27);color:white;'}">1</ion-select-option>
+                    <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168);--background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                    <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);--background:rgb(66, 105, 181);color:white;'}">3</ion-select-option>
+                    <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);--background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                    <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);--background:rgb(23, 167, 87);color:white;'}">5</ion-select-option>
+                    <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);--background:rgb(0, 0, 0);color:white;'}">6</ion-select-option>
+                    <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);--background:rgb(244, 120, 68);color:white;'}">7</ion-select-option>
+                    <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);--background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                    <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);--background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                    <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);--background:rgb(103, 64, 115);color:white;'}">10</ion-select-option>
+                    <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);--background:rgb(105, 88, 88);color:white;'}">11</ion-select-option>
+                    <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);--background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                    <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);--background:rgb(175, 94, 18);color:white;'}">13</ion-select-option>
+                    <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);--background:rgb(138, 18, 175);color:white;'}">14</ion-select-option>
+                    <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);--background:rgb(77, 7, 120);color:white;'}">15</ion-select-option>
+                    <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);--background:rgb(125, 153, 43);color:white;'}">16</ion-select-option>
+                    <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);--background:rgb(181, 112, 103);color:white;'}">17</ion-select-option>
+                    <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);--background:rgb(161, 22, 82);color:white;'}">18</ion-select-option>
+                    <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);--background:rgb(74, 74, 74);color:white;'}">19</ion-select-option>
+                    <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);--background:rgb(69, 168, 122);color:white;'}">20</ion-select-option>
+                    <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);--background:rgb(44, 101, 105);color:white;'}">21</ion-select-option>
+                  </ion-select>
+            </ion-item>
+
+            <div class="order" *ngIf="race7" style="margin-top: 15px;">
+                <span>Ordena tu Pick de la carrera 7 de la forma que desees</span>
+            </div>
+
+            <ion-reorder-group *ngIf="race7" (ionItemReorder)="carrera7Reorder($event)" disabled="false" reorder='true' >
+                <!-- Default reorder icon, end aligned items -->
+                <ion-reorder *ngFor="let item of race7" >
+                    <ion-item [style]="item.color" >
+                        <ion-label>
+                          {{item.number}}
+                        </ion-label>
+                      </ion-item>
+                </ion-reorder>
+                
+           
+              </ion-reorder-group>
+
+            <ion-item>
+                <ion-label>Carrera 8</ion-label>
+                <ion-select multiple="true" [(ngModel)]="race8" (ionChange)="carrera8Change()" >
+                    <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);--background:rgb(208, 2, 27);color:white;'}">1</ion-select-option>
+                    <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168);--background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                    <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);--background:rgb(66, 105, 181);color:white;'}">3</ion-select-option>
+                    <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);--background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                    <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);--background:rgb(23, 167, 87);color:white;'}">5</ion-select-option>
+                    <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);--background:rgb(0, 0, 0);color:white;'}">6</ion-select-option>
+                    <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);--background:rgb(244, 120, 68);color:white;'}">7</ion-select-option>
+                    <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);--background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                    <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);--background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                    <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);--background:rgb(103, 64, 115);color:white;'}">10</ion-select-option>
+                    <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);--background:rgb(105, 88, 88);color:white;'}">11</ion-select-option>
+                    <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);--background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                    <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);--background:rgb(175, 94, 18);color:white;'}">13</ion-select-option>
+                    <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);--background:rgb(138, 18, 175);color:white;'}">14</ion-select-option>
+                    <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);--background:rgb(77, 7, 120);color:white;'}">15</ion-select-option>
+                    <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);--background:rgb(125, 153, 43);color:white;'}">16</ion-select-option>
+                    <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);--background:rgb(181, 112, 103);color:white;'}">17</ion-select-option>
+                    <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);--background:rgb(161, 22, 82);color:white;'}">18</ion-select-option>
+                    <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);--background:rgb(74, 74, 74);color:white;'}">19</ion-select-option>
+                    <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);--background:rgb(69, 168, 122);color:white;'}">20</ion-select-option>
+                    <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);--background:rgb(44, 101, 105);color:white;'}">21</ion-select-option>
+                  </ion-select>
+            </ion-item>
+            
+            <div class="order" *ngIf="race8" style="margin-top: 15px;">
+                <span>Ordena tu Pick de la carrera 8 de la forma que desees</span>
+            </div>
+
+            <ion-reorder-group *ngIf="race8" (ionItemReorder)="carrera8Reorder($event)" disabled="false" reorder='true' >
+                <!-- Default reorder icon, end aligned items -->
+                <ion-reorder *ngFor="let item of race8" >
+                    <ion-item [style]="item.color" >
+                        <ion-label>
+                          {{item.number}}
+                        </ion-label>
+                      </ion-item>
+                </ion-reorder>
+                
+           
+              </ion-reorder-group>
+
+            <ion-item>
+                <ion-label>Carrera 9</ion-label>
+                <ion-select multiple="true" [(ngModel)]="race9" (ionChange)="carrera9Change()" >
+                    <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);--background:rgb(208, 2, 27);color:white;'}">1</ion-select-option>
+                    <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168);--background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                    <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);--background:rgb(66, 105, 181);color:white;'}">3</ion-select-option>
+                    <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);--background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                    <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);--background:rgb(23, 167, 87);color:white;'}">5</ion-select-option>
+                    <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);--background:rgb(0, 0, 0);color:white;'}">6</ion-select-option>
+                    <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);--background:rgb(244, 120, 68);color:white;'}">7</ion-select-option>
+                    <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);--background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                    <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);--background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                    <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);--background:rgb(103, 64, 115);color:white;'}">10</ion-select-option>
+                    <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);--background:rgb(105, 88, 88);color:white;'}">11</ion-select-option>
+                    <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);--background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                    <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);--background:rgb(175, 94, 18);color:white;'}">13</ion-select-option>
+                    <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);--background:rgb(138, 18, 175);color:white;'}">14</ion-select-option>
+                    <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);--background:rgb(77, 7, 120);color:white;'}">15</ion-select-option>
+                    <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);--background:rgb(125, 153, 43);color:white;'}">16</ion-select-option>
+                    <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);--background:rgb(181, 112, 103);color:white;'}">17</ion-select-option>
+                    <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);--background:rgb(161, 22, 82);color:white;'}">18</ion-select-option>
+                    <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);--background:rgb(74, 74, 74);color:white;'}">19</ion-select-option>
+                    <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);--background:rgb(69, 168, 122);color:white;'}">20</ion-select-option>
+                    <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);--background:rgb(44, 101, 105);color:white;'}">21</ion-select-option>
+                  </ion-select>
+            </ion-item>
+
+            <div class="order" *ngIf="race9" style="margin-top: 15px;">
+                <span>Ordena tu Pick de la carrera 9 de la forma que desees</span>
+            </div>
+
+            <ion-reorder-group *ngIf="race9" (ionItemReorder)="carrera9Reorder($event)" disabled="false" reorder='true' >
+                <!-- Default reorder icon, end aligned items -->
+                <ion-reorder *ngFor="let item of race9" >
+                    <ion-item [style]="item.color" >
+                        <ion-label>
+                          {{item.number}}
+                        </ion-label>
+                      </ion-item>
+                </ion-reorder>
+                
+           
+              </ion-reorder-group>
+
+            <ion-item>
+                <ion-label>Carrera 10</ion-label>
+                <ion-select multiple="true" [(ngModel)]="race10" (ionChange)="carrera10Change()" >
+                    <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);--background:rgb(208, 2, 27);color:white;'}">1</ion-select-option>
+                    <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168);--background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                    <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);--background:rgb(66, 105, 181);color:white;'}">3</ion-select-option>
+                    <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);--background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                    <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);--background:rgb(23, 167, 87);color:white;'}">5</ion-select-option>
+                    <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);--background:rgb(0, 0, 0);color:white;'}">6</ion-select-option>
+                    <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);--background:rgb(244, 120, 68);color:white;'}">7</ion-select-option>
+                    <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);--background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                    <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);--background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                    <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);--background:rgb(103, 64, 115);color:white;'}">10</ion-select-option>
+                    <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);--background:rgb(105, 88, 88);color:white;'}">11</ion-select-option>
+                    <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);--background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                    <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);--background:rgb(175, 94, 18);color:white;'}">13</ion-select-option>
+                    <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);--background:rgb(138, 18, 175);color:white;'}">14</ion-select-option>
+                    <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);--background:rgb(77, 7, 120);color:white;'}">15</ion-select-option>
+                    <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);--background:rgb(125, 153, 43);color:white;'}">16</ion-select-option>
+                    <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);--background:rgb(181, 112, 103);color:white;'}">17</ion-select-option>
+                    <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);--background:rgb(161, 22, 82);color:white;'}">18</ion-select-option>
+                    <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);--background:rgb(74, 74, 74);color:white;'}">19</ion-select-option>
+                    <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);--background:rgb(69, 168, 122);color:white;'}">20</ion-select-option>
+                    <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);--background:rgb(44, 101, 105);color:white;'}">21</ion-select-option>
+                  </ion-select>
+            </ion-item>
+
+            <div class="order" *ngIf="race10" style="margin-top: 15px;">
+                <span>Ordena tu Pick de la carrera 10 de la forma que desees</span>
+            </div>
+
+            <ion-reorder-group *ngIf="race10" (ionItemReorder)="carrera10Reorder($event)" disabled="false" reorder='true' >
+                <!-- Default reorder icon, end aligned items -->
+                <ion-reorder *ngFor="let item of race10" >
+                    <ion-item [style]="item.color" >
+                        <ion-label>
+                          {{item.number}}
+                        </ion-label>
+                      </ion-item>
+                </ion-reorder>
+                
+           
+              </ion-reorder-group>
+
+            <ion-item>
+                <ion-label>Carrera 11</ion-label>
+                <ion-select multiple="true" [(ngModel)]="race11" (ionChange)="carrera11Change()" >
+                    <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);--background:rgb(208, 2, 27);color:white;'}">1</ion-select-option>
+                    <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168);--background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                    <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);--background:rgb(66, 105, 181);color:white;'}">3</ion-select-option>
+                    <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);--background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                    <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);--background:rgb(23, 167, 87);color:white;'}">5</ion-select-option>
+                    <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);--background:rgb(0, 0, 0);color:white;'}">6</ion-select-option>
+                    <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);--background:rgb(244, 120, 68);color:white;'}">7</ion-select-option>
+                    <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);--background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                    <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);--background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                    <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);--background:rgb(103, 64, 115);color:white;'}">10</ion-select-option>
+                    <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);--background:rgb(105, 88, 88);color:white;'}">11</ion-select-option>
+                    <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);--background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                    <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);--background:rgb(175, 94, 18);color:white;'}">13</ion-select-option>
+                    <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);--background:rgb(138, 18, 175);color:white;'}">14</ion-select-option>
+                    <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);--background:rgb(77, 7, 120);color:white;'}">15</ion-select-option>
+                    <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);--background:rgb(125, 153, 43);color:white;'}">16</ion-select-option>
+                    <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);--background:rgb(181, 112, 103);color:white;'}">17</ion-select-option>
+                    <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);--background:rgb(161, 22, 82);color:white;'}">18</ion-select-option>
+                    <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);--background:rgb(74, 74, 74);color:white;'}">19</ion-select-option>
+                    <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);--background:rgb(69, 168, 122);color:white;'}">20</ion-select-option>
+                    <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);--background:rgb(44, 101, 105);color:white;'}">21</ion-select-option>
+                  </ion-select>
+            </ion-item>
+
+            <div class="order" *ngIf="race11" style="margin-top: 15px;">
+                <span>Ordena tu Pick de la carrera 11 de la forma que desees</span>
+            </div>
+
+            <ion-reorder-group *ngIf="race11" (ionItemReorder)="carrera11Reorder($event)" disabled="false" reorder='true' >
+                <!-- Default reorder icon, end aligned items -->
+                <ion-reorder *ngFor="let item of race11" >
+                    <ion-item [style]="item.color" >
+                        <ion-label>
+                          {{item.number}}
+                        </ion-label>
+                      </ion-item>
+                </ion-reorder>
+                
+           
+              </ion-reorder-group>
+
+            <ion-item>
+                <ion-label>Carrera 12</ion-label>
+                <ion-select multiple="true" [(ngModel)]="race12" (ionChange)="carrera12Change()" >
+                    <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);--background:rgb(208, 2, 27);color:white;'}">1</ion-select-option>
+                    <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168);--background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                    <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);--background:rgb(66, 105, 181);color:white;'}">3</ion-select-option>
+                    <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);--background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                    <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);--background:rgb(23, 167, 87);color:white;'}">5</ion-select-option>
+                    <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);--background:rgb(0, 0, 0);color:white;'}">6</ion-select-option>
+                    <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);--background:rgb(244, 120, 68);color:white;'}">7</ion-select-option>
+                    <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);--background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                    <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);--background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                    <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);--background:rgb(103, 64, 115);color:white;'}">10</ion-select-option>
+                    <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);--background:rgb(105, 88, 88);color:white;'}">11</ion-select-option>
+                    <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);--background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                    <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);--background:rgb(175, 94, 18);color:white;'}">13</ion-select-option>
+                    <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);--background:rgb(138, 18, 175);color:white;'}">14</ion-select-option>
+                    <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);--background:rgb(77, 7, 120);color:white;'}">15</ion-select-option>
+                    <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);--background:rgb(125, 153, 43);color:white;'}">16</ion-select-option>
+                    <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);--background:rgb(181, 112, 103);color:white;'}">17</ion-select-option>
+                    <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);--background:rgb(161, 22, 82);color:white;'}">18</ion-select-option>
+                    <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);--background:rgb(74, 74, 74);color:white;'}">19</ion-select-option>
+                    <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);--background:rgb(69, 168, 122);color:white;'}">20</ion-select-option>
+                    <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);--background:rgb(44, 101, 105);color:white;'}">21</ion-select-option>
+                  </ion-select>
+            </ion-item>
+            <div class="order" *ngIf="race12" style="margin-top: 15px;">
+                <span>Ordena tu Pick de la carrera 12 de la forma que desees</span>
+            </div>
+
+            <ion-reorder-group *ngIf="race12" (ionItemReorder)="carrera12Reorder($event)" disabled="false" reorder='true' >
+                <!-- Default reorder icon, end aligned items -->
+                <ion-reorder *ngFor="let item of race12" >
+                    <ion-item [style]="item.color" >
+                        <ion-label>
+                          {{item.number}}
+                        </ion-label>
+                      </ion-item>
+                </ion-reorder>
+                
+           
+              </ion-reorder-group>
+
+            <ion-item>
+                <ion-label>Carrera 13</ion-label>
+                <ion-select multiple="true" [(ngModel)]="race13" (ionChange)="carrera13Change()" >
+                    <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);--background:rgb(208, 2, 27);color:white;'}">1</ion-select-option>
+                    <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168);--background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                    <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);--background:rgb(66, 105, 181);color:white;'}">3</ion-select-option>
+                    <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);--background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                    <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);--background:rgb(23, 167, 87);color:white;'}">5</ion-select-option>
+                    <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);--background:rgb(0, 0, 0);color:white;'}">6</ion-select-option>
+                    <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);--background:rgb(244, 120, 68);color:white;'}">7</ion-select-option>
+                    <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);--background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                    <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);--background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                    <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);--background:rgb(103, 64, 115);color:white;'}">10</ion-select-option>
+                    <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);--background:rgb(105, 88, 88);color:white;'}">11</ion-select-option>
+                    <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);--background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                    <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);--background:rgb(175, 94, 18);color:white;'}">13</ion-select-option>
+                    <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);--background:rgb(138, 18, 175);color:white;'}">14</ion-select-option>
+                    <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);--background:rgb(77, 7, 120);color:white;'}">15</ion-select-option>
+                    <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);--background:rgb(125, 153, 43);color:white;'}">16</ion-select-option>
+                    <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);--background:rgb(181, 112, 103);color:white;'}">17</ion-select-option>
+                    <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);--background:rgb(161, 22, 82);color:white;'}">18</ion-select-option>
+                    <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);--background:rgb(74, 74, 74);color:white;'}">19</ion-select-option>
+                    <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);--background:rgb(69, 168, 122);color:white;'}">20</ion-select-option>
+                    <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);--background:rgb(44, 101, 105);color:white;'}">21</ion-select-option>
+                  </ion-select>
+            </ion-item>
+            <div class="order" *ngIf="race13" style="margin-top: 15px;">
+                <span>Ordena tu Pick de la carrera 13 de la forma que desees</span>
+            </div>
+
+            <ion-reorder-group *ngIf="race13" (ionItemReorder)="carrera13Reorder($event)" disabled="false" reorder='true' >
+                <!-- Default reorder icon, end aligned items -->
+                <ion-reorder *ngFor="let item of race13" >
+                    <ion-item [style]="item.color" >
+                        <ion-label>
+                          {{item.number}}
+                        </ion-label>
+                      </ion-item>
+                </ion-reorder>
+                
+           
+              </ion-reorder-group>
+
+            <ion-item>
+                <ion-label>Carrera 14</ion-label>
+                <ion-select multiple="true" [(ngModel)]="race14" (ionChange)="carrera14Change()" >
+                    <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);--background:rgb(208, 2, 27);color:white;'}">1</ion-select-option>
+                    <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168);--background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                    <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);--background:rgb(66, 105, 181);color:white;'}">3</ion-select-option>
+                    <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);--background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                    <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);--background:rgb(23, 167, 87);color:white;'}">5</ion-select-option>
+                    <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);--background:rgb(0, 0, 0);color:white;'}">6</ion-select-option>
+                    <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);--background:rgb(244, 120, 68);color:white;'}">7</ion-select-option>
+                    <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);--background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                    <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);--background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                    <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);--background:rgb(103, 64, 115);color:white;'}">10</ion-select-option>
+                    <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);--background:rgb(105, 88, 88);color:white;'}">11</ion-select-option>
+                    <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);--background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                    <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);--background:rgb(175, 94, 18);color:white;'}">13</ion-select-option>
+                    <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);--background:rgb(138, 18, 175);color:white;'}">14</ion-select-option>
+                    <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);--background:rgb(77, 7, 120);color:white;'}">15</ion-select-option>
+                    <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);--background:rgb(125, 153, 43);color:white;'}">16</ion-select-option>
+                    <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);--background:rgb(181, 112, 103);color:white;'}">17</ion-select-option>
+                    <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);--background:rgb(161, 22, 82);color:white;'}">18</ion-select-option>
+                    <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);--background:rgb(74, 74, 74);color:white;'}">19</ion-select-option>
+                    <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);--background:rgb(69, 168, 122);color:white;'}">20</ion-select-option>
+                    <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);--background:rgb(44, 101, 105);color:white;'}">21</ion-select-option>
+                  </ion-select>
+            </ion-item>
+
+            <div class="order" *ngIf="race14" style="margin-top: 15px;">
+                <span>Ordena tu Pick de la carrera 14 de la forma que desees</span>
+            </div>
+
+            <ion-reorder-group *ngIf="race14" (ionItemReorder)="carrera14Reorder($event)" disabled="false" reorder='true' >
+                <!-- Default reorder icon, end aligned items -->
+                <ion-reorder *ngFor="let item of race14" >
+                    <ion-item [style]="item.color" >
+                        <ion-label>
+                          {{item.number}}
+                        </ion-label>
+                      </ion-item>
+                </ion-reorder>
+                
+           
+              </ion-reorder-group>
+
+            <ion-item>
+                <ion-label>Carrera 15</ion-label>
+                <ion-select multiple="true" [(ngModel)]="race15" (ionChange)="carrera15Change()" >
+                    <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);--background:rgb(208, 2, 27);color:white;'}">1</ion-select-option>
+                    <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168);--background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                    <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);--background:rgb(66, 105, 181);color:white;'}">3</ion-select-option>
+                    <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);--background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                    <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);--background:rgb(23, 167, 87);color:white;'}">5</ion-select-option>
+                    <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);--background:rgb(0, 0, 0);color:white;'}">6</ion-select-option>
+                    <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);--background:rgb(244, 120, 68);color:white;'}">7</ion-select-option>
+                    <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);--background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                    <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);--background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                    <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);--background:rgb(103, 64, 115);color:white;'}">10</ion-select-option>
+                    <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);--background:rgb(105, 88, 88);color:white;'}">11</ion-select-option>
+                    <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);--background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                    <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);--background:rgb(175, 94, 18);color:white;'}">13</ion-select-option>
+                    <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);--background:rgb(138, 18, 175);color:white;'}">14</ion-select-option>
+                    <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);--background:rgb(77, 7, 120);color:white;'}">15</ion-select-option>
+                    <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);--background:rgb(125, 153, 43);color:white;'}">16</ion-select-option>
+                    <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);--background:rgb(181, 112, 103);color:white;'}">17</ion-select-option>
+                    <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);--background:rgb(161, 22, 82);color:white;'}">18</ion-select-option>
+                    <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);--background:rgb(74, 74, 74);color:white;'}">19</ion-select-option>
+                    <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);--background:rgb(69, 168, 122);color:white;'}">20</ion-select-option>
+                    <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);--background:rgb(44, 101, 105);color:white;'}">21</ion-select-option>
+                  </ion-select>
+            </ion-item>
+
+            <div class="order" *ngIf="race15" style="margin-top: 15px;">
+                <span>Ordena tu Pick de la carrera 15 de la forma que desees</span>
+            </div>
+
+            <ion-reorder-group *ngIf="race15" (ionItemReorder)="carrera15Reorder($event)" disabled="false" reorder='true' >
+                <!-- Default reorder icon, end aligned items -->
+                <ion-reorder *ngFor="let item of race15" >
+                    <ion-item [style]="item.color" >
+                        <ion-label>
+                          {{item.number}}
+                        </ion-label>
+                      </ion-item>
+                </ion-reorder>
+                
+           
+              </ion-reorder-group>
+
+            <ion-item>
+                <ion-label>Carrera 16</ion-label>
+                <ion-select multiple="true" [(ngModel)]="race16" (ionChange)="carrera16Change()" >
+                    <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);--background:rgb(208, 2, 27);color:white;'}">1</ion-select-option>
+                    <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168);--background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                    <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);--background:rgb(66, 105, 181);color:white;'}">3</ion-select-option>
+                    <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);--background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                    <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);--background:rgb(23, 167, 87);color:white;'}">5</ion-select-option>
+                    <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);--background:rgb(0, 0, 0);color:white;'}">6</ion-select-option>
+                    <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);--background:rgb(244, 120, 68);color:white;'}">7</ion-select-option>
+                    <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);--background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                    <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);--background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                    <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);--background:rgb(103, 64, 115);color:white;'}">10</ion-select-option>
+                    <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);--background:rgb(105, 88, 88);color:white;'}">11</ion-select-option>
+                    <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);--background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                    <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);--background:rgb(175, 94, 18);color:white;'}">13</ion-select-option>
+                    <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);--background:rgb(138, 18, 175);color:white;'}">14</ion-select-option>
+                    <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);--background:rgb(77, 7, 120);color:white;'}">15</ion-select-option>
+                    <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);--background:rgb(125, 153, 43);color:white;'}">16</ion-select-option>
+                    <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);--background:rgb(181, 112, 103);color:white;'}">17</ion-select-option>
+                    <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);--background:rgb(161, 22, 82);color:white;'}">18</ion-select-option>
+                    <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);--background:rgb(74, 74, 74);color:white;'}">19</ion-select-option>
+                    <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);--background:rgb(69, 168, 122);color:white;'}">20</ion-select-option>
+                    <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);--background:rgb(44, 101, 105);color:white;'}">21</ion-select-option>
+                  </ion-select>
+            </ion-item>
+
+            <div class="order" *ngIf="race16" style="margin-top: 15px;">
+                <span>Ordena tu Pick de la carrera 16 de la forma que desees</span>
+            </div>
+
+            <ion-reorder-group *ngIf="race16" (ionItemReorder)="carrera16Reorder($event)" disabled="false" reorder='true' >
+                <!-- Default reorder icon, end aligned items -->
+                <ion-reorder *ngFor="let item of race16" >
+                    <ion-item [style]="item.color" >
+                        <ion-label>
+                          {{item.number}}
+                        </ion-label>
+                      </ion-item>
+                </ion-reorder>
+                
+           
+              </ion-reorder-group>
+
+            <ion-item>
+                <ion-label>Carrera 17</ion-label>
+                <ion-select multiple="true" [(ngModel)]="race17" (ionChange)="carrera17Change()" >
+                    <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);--background:rgb(208, 2, 27);color:white;'}">1</ion-select-option>
+                    <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168);--background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                    <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);--background:rgb(66, 105, 181);color:white;'}">3</ion-select-option>
+                    <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);--background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                    <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);--background:rgb(23, 167, 87);color:white;'}">5</ion-select-option>
+                    <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);--background:rgb(0, 0, 0);color:white;'}">6</ion-select-option>
+                    <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);--background:rgb(244, 120, 68);color:white;'}">7</ion-select-option>
+                    <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);--background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                    <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);--background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                    <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);--background:rgb(103, 64, 115);color:white;'}">10</ion-select-option>
+                    <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);--background:rgb(105, 88, 88);color:white;'}">11</ion-select-option>
+                    <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);--background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                    <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);--background:rgb(175, 94, 18);color:white;'}">13</ion-select-option>
+                    <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);--background:rgb(138, 18, 175);color:white;'}">14</ion-select-option>
+                    <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);--background:rgb(77, 7, 120);color:white;'}">15</ion-select-option>
+                    <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);--background:rgb(125, 153, 43);color:white;'}">16</ion-select-option>
+                    <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);--background:rgb(181, 112, 103);color:white;'}">17</ion-select-option>
+                    <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);--background:rgb(161, 22, 82);color:white;'}">18</ion-select-option>
+                    <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);--background:rgb(74, 74, 74);color:white;'}">19</ion-select-option>
+                    <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);--background:rgb(69, 168, 122);color:white;'}">20</ion-select-option>
+                    <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);--background:rgb(44, 101, 105);color:white;'}">21</ion-select-option>
+                  </ion-select>
+            </ion-item>
+
+            <div class="order" *ngIf="race17" style="margin-top: 15px;">
+                <span>Ordena tu Pick de la carrera 17 de la forma que desees</span>
+            </div>
+
+            <ion-reorder-group *ngIf="race17" (ionItemReorder)="carrera17Reorder($event)" disabled="false" reorder='true' >
+                <!-- Default reorder icon, end aligned items -->
+                <ion-reorder *ngFor="let item of race17" >
+                    <ion-item [style]="item.color" >
+                        <ion-label>
+                          {{item.number}}
+                        </ion-label>
+                      </ion-item>
+                </ion-reorder>
+                
+           
+              </ion-reorder-group>
+
+            <ion-item>
+                <ion-label>Carrera 18</ion-label>
+                <ion-select multiple="true" [(ngModel)]="race18" (ionChange)="carrera18Change()" >
+                    <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);--background:rgb(208, 2, 27);color:white;'}">1</ion-select-option>
+                    <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168);--background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                    <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);--background:rgb(66, 105, 181);color:white;'}">3</ion-select-option>
+                    <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);--background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                    <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);--background:rgb(23, 167, 87);color:white;'}">5</ion-select-option>
+                    <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);--background:rgb(0, 0, 0);color:white;'}">6</ion-select-option>
+                    <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);--background:rgb(244, 120, 68);color:white;'}">7</ion-select-option>
+                    <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);--background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                    <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);--background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                    <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);--background:rgb(103, 64, 115);color:white;'}">10</ion-select-option>
+                    <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);--background:rgb(105, 88, 88);color:white;'}">11</ion-select-option>
+                    <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);--background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                    <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);--background:rgb(175, 94, 18);color:white;'}">13</ion-select-option>
+                    <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);--background:rgb(138, 18, 175);color:white;'}">14</ion-select-option>
+                    <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);--background:rgb(77, 7, 120);color:white;'}">15</ion-select-option>
+                    <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);--background:rgb(125, 153, 43);color:white;'}">16</ion-select-option>
+                    <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);--background:rgb(181, 112, 103);color:white;'}">17</ion-select-option>
+                    <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);--background:rgb(161, 22, 82);color:white;'}">18</ion-select-option>
+                    <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);--background:rgb(74, 74, 74);color:white;'}">19</ion-select-option>
+                    <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);--background:rgb(69, 168, 122);color:white;'}">20</ion-select-option>
+                    <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);--background:rgb(44, 101, 105);color:white;'}">21</ion-select-option>
+                  </ion-select>
+            </ion-item>
+            <div class="order" *ngIf="race18" style="margin-top: 15px;">
+                <span>Ordena tu Pick de la carrera 18 de la forma que desees</span>
+            </div>
+
+            <ion-reorder-group *ngIf="race18" (ionItemReorder)="carrera18Reorder($event)" disabled="false" reorder='true' >
+                <!-- Default reorder icon, end aligned items -->
+                <ion-reorder *ngFor="let item of race18" >
+                    <ion-item [style]="item.color" >
+                        <ion-label>
+                          {{item.number}}
+                        </ion-label>
+                      </ion-item>
+                </ion-reorder>
+                
+           
+              </ion-reorder-group>
+
+            <ion-item>
+                <ion-label>Carrera 19</ion-label>
+                <ion-select multiple="true" [(ngModel)]="race19" (ionChange)="carrera19Change()" >
+                    <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);--background:rgb(208, 2, 27);color:white;'}">1</ion-select-option>
+                    <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168);--background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                    <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);--background:rgb(66, 105, 181);color:white;'}">3</ion-select-option>
+                    <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);--background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                    <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);--background:rgb(23, 167, 87);color:white;'}">5</ion-select-option>
+                    <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);--background:rgb(0, 0, 0);color:white;'}">6</ion-select-option>
+                    <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);--background:rgb(244, 120, 68);color:white;'}">7</ion-select-option>
+                    <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);--background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                    <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);--background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                    <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);--background:rgb(103, 64, 115);color:white;'}">10</ion-select-option>
+                    <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);--background:rgb(105, 88, 88);color:white;'}">11</ion-select-option>
+                    <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);--background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                    <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);--background:rgb(175, 94, 18);color:white;'}">13</ion-select-option>
+                    <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);--background:rgb(138, 18, 175);color:white;'}">14</ion-select-option>
+                    <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);--background:rgb(77, 7, 120);color:white;'}">15</ion-select-option>
+                    <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);--background:rgb(125, 153, 43);color:white;'}">16</ion-select-option>
+                    <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);--background:rgb(181, 112, 103);color:white;'}">17</ion-select-option>
+                    <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);--background:rgb(161, 22, 82);color:white;'}">18</ion-select-option>
+                    <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);--background:rgb(74, 74, 74);color:white;'}">19</ion-select-option>
+                    <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);--background:rgb(69, 168, 122);color:white;'}">20</ion-select-option>
+                    <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);--background:rgb(44, 101, 105);color:white;'}">21</ion-select-option>
+                  </ion-select>
+            </ion-item>
+
+            <div class="order" *ngIf="race19" style="margin-top: 15px;">
+                <span>Ordena tu Pick de la carrera 19 de la forma que desees</span>
+            </div>
+
+            <ion-reorder-group *ngIf="race19" (ionItemReorder)="carrera19Reorder($event)" disabled="false" reorder='true' >
+                <!-- Default reorder icon, end aligned items -->
+                <ion-reorder *ngFor="let item of race19" >
+                    <ion-item [style]="item.color" >
+                        <ion-label>
+                          {{item.number}}
+                        </ion-label>
+                      </ion-item>
+                </ion-reorder>
+                
+           
+              </ion-reorder-group>
+
+            <ion-item>
+                <ion-label>Carrera 20</ion-label>
+                <ion-select multiple="true" [(ngModel)]="race20" (ionChange)="carrera20Change()" >
+                    <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);--background:rgb(208, 2, 27);color:white;'}">1</ion-select-option>
+                    <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168);--background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                    <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);--background:rgb(66, 105, 181);color:white;'}">3</ion-select-option>
+                    <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);--background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                    <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);--background:rgb(23, 167, 87);color:white;'}">5</ion-select-option>
+                    <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);--background:rgb(0, 0, 0);color:white;'}">6</ion-select-option>
+                    <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);--background:rgb(244, 120, 68);color:white;'}">7</ion-select-option>
+                    <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);--background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                    <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);--background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                    <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);--background:rgb(103, 64, 115);color:white;'}">10</ion-select-option>
+                    <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);--background:rgb(105, 88, 88);color:white;'}">11</ion-select-option>
+                    <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);--background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                    <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);--background:rgb(175, 94, 18);color:white;'}">13</ion-select-option>
+                    <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);--background:rgb(138, 18, 175);color:white;'}">14</ion-select-option>
+                    <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);--background:rgb(77, 7, 120);color:white;'}">15</ion-select-option>
+                    <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);--background:rgb(125, 153, 43);color:white;'}">16</ion-select-option>
+                    <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);--background:rgb(181, 112, 103);color:white;'}">17</ion-select-option>
+                    <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);--background:rgb(161, 22, 82);color:white;'}">18</ion-select-option>
+                    <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);--background:rgb(74, 74, 74);color:white;'}">19</ion-select-option>
+                    <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);--background:rgb(69, 168, 122);color:white;'}">20</ion-select-option>
+                    <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);--background:rgb(44, 101, 105);color:white;'}">21</ion-select-option>
+                  </ion-select>
+            </ion-item>
+
+            <div class="order" *ngIf="race20" style="margin-top: 15px;">
+                <span>Ordena tu Pick de la carrera 20 de la forma que desees</span>
+            </div>
+
+            <ion-reorder-group *ngIf="race20" (ionItemReorder)="carrera20Reorder($event)" disabled="false" reorder='true' >
+                <!-- Default reorder icon, end aligned items -->
+                <ion-reorder *ngFor="let item of race20" >
+                    <ion-item [style]="item.color" >
+                        <ion-label>
+                          {{item.number}}
+                        </ion-label>
+                      </ion-item>
+                </ion-reorder>
+                
+           
+              </ion-reorder-group>
+
+            <ion-item>
+                <ion-label>Carrera 21</ion-label>
+                <ion-select multiple="true" [(ngModel)]="race21" (ionChange)="carrera21Change()" >
+                    <ion-select-option [value]="{number: 1, color: 'background:rgb(208, 2, 27);'}">1</ion-select-option>
+                    <ion-select-option [value]="{number: 2, color: 'background:rgb(168, 168, 168); color:black;'}">2</ion-select-option>
+                    <ion-select-option [value]="{number: 3, color: 'background:rgb(66, 105, 181);'}">3</ion-select-option>
+                    <ion-select-option [value]="{number: 4, color: 'background:rgb(245, 247, 0);color:black;'}">4</ion-select-option>
+                    <ion-select-option [value]="{number: 5, color: 'background:rgb(23, 167, 87);'}">5</ion-select-option>
+                    <ion-select-option [value]="{number: 6, color: 'background:rgb(0, 0, 0);'}">6</ion-select-option>
+                    <ion-select-option [value]="{number: 7, color: 'background:rgb(244, 120, 68);'}">7</ion-select-option>
+                    <ion-select-option [value]="{number: 8, color: 'background:rgb(255, 154, 204);color:black;'}">8</ion-select-option>
+                    <ion-select-option [value]="{number: 9, color: 'background:rgb(199, 241, 251);color:black;'}">9</ion-select-option>
+                    <ion-select-option [value]="{number: 10, color: 'background:rgb(103, 64, 115);'}">10</ion-select-option>
+                    <ion-select-option [value]="{number: 11, color: 'background:rgb(105, 88, 88);'}">11</ion-select-option>
+                    <ion-select-option [value]="{number: 12, color: 'background:rgb(152, 206, 0);color:black;'}">12</ion-select-option>
+                    <ion-select-option [value]="{number: 13, color: 'background:rgb(175, 94, 18);'}">13</ion-select-option>
+                    <ion-select-option [value]="{number: 14, color: 'background:rgb(138, 18, 175);'}">14</ion-select-option>
+                    <ion-select-option [value]="{number: 15, color: 'background:rgb(77, 7, 120);'}">15</ion-select-option>
+                    <ion-select-option [value]="{number: 16, color: 'background:rgb(125, 153, 43);'}">16</ion-select-option>
+                    <ion-select-option [value]="{number: 17, color: 'background:rgb(181, 112, 103);'}">17</ion-select-option>
+                    <ion-select-option [value]="{number: 18, color: 'background:rgb(161, 22, 82);'}">18</ion-select-option>
+                    <ion-select-option [value]="{number: 19, color: 'background:rgb(74, 74, 74);'}">19</ion-select-option>
+                    <ion-select-option [value]="{number: 20, color: 'background:rgb(69, 168, 122);'}">20</ion-select-option>
+                    <ion-select-option [value]="{number: 21, color: 'background:rgb(44, 101, 105);'}">21</ion-select-option>
+                  </ion-select>
+            </ion-item>
+
+            <div class="order" *ngIf="race21" style="margin-top: 15px;">
+                <span>Ordena tu Pick de la carrera 21 de la forma que desees</span>
+            </div>
+
+            <ion-reorder-group *ngIf="race21" (ionItemReorder)="carrera21Reorder($event)" disabled="false" reorder='true' >
+                <!-- Default reorder icon, end aligned items -->
+                <ion-reorder *ngFor="let item of race21" >
+                    <ion-item [style]="item.color" >
+                        <ion-label>
+                          {{item.number}}
+                        </ion-label>
+                      </ion-item>
+                </ion-reorder>
+                
+           
+              </ion-reorder-group>
+            
+        </ion-list>
+        </div>
+        
+    </ion-slide>
+</ion-slides>
+
+
+
+
+
+<div *ngIf="preview" class="contenido" style="background: black;color: white;width: 100%;height: 100%;">
+     <video style="height: 100%;width: 100%;object-fit: cover;" loop autoplay src="https://firebasestorage.googleapis.com/v0/b/grtv-2c63e.appspot.com/o/pronosticos%2FWhatsApp%20Video%202021-07-20%20at%204.24.52%20PM.mp4?alt=media&token=261b4aca-e15f-4495-b328-da2446f5aeb1"></video>
+
+    <video style="height: 100%;width: 100%;object-fit: contain;" id="prev" loop playsinline webkit-playsinline preload="metadata" class="video-js vjs-default-skin"></video>
+
+    <div style="height: 100%;width: 100%; display: flex;justify-content: center;align-items: center; position: absolute;z-index: 100000;top: 0;{{blur}} ">
+        <ion-icon *ngIf="blur" style="    font-size: 72px;
+      color: #ffffff6b;" name="play"></ion-icon>
+    </div>
+    <span *ngIf="currentVideoDuration " style="position: absolute;
+  bottom: 1%;
+  color: #ffffffad;
+  left: 4%;
+  font-weight: 600;
+  z-index: 1210000;
+  text-shadow: 2px 2px 4px black;
+  opacity: 0.4;">{{currentVideoDuration}} </span>
+
+    <ion-avatar style="position: absolute;z-index: 1100000;top: 2%;left: 5%;">
+        <img src="../../../assets/other/poster1.jpg" alt="">
+    </ion-avatar>
+
+    <span (click)="goBack()" style="position: absolute;z-index: 1100000;top: 2%;right: 2%;font-size: 22px;"> 
+    <ion-icon name="chevron-down-outline"></ion-icon>
+   </span>
+
+    <div class="info">
+        <div class="first">
+            <div class="linet">
+                <span *ngIf="userAny">{{userAny.displayName}} </span>
+                <span *ngIf="pais">{{pais}} </span>
+            </div>
+
+
+
+            <span>{{descripcion}} </span>
+
+            <div class="linet" style="margin-bottom: 0;margin-top: 5%;">
+                <ion-slides style="width: 100%;height: 100%;" #hipDate [options]="hipoDate">
+                    <ion-slide style="    justify-content: flex-start;
+                  font-size: 14px;margin-right: 10%;">
+                        <span *ngIf="hipodroName">{{hipodroName}} </span>
+                    </ion-slide>
+                    <ion-slide style="    justify-content: flex-start;
+                  font-size: 16px;">
+                        <span *ngIf="LongDate" style="margin-left:2px">{{LongDate}} </span>
+                    </ion-slide>
+                </ion-slides>
+
+            </div>
+
+        </div>
+        <div class="profile">
+            <ion-avatar *ngIf="userAny">
+                <img [src]="userAny.photoURL" alt="">
+            </ion-avatar>
+        </div>
+    </div>
+</div>
+
+

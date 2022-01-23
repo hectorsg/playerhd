@@ -1,0 +1,114 @@
+<div class="content" *ngIf="!preview">
+    <div class="head">
+        <span>Pronosticos Control</span>
+        <span (click)="cerrarModal()">Cerrar</span>
+    </div>
+    <ion-list>
+
+
+        <ion-item *ngFor="let item of pronostiHoy" (click)="whatToDo(item.originalVideo)" style="height: 12vh;--background: #63d063;">
+
+            <ion-avatar slot="start">
+                <img [src]="item.talentPhoto" alt="">
+            </ion-avatar>
+            <div class="icont">
+                <div class="bottom-data">
+                    <span id="itemspan">{{item.talentName | slice: 0 : 15 }}</span>
+                    <span> </span>
+                    <span id="itemspan">{{item.pais}} </span>
+                </div>
+                <h3 style="font-size:16px; font-weight:600;">{{item.hipodromo}} </h3>
+                <div class="bottom-data">
+                    <span id="itemspan">{{item.type}}  </span>
+                    <span id="itemspan" style="text-align: end;">{{item.date}} a las {{item.hour}} </span>
+                </div>
+
+            </div>
+        </ion-item>
+        <ion-item *ngFor="let item of pronostiViejos" (click)="whatToDo(item.originalVideo)" style="height: 12vh;--background: #63d063;">
+
+            <ion-avatar slot="start">
+                <img [src]="item.talentPhoto" alt="">
+            </ion-avatar>
+            <div class="icont">
+                <div class="bottom-data">
+                    <span id="itemspan">{{item.talentName | slice: 0 : 15 }}</span>
+                    <span> </span>
+                    <span id="itemspan">{{item.pais}} </span>
+                </div>
+                <h3 style="font-size:16px; font-weight:600;">{{item.hipodromo}} </h3>
+                <div class="bottom-data">
+                    <span id="itemspan">{{item.type}}  </span>
+                    <span id="itemspan" style="text-align: end;">{{item.date}} a las {{item.hour}} </span>
+                </div>
+
+            </div>
+        </ion-item>
+
+    </ion-list>
+
+</div>
+
+
+
+
+
+<div *ngIf="preview" class="contenido" style="background: black;color: white;width: 100%;height: 100%;">
+    <!--  <video style="height: 100%;width: 100%;object-fit: cover;" loop autoplay src="https://firebasestorage.googleapis.com/v0/b/grtv-2c63e.appspot.com/o/pronosticos%2FWhatsApp%20Video%202021-07-20%20at%204.24.52%20PM.mp4?alt=media&token=261b4aca-e15f-4495-b328-da2446f5aeb1"></video>
+-->
+    <video style="height: 100%;width: 100%;object-fit: cover;" id="prevAdmin" loop playsinline webkit-playsinline preload="metadata" class="video-js vjs-default-skin"></video>
+
+    <div style="height: 100%;width: 100%; display: flex;justify-content: center;align-items: center; position: absolute;z-index: 100000;top: 0;{{blur}} ">
+        <ion-icon *ngIf="blur" style="    font-size: 72px;
+  color: #ffffff6b;" name="play"></ion-icon>
+    </div>
+    <span *ngIf="currentVideoDuration " style="position: absolute;
+bottom: 1%;
+color: #ffffffad;
+left: 4%;
+font-weight: 600;
+z-index: 1210000;
+text-shadow: 2px 2px 4px black;
+opacity: 0.4;">{{currentVideoDuration}} </span>
+
+    <ion-avatar style="position: absolute;z-index: 1100000;top: 2%;left: 5%;">
+        <img src="../../../assets/other/poster1.jpg" alt="">
+    </ion-avatar>
+
+    <span (click)="goBack()" style="position: absolute;z-index: 1100000;top: 2%;right: 2%;font-size: 22px;"> 
+<ion-icon name="chevron-down-outline"></ion-icon>
+</span>
+
+    <div class="info">
+        <div class="first">
+            <div class="linet">
+                <span *ngIf="previewItem">{{previewItem.talentName}} </span>
+                <span *ngIf="previewItem">{{previewItem.pais}} </span>
+            </div>
+
+
+
+            <span>{{previewItem.descripcion}} </span>
+
+            <div class="linet" style="margin-bottom: 0;margin-top: 5%;">
+                <ion-slides style="width: 100%;height: 100%;" #hipDate [options]="hipoDate">
+                    <ion-slide style="    justify-content: flex-start;
+              font-size: 14px;margin-right: 10%;">
+                        <span *ngIf="previewItem">{{previewItem.hipodromo}} </span>
+                    </ion-slide>
+                    <ion-slide style="    justify-content: flex-start;
+              font-size: 16px;">
+                        <span *ngIf="previewItem" style="margin-left:2px">{{previewItem.date}} </span>
+                    </ion-slide>
+                </ion-slides>
+
+            </div>
+
+        </div>
+        <div class="profile">
+            <ion-avatar *ngIf="previewItem">
+                <img [src]="previewItem.talentPhoto" alt="">
+            </ion-avatar>
+        </div>
+    </div>
+</div>

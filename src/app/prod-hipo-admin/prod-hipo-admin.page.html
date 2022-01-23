@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>prodHipoAdmin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="!hipodromoOpen" >
+  <div class="myLiveHipodromos">
+
+    <div class="myHipodr" *ngFor="let item of hipodromosAll" (click)="openHipodromo(item)" >
+      <img [src]="item.cover" alt="">
+      <h3>{{item.nombre}} </h3>
+    </div>
+  </div>
+</ion-content>
+
+
+<ion-content *ngIf="hipodromoOpen" >
+  <ion-button (click)="Volver()" fill="outline">Volver</ion-button>
+  <div class="playerrr" style="width: 100%;
+  height: 215px;">
+    <iframe style="height: 100%;width: 100%;" [src]="linkEnvivo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <ion-list>
+    <ion-button (click)="inRepeticion()">
+      En Repeticion
+    </ion-button>
+    <ion-item>
+      <span>Le quedan {{hipodromoOpen.cuantoFalta}} Min </span>
+    </ion-item>
+    <ion-item>
+      <span>{{hipodromoOpen.state}}</span>
+    </ion-item>
+    <ion-item  >
+      <ion-label position="floating">Temporizador</ion-label>
+      <ion-select [(ngModel)]="howMuchTime" >
+          <ion-select-option  value="1">1 Min</ion-select-option>
+          <ion-select-option  value="2">2 Min</ion-select-option>
+          <ion-select-option  value="3">3 Min</ion-select-option>
+          <ion-select-option  value="4">4 Min</ion-select-option>
+          <ion-select-option  value="5">5 Min</ion-select-option>
+          <ion-select-option  value="6">6 Min</ion-select-option>
+          <ion-select-option  value="7">7 Min</ion-select-option>
+          <ion-select-option  value="8">8 Min</ion-select-option>
+          <ion-select-option  value="9">9 Min</ion-select-option>
+          <ion-select-option  value="10">10 Min</ion-select-option>
+          <ion-select-option  value="11">11 Min</ion-select-option>
+          <ion-select-option  value="12">12 Min</ion-select-option>
+          <ion-select-option  value="13">13 Min</ion-select-option>
+          <ion-select-option  value="14">14 Min</ion-select-option>
+          <ion-select-option  value="15">15 Min</ion-select-option>
+          <ion-select-option  value="16">16 Min</ion-select-option>
+          <ion-select-option  value="17">17 Min</ion-select-option>
+          <ion-select-option  value="18">18 Min</ion-select-option>
+          <ion-select-option  value="19">19 Min</ion-select-option>
+          <ion-select-option  value="20">20 Min</ion-select-option>
+          <ion-select-option  value="21">21 Min</ion-select-option>
+          <ion-select-option  value="22">22 Min</ion-select-option>
+          <ion-select-option  value="23">23 Min</ion-select-option>
+          <ion-select-option  value="24">24 Min</ion-select-option>
+          <ion-select-option  value="25">25 Min</ion-select-option>
+          <ion-select-option  value="26">26 Min</ion-select-option>
+          <ion-select-option  value="27">27 Min</ion-select-option>
+          <ion-select-option  value="28">28 Min</ion-select-option>
+          <ion-select-option  value="29">29 Min</ion-select-option>
+          <ion-select-option  value="30">30 Min</ion-select-option>
+          <ion-select-option  value="31">31 Min</ion-select-option>
+      </ion-select>
+  </ion-item>
+  <ion-item >
+    <ion-label position="floating">Proxima Carrera</ion-label>
+    <ion-select [(ngModel)]="whatRace" >
+        <ion-select-option  value="1era">1era</ion-select-option>
+        <ion-select-option  value="2da">2da</ion-select-option>
+        <ion-select-option  value="3era">3era</ion-select-option>
+        <ion-select-option  value="4ta">4ta</ion-select-option>
+        <ion-select-option  value="5ta">5ta</ion-select-option>
+        <ion-select-option  value="6ta">6ta</ion-select-option>
+        <ion-select-option  value="7ma">7ma</ion-select-option>
+        <ion-select-option  value="8va">8va</ion-select-option>
+        <ion-select-option  value="9na">9na</ion-select-option>
+        <ion-select-option  value="10ma">10ma</ion-select-option>
+        <ion-select-option  value="11va">11va</ion-select-option>
+        <ion-select-option  value="12va">12va</ion-select-option>
+        <ion-select-option  value="13va">13va</ion-select-option>
+        <ion-select-option  value="14va">14va</ion-select-option>
+        <ion-select-option  value="15va">15va</ion-select-option>
+        <ion-select-option  value="16va">16va</ion-select-option>
+        <ion-select-option  value="17ma">17ma</ion-select-option>
+        <ion-select-option  value="18va">18va</ion-select-option>
+        <ion-select-option  value="19na">19na</ion-select-option>
+        <ion-select-option  value="20ma">20va</ion-select-option>
+        <ion-select-option  value="21era">21ma</ion-select-option>
+        <ion-select-option  value="22da">22va</ion-select-option>
+        <ion-select-option  value="23era">23va</ion-select-option>
+        <ion-select-option  value="24ta">24va</ion-select-option>
+        <ion-select-option  value="25ta">25va</ion-select-option>
+    </ion-select>
+</ion-item>
+  <ion-button *ngIf="whatRace && howMuchTime" (click)=" updateHipodromo()">
+    Termino la Carrera
+  </ion-button>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,113 @@
+<div class="content" *ngIf="!encuestaData && userAny">
+    <div class="header-title" style="
+backdrop-filter: blur(5px);    margin-top: 0;">
+
+        <div class="titulo">
+            <h3>Encuestas</h3>
+        </div>
+        <span (click)="cerrarModal()" style="    color: white;
+      margin-right: 5%;
+      font-weight: 600;">Volver</span>
+    </div>
+
+    <div class="episodios-list" style="height: 90%;">
+
+
+        <div class="episodios-item" *ngFor="let item of encuestas" (click)="addEncuestaData(item)">
+
+
+            <div class="item-img">
+                <img src="../../../assets/other/poster1.jpg" alt="">
+            </div>
+            <div style="    display: flex;
+            width: 70%;
+            height: 95%;
+            justify-content: space-evenly; 
+            align-items: center;">
+                <div class="item-content">
+                    <div class="titulo-episodio" style="display: flex;">
+                        <span style="text-align: initial;">{{item.encuestaName}}</span>
+                    </div>
+                    <div class="other-info">
+                        <span>Han participado: {{item.participantes.length}} </span>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+</div>
+
+<div class="content" *ngIf="encuestaData && userAny">
+    <div class="botonback">
+        <span (click)="encuestaData = null">Volver</span>
+    </div>
+    <h3 style="    color: white;
+    text-align: center;
+    font-weight: 600;">Haz tu seleccion</h3>
+    <ion-list [style]="isSelected">
+        <ion-item style="    --background: #99999987;
+        color: white;
+        font-weight: 600;" *ngFor="let entry of encuestaData.data">
+            <ion-label>{{entry.name}}</ion-label>
+            <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" (ionChange)="userSelect(entry)"></ion-checkbox>
+        </ion-item>
+        <br>
+        <br>
+        <br>
+    </ion-list>
+    <ion-button *ngIf="select" style="position: fixed;
+    bottom: 0;
+    width: 100%;
+    --border-radius: 0;
+    --background: #999999de;
+    color: #3c3c3c;
+    font-weight: 600;z-index: 1000000;
+    height: 8%;
+    padding-bottom: env(safe-area-inset-bottom);
+    margin: 0;" (click)="addEncuesta()">Agregar Seleccion</ion-button>
+
+</div>
+
+<div *ngIf="!userAny" class="onLogin content" style="width: 100%;height: 100%;">
+    <div class="juego-header" style="    position: absolute;
+  top: 2%;
+  right: 5%;
+  color: white;
+  justify-content: flex-end;">
+        <div class="it" style="margin-right: 5%;" (click)="cerrarModal()">
+            <ion-icon name="chevron-down-outline"></ion-icon>
+        </div>
+    </div>
+
+
+    <span *ngIf="!log">Primero debes iniciar sesion</span>
+    <ion-button *ngIf="!log" (click)="log = true">Login Email</ion-button>
+
+    <h3 *ngIf="log" style="text-align: center; font-size: 20px;font-weight: 600;color: white;">Ingresa tu Email y Contraseña</h3>
+    <div *ngIf="log" class="box" style="    width: 95%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;">
+        <ion-item style="--background: #ffffff63;
+        color: white;
+        font-weight: 600;
+        margin-bottom: 2%;">
+            <ion-label position="floating">Email</ion-label>
+            <ion-input #correo></ion-input>
+        </ion-item>
+        <ion-item style="--background: #ffffff63;
+        color: white;
+        font-weight: 600;
+        margin-bottom: 2%;">
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input #contra type="password"></ion-input>
+        </ion-item>
+        <ion-button style="--background:#949494c4;margin-left: auto;margin-right: auto;" (click)="emailLogin(correo, contra)">Ingresar</ion-button>
+    </div>
+</div>

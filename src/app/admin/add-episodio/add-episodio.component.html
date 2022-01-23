@@ -1,0 +1,721 @@
+<div *ngIf="!addEpisodioNormal && !addDestacado" class="content">
+    <div class="head">
+        <span>Admin de Episodios</span>
+        <span (click)="dissmissModal()">Cerrar </span>
+    </div>
+    <ion-slides style="width: 100%;height: 92%;" #tww>
+        <ion-slide>
+            <div class="two-div">
+                <div class="twoopcion">
+                    <span style="font-weight: 600;
+                    margin-left: 3%; text-align: initial;" (click)="addDestacado = true">Agregar Destacados</span>
+                    <span style="font-weight: 600;
+                    margin-right: 3%;" (click)="tww.slideTo(1)">Ver Propios</span>
+                </div>
+
+                <div class="type">
+                    <div class="programacion-list">
+                        <div *ngIf="episodiosDestacado" class="programacion-item">
+                            <h3 *ngIf="episodiosDestacado.length > 0" style="margin-top: 1%;">Hoy</h3>
+                            <div class="episodios-item" *ngFor="let item of episodiosDestacado" style="margin-bottom:2vh;">
+                                <div (click)="eliminarEditar(item)" class="item-img">
+                                    <img style="border:2px solid black" src="{{item.cover}} " alt="">
+                                </div>
+                                <div style=" display: flex;
+                              width: 70%;
+                              height: 100%;
+                              justify-content: space-evenly;
+                              align-items: center;
+                              border-bottom: 1px solid #313131 ;">
+                                    <div (click)="eliminarEditar(item)" class="item-content" style="width: 80%;">
+                                        <div class="other-info">
+                                            <span style="margin-left: auto;">{{item.pais}} </span>
+                                        </div>
+                                        <div class="titulo-episodio" style="text-align: initial;">
+                                            <span style="text-align: initial;">{{item.nombre}} </span>
+                                        </div>
+                                        <div class="other-info" style="text-align: initial;">
+
+                                            <span *ngIf="item.categoria !== 'Hipismo' ">Episodio {{item.capitulo}} </span>
+                                            <span *ngIf="item.categoria == 'Hipismo'">{{item.longDate}}  </span>
+                                            <span>{{item.horario}} </span>
+                                        </div>
+
+                                    </div>
+                                    <div class="play-item">
+                                        <ion-icon name="bookmark"></ion-icon>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="programacion-item">
+                            <h3 style="margin-top: 1%;">Ultimos Dias</h3>
+                            <div (click)="eliminarEditar(item)" class="episodios-item" *ngFor="let item of episodioDestacadoOtros" style="margin-bottom:2vh;">
+                                <div class="item-img">
+                                    <img style="border:2px solid black" src="{{item.cover}} " alt="">
+                                </div>
+                                <div style=" display: flex;
+                              width: 70%;
+                              height: 100%;
+                              justify-content: space-evenly;
+                              align-items: center;
+                              border-bottom: 1px solid #313131 ;">
+                                    <div class="item-content" style="width: 80%;">
+                                        <div class="other-info">
+                                            <span style="margin-left: auto;">{{item.pais}} </span>
+                                        </div>
+                                        <div class="titulo-episodio" style="text-align: initial;">
+                                            <span style="text-align: initial;">{{item.nombre}} </span>
+                                        </div>
+                                        <div class="other-info" style="text-align: initial;">
+
+                                            <span *ngIf="item.categoria !== 'Hipismo' ">Episodio {{item.capitulo}} </span>
+                                            <span *ngIf="item.categoria == 'Hipismo'">{{item.longDate}}  </span>
+                                            <span>{{item.horario}} </span>
+                                        </div>
+
+                                    </div>
+                                    <div class="play-item">
+                                        <ion-icon name="bookmark"></ion-icon>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+                <span style="font-weight: 600;
+                margin-left: 3%;
+                margin-top: 2%;text-align: initial;" (click)="addEpisodioNormal = true">Agregar Programacion</span>
+                <div class="type">
+                    <div class="programacion-list">
+                        <div class="programacion-item">
+                            <div class="agenda-item">
+                                <span *ngIf="day == 'Lun'; else isLun" style="border-right: 2px solid #c7c7c7; background: rgb(107, 107, 107);color: white;">Lun</span>
+                                <ng-template #isLun>
+                                    <span (click)="changeDayEpisodio('Lun')" style="border-right: 2px solid #c7c7c7;">Lun</span>
+                                </ng-template>
+                                <span *ngIf="day == 'Mar'; else isMar" style="border-right: 2px solid #c7c7c7;background: rgb(107, 107, 107);color: white;">Mar</span>
+                                <ng-template #isMar>
+                                    <span (click)="changeDayEpisodio('Mar')" style="border-right: 2px solid #c7c7c7;">Mar</span>
+                                </ng-template>
+                                <span *ngIf="day == 'Mie'; else isMie" style="border-right: 2px solid #c7c7c7;background: rgb(107, 107, 107);color: white;  ">Mie</span>
+                                <ng-template #isMie>
+                                    <span (click)="changeDayEpisodio('Mie')" style="border-right: 2px solid #c7c7c7;">Mie</span>
+                                </ng-template>
+                                <span *ngIf="day == 'Jue';else isJue" style="border-right: 2px solid #c7c7c7; background: rgb(107, 107, 107);color: white;">Jue</span>
+                                <ng-template #isJue>
+                                    <span (click)="changeDayEpisodio('Jue')" style="border-right: 2px solid #c7c7c7;">Jue</span>
+                                </ng-template>
+                                <span *ngIf="day == 'Vie';else isVie" style="border-right: 2px solid #c7c7c7;background: rgb(107, 107, 107);color: white;">Vie</span>
+                                <ng-template #isVie>
+                                    <span (click)="changeDayEpisodio('Vie')" style="border-right: 2px solid #c7c7c7;">Vie</span>
+                                </ng-template>
+                                <span *ngIf="day == 'Sab';else isSab" style="border-right: 2px solid #c7c7c7;    background: rgb(107, 107, 107);color: white;">Sab</span>
+                                <ng-template #isSab>
+                                    <span (click)="changeDayEpisodio('Sab')" style="border-right: 2px solid #c7c7c7;">Sab</span>
+                                </ng-template>
+                                <span *ngIf="day == 'Dom';else isDom" style="background: rgb(107, 107, 107);color: white;">Dom</span>
+                                <ng-template #isDom>
+                                    <span (click)="changeDayEpisodio('Dom')">Dom</span>
+                                </ng-template>
+                            </div>
+                            <div class="episodios-item" *ngFor="let item of episodiosByDay">
+                                <div (click)="eliminarEditarProgramacion(item)" class="item-img">
+                                    <!--   <div class="item-img-dia">
+                                      <span>.</span>
+                                  </div>
+                                 -->
+                                    <img style="border:2px solid black;" src="{{item.cover}} " alt="">
+                                </div>
+                                <div style=" display: flex;
+                              width: 70%;
+                              height: 100%;
+                              justify-content: space-evenly;
+                              align-items: center;
+                              border-bottom: 1px solid #313131 ;">
+                                    <div (click)="eliminarEditarProgramacion(item)" class="item-content">
+                                        <div class="other-info">
+                                            <span style="margin-left: auto;">{{item.pais}} </span>
+                                        </div>
+                                        <div class="titulo-episodio" style="text-align: initial;">
+                                            <span style="text-align: initial;">{{item.nombre}} </span>
+                                        </div>
+                                        <div class="other-info" style="text-align: initial;">
+                                            <span *ngIf="item.categoria !== 'Hipismo' ">Episodio {{item.capitulo}} </span>
+                                            <span *ngIf="item.categoria == 'Hipismo'">{{item.longDate}}  </span>
+                                            <span>{{item.horario}} </span>
+                                        </div>
+
+                                    </div>
+                                    <div (click)="eliminarEditarProgramacion(item)" class="play-item">
+                                        <ion-icon name="bookmark"></ion-icon>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </ion-slide>
+
+
+        <ion-slide style="display: block;">
+            <div class="twoopcion">
+                <span style="font-weight: 600;
+                margin-left: 3%; text-align: initial;" (click)="tww.slideTo(0)">Volver</span>
+                <span *ngIf="!editPropio"> </span>
+                <span *ngIf="editPropio" style="font-weight: 600;
+                margin-right: 3%;" (click)="editPropio = null"> Regresar </span>
+            </div>
+            <div *ngIf="!editPropio" class="programacion-list" style="height: 95%;">
+                <div class="programacion-item">
+                    <div class="episodios-item" *ngFor="let item of episodiosPropios" (click)="presentActionSheet(item)" style="margin-bottom:2vh;">
+                        <div class="item-img">
+                            <img style="border:2px solid black" src="{{item.cover}} " alt="">
+                        </div>
+                        <div style=" display: flex;
+                      width: 70%;
+                      height: 100%;
+                      justify-content: space-evenly;
+                      align-items: center;
+                      border-bottom: 1px solid #313131 ;">
+                            <div class="item-content" style="width: 80%;">
+                                <div class="other-info">
+                                    <span style="margin-left: auto;">{{item.pais}} </span>
+                                </div>
+                                <div class="titulo-episodio" style="text-align: initial;">
+                                    <span style="text-align: initial;">{{item.nombre}} </span>
+                                </div>
+                                <div class="other-info" style="text-align: initial;">
+
+                                    <span *ngIf="item.categoria !== 'Hipismo' ">Episodio {{item.capitulo}} </span>
+                                    <span *ngIf="item.categoria == 'Hipismo'">{{item.longDate}}  </span>
+                                    <span>{{item.horario}} </span>
+                                </div>
+
+                            </div>
+                            <div class="play-item">
+                                <ion-icon name="bookmark"></ion-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+            </div>
+ 
+            <div *ngIf="editPropio" class="programacion-list" style="height: 95%;">
+                <h3>Actualizar Episodio</h3>
+                <ion-item>
+                    <ion-label position="floating">Nombre</ion-label>
+                    <ion-input placeholder="{{editPropio.nombre}}" [(ngModel)]="nombreUp"></ion-input>
+
+                </ion-item>
+                <ion-button *ngIf="nombreUp" (click)="updateNombre()" expand="full">Actualizar Nombre</ion-button>
+                <ion-item>
+                    <ion-label position="floating">Pais</ion-label>
+                    <ion-select [(ngModel)]="paisUp" placeholder="{{editPropio.pais}}">
+                        <ion-select-option *ngFor="let item of PaisName" value="{{item.name}}">{{item.name}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-button *ngIf="paisUp" (click)="updatePais()" expand="full">Actualizar Pais</ion-button>
+                <ion-item>
+                    <ion-label position="floating">Link de Video</ion-label>
+                    <ion-input placeholder="{{editPropio.link}}" [(ngModel)]="linkUp"></ion-input>
+                </ion-item>
+
+                <ion-button *ngIf="linkUp" (click)="updateLink()" expand="full">Actualizar Link Video</ion-button>
+                <ion-item>
+                    <ion-label position="floating">Categoria</ion-label>
+                    <ion-input placeholder="{{editPropio.categoria}}" [(ngModel)]="categoriaUp"></ion-input>
+                </ion-item>
+
+                <ion-button *ngIf="categoriaUp" (click)="updateCategoria()" expand="full">Actualizar Categoria</ion-button>
+                <ion-item>
+                    <ion-label position="floating">Horario</ion-label>
+                    <ion-input placeholder="{{editPropio.horario}}" [(ngModel)]="horarioUp" placeholder="00:00/00:00"></ion-input>
+                </ion-item>
+
+                <ion-button *ngIf="horarioUp" (click)="updateHorario()" expand="full">Actualizar Horario</ion-button>
+
+                <ion-item>
+                    <ion-label position="floating">Hora</ion-label>
+                    <ion-input placeholder="{{editPropio.hora}}" [(ngModel)]="horaUp" placeholder="00:00"></ion-input>
+                </ion-item>
+
+                <ion-button *ngIf="horaUp" (click)="updateHora()" expand="full">Actualizar Hora</ion-button>
+
+                <ion-item>
+                    <ion-label position="floating">Descripcion</ion-label>
+                    <ion-textarea placeholder="{{editPropio.descripcion}}" [(ngModel)]="descripcionUp"></ion-textarea>
+                </ion-item>
+
+                <ion-button *ngIf="descripcionUp" (click)="updateDescripcion()" expand="full">Actualizar Descripcion</ion-button>
+                <ion-item>
+                    <ion-thumbnail style="width: 35%;" slot="start">
+                        <img [src]="editPropio.cover" alt="">
+                    </ion-thumbnail>
+                    <ion-label>
+                        <span>Imagen Cover Actual</span>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Cover Image</ion-label>
+                    <ion-card *ngIf="!urlUp">
+                        <ion-icon name="add-circle"></ion-icon>
+                        <input style="    width: 80%;" type="file" accept=".png, .jpg" (change)="onUploadUp($event)">
+                    </ion-card>
+
+                    <span *ngIf="urlUp"> Imagen subida </span>
+                    <span *ngIf="uploadPercentUp" style="width: 130px;
+               height: 20px;
+               background: green;
+               border-radius: 10px;
+               color: white;
+               font-weight: 600;">{{ uploadPercentUp| async}}%</span>
+                    <ion-input [(ngModel)]="urlUp" type="hidden" [value]="urlImageUp | async"></ion-input>
+                </ion-item>
+
+                <ion-button (click)="updateCover()" expand="full">Actualizar Cover</ion-button>
+            </div>
+        </ion-slide>
+    </ion-slides>
+
+</div>
+
+
+
+<div *ngIf="!addEpisodioNormal && addDestacado" class="content">
+    <ion-button (click)="volverAll()">Volver</ion-button>
+    <h3>Ingresa los datos necesarios para procesar esta repeticion</h3>
+    <div class="listado">
+        <ion-item>
+            <ion-label position="floating">Hipodromos</ion-label>
+            <ion-select [(ngModel)]="hipodr" (ionChange)="capituloNombre()" placeholder="Selecciona un Hipodromo">
+                <ion-select-option *ngFor="let item of hipodromoName" value="{{item.nombre}}">{{item.nombre}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Pais</ion-label>
+            <ion-select [(ngModel)]="pais" placeholder="Selecciona un pais">
+                <ion-select-option *ngFor="let item of PaisName" value="{{item.name}}">{{item.name}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Link de Video</ion-label>
+            <ion-input [(ngModel)]="link"></ion-input>
+        </ion-item>
+        <!-- <ion-item>
+            <ion-label position="floating">Categoria</ion-label>
+            <ion-input [(ngModel)]="categoria"></ion-input>
+        </ion-item>-->
+        <ion-item>
+            <ion-label position="floating">Horario</ion-label>
+            <ion-input [(ngModel)]="horario" placeholder="00:00/00:00"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Dia de estreno</ion-label>
+            <ion-select [(ngModel)]="diaEstreno" placeholder="Select One">
+                <ion-select-option value="1">1</ion-select-option>
+                <ion-select-option value="2">2</ion-select-option>
+
+                <ion-select-option value="3">3</ion-select-option>
+                <ion-select-option value="4">4</ion-select-option>
+                <ion-select-option value="5">5</ion-select-option>
+                <ion-select-option value="6">6</ion-select-option>
+                <ion-select-option value="7">7</ion-select-option>
+
+                <ion-select-option value="8">8</ion-select-option>
+                <ion-select-option value="9">9</ion-select-option>
+
+                <ion-select-option value="10">10</ion-select-option>
+                <ion-select-option value="11">11</ion-select-option>
+
+                <ion-select-option value="12">12</ion-select-option>
+                <ion-select-option value="13">13</ion-select-option>
+
+                <ion-select-option value="14">14</ion-select-option>
+
+                <ion-select-option value="15">15</ion-select-option>
+                <ion-select-option value="16">16</ion-select-option>
+                <ion-select-option value="17">17</ion-select-option>
+                <ion-select-option value="18">18</ion-select-option>
+
+                <ion-select-option value="19">19</ion-select-option>
+                <ion-select-option value="20">20</ion-select-option>
+                <ion-select-option value="21">21</ion-select-option>
+                <ion-select-option value="22">22</ion-select-option>
+
+                <ion-select-option value="23">23</ion-select-option>
+                <ion-select-option value="24">24</ion-select-option>
+                <ion-select-option value="25">25</ion-select-option>
+                <ion-select-option value="26">26</ion-select-option>
+                <ion-select-option value="27">27</ion-select-option>
+                <ion-select-option value="28">28</ion-select-option>
+                <ion-select-option value="29">29</ion-select-option>
+                <ion-select-option value="30">30</ion-select-option>
+                <ion-select-option value="31">31</ion-select-option>
+
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Mes de estreno</ion-label>
+            <ion-select [(ngModel)]="mesEstreno" placeholder="Select One">
+                <ion-select-option value="1">Enero</ion-select-option>
+                <ion-select-option value="2">Febrero</ion-select-option>
+                <ion-select-option value="3">Marzo</ion-select-option>
+
+                <ion-select-option value="4">Abril</ion-select-option>
+                <ion-select-option value="5">Mayo</ion-select-option>
+                <ion-select-option value="6">Junio</ion-select-option>
+                <ion-select-option value="7">Julio</ion-select-option>
+                <ion-select-option value="8">Agosto</ion-select-option>
+                <ion-select-option value="9">Septiembre</ion-select-option>
+                <ion-select-option value="10">Octubre</ion-select-option>
+                <ion-select-option value="11">Noviembre</ion-select-option>
+                <ion-select-option value="12">Diciembre</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Dia de semana</ion-label>
+            <ion-select [(ngModel)]="dayOfTheWeek" placeholder="Select One">
+                <ion-select-option value="Lun">Lunes</ion-select-option>
+                <ion-select-option value="Mar">Martes</ion-select-option>
+                <ion-select-option value="Mie">Miercoles</ion-select-option>
+                <ion-select-option value="Jue">Jueves</ion-select-option>
+                <ion-select-option value="Vie">Viernes</ion-select-option>
+                <ion-select-option value="Sab">Sabado</ion-select-option>
+                <ion-select-option value="Dom">Domingo</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Hora</ion-label>
+            <ion-input [(ngModel)]="hora" placeholder="00:00"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Descripcion</ion-label>
+            <ion-textarea [(ngModel)]="descripcion"></ion-textarea>
+        </ion-item>
+        <ion-item>
+            <ion-label>Cover Image</ion-label>
+            <ion-card *ngIf="!url">
+                <ion-icon name="add-circle"></ion-icon>
+                <input style="    width: 80%;" type="file" accept=".png, .jpg" (change)="onUpload($event)">
+            </ion-card>
+
+            <span *ngIf="url"> Imagen subida </span>
+            <span *ngIf="uploadPercent" style="width: 130px;
+       height: 20px;
+       background: green;
+       border-radius: 10px;
+       color: white;
+       font-weight: 600;">{{ uploadPercent| async}}%</span>
+            <ion-input [(ngModel)]="url" type="hidden" [value]="urlImage | async"></ion-input>
+        </ion-item>
+        <br>
+        <br>
+        <br>
+        <ion-button *ngIf="nombre && capituloNro && link && horario && descripcion && url" (click)="PublicarActionDestacado() ">Enviar Destacado</ion-button>
+    </div>
+</div>
+
+<div *ngIf="addEpisodioNormal && !addDestacado" class="content">
+    <ion-button (click)="volverAll()">Volver</ion-button>
+    <h3>Ingresa los datos necesarios para procesar este episodio</h3>
+    <ion-item>
+        <ion-label>Es Programacion?</ion-label>
+        <ion-toggle [(ngModel)]="isProgramacion" (ionChange)="openEpisodioProgramacion($event)" ></ion-toggle>
+    </ion-item>
+    <div class="listado" *ngIf="!isProgramacion" >
+        
+        <ion-item>
+            <ion-select [(ngModel)]="nombre" placeholder="Selecciona un Programa">
+                <ion-select-option *ngFor="let item of programasName" value="{{item.nombre}}">{{item.nombre}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Pais</ion-label>
+            <ion-select [(ngModel)]="pais" placeholder="Selecciona un pais">
+                <ion-select-option *ngFor="let item of PaisName" value="{{item.name}}">{{item.name}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Link de Video</ion-label>
+            <ion-input [(ngModel)]="link"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Categoria</ion-label>
+            <ion-select [(ngModel)]="categoria" placeholder="Selecciona una categoria">
+                <ion-select-option  value="Hipismo">Hipodromo en Vivo </ion-select-option>
+                <ion-select-option  value="Entretenimiento">Entretenimiento</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Horario</ion-label>
+            <ion-input [(ngModel)]="horario" placeholder="00:00/00:00"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Dia de estreno</ion-label>
+            <ion-select (ionChange)="capituloNum()" [(ngModel)]="diaEstreno" placeholder="Select One">
+                <ion-select-option value="1">1</ion-select-option>
+                <ion-select-option value="2">2</ion-select-option>
+
+                <ion-select-option value="3">3</ion-select-option>
+                <ion-select-option value="4">4</ion-select-option>
+                <ion-select-option value="5">5</ion-select-option>
+                <ion-select-option value="6">6</ion-select-option>
+                <ion-select-option value="7">7</ion-select-option>
+
+                <ion-select-option value="8">8</ion-select-option>
+                <ion-select-option value="9">9</ion-select-option>
+
+                <ion-select-option value="10">10</ion-select-option>
+                <ion-select-option value="11">11</ion-select-option>
+
+                <ion-select-option value="12">12</ion-select-option>
+                <ion-select-option value="13">13</ion-select-option>
+
+                <ion-select-option value="14">14</ion-select-option>
+
+                <ion-select-option value="15">15</ion-select-option>
+                <ion-select-option value="16">16</ion-select-option>
+                <ion-select-option value="17">17</ion-select-option>
+                <ion-select-option value="18">18</ion-select-option>
+
+                <ion-select-option value="19">19</ion-select-option>
+                <ion-select-option value="20">20</ion-select-option>
+                <ion-select-option value="21">21</ion-select-option>
+                <ion-select-option value="22">22</ion-select-option>
+
+                <ion-select-option value="23">23</ion-select-option>
+                <ion-select-option value="24">24</ion-select-option>
+                <ion-select-option value="25">25</ion-select-option>
+                <ion-select-option value="26">26</ion-select-option>
+                <ion-select-option value="27">27</ion-select-option>
+                <ion-select-option value="28">28</ion-select-option>
+                <ion-select-option value="29">29</ion-select-option>
+                <ion-select-option value="30">30</ion-select-option>
+                <ion-select-option value="31">31</ion-select-option>
+
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Mes de estreno</ion-label>
+            <ion-select [(ngModel)]="mesEstreno" placeholder="Select One">
+                <ion-select-option value="1">Enero</ion-select-option>
+                <ion-select-option value="2">Febrero</ion-select-option>
+                <ion-select-option value="3">Marzo</ion-select-option>
+
+                <ion-select-option value="4">Abril</ion-select-option>
+                <ion-select-option value="5">Mayo</ion-select-option>
+                <ion-select-option value="6">Junio</ion-select-option>
+                <ion-select-option value="7">Julio</ion-select-option>
+                <ion-select-option value="8">Agosto</ion-select-option>
+                <ion-select-option value="9">Septiembre</ion-select-option>
+                <ion-select-option value="10">Octubre</ion-select-option>
+                <ion-select-option value="11">Noviembre</ion-select-option>
+                <ion-select-option value="12">Diciembre</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Dia de semana</ion-label>
+            <ion-select [(ngModel)]="dayOfTheWeek" placeholder="Select One">
+                <ion-select-option value="Lun">Lunes</ion-select-option>
+                <ion-select-option value="Mar">Martes</ion-select-option>
+                <ion-select-option value="Mie">Miercoles</ion-select-option>
+                <ion-select-option value="Jue">Jueves</ion-select-option>
+                <ion-select-option value="Vie">Viernes</ion-select-option>
+                <ion-select-option value="Sab">Sabado</ion-select-option>
+                <ion-select-option value="Dom">Domingo</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Ano de estreno</ion-label>
+            <ion-input [(ngModel)]="ano" placeholder="2022"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Hora de Finalizacion</ion-label>
+            <ion-input [(ngModel)]="hora" placeholder="00:00"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Propio</ion-label>
+            <ion-toggle [(ngModel)]="propio"></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label>Semana activa</ion-label>
+            <ion-toggle [(ngModel)]="semanaIsActive"></ion-toggle>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Descripcion</ion-label>
+            <ion-textarea [(ngModel)]="descripcion"></ion-textarea>
+        </ion-item>
+        <ion-item>
+            <ion-label>Cover Image</ion-label>
+            <ion-card *ngIf="!url">
+                <ion-icon name="add-circle"></ion-icon>
+                <input style="    width: 80%;" type="file" accept=".png, .jpg" (change)="onUpload($event)">
+            </ion-card>
+
+            <span *ngIf="url"> Imagen subida </span>
+            <span *ngIf="uploadPercent" style="width: 130px;
+       height: 20px;
+       background: green;
+       border-radius: 10px;
+       color: white;
+       font-weight: 600;">{{ uploadPercent| async}}%</span>
+            <ion-input [(ngModel)]="url" type="hidden" [value]="urlImage | async"></ion-input>
+        </ion-item>
+        <br>
+        <br>
+        <br>
+        <ion-button *ngIf="nombre && capituloNro && link && categoria && horario && descripcion && url" (click)="PublicarAction()">Enviar capitulo</ion-button>
+    </div>
+
+    <div class="listado" *ngIf="isProgramacion" >
+        
+        <ion-item>
+            <ion-select [(ngModel)]="nombre" (ionChange)="filterByName($event)" placeholder="Selecciona un Programa">
+                <ion-select-option *ngFor="let item of programasName" value="{{item.nombre}}">{{item.nombre}}</ion-select-option>
+                <ion-select-option *ngFor="let item of misHipodromos" value="{{item.nombre}}">{{item.nombre}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Pais</ion-label>
+            <ion-select [(ngModel)]="pais" (ionChange)="filterByPais($event)" placeholder="Selecciona un pais">
+                <ion-select-option *ngFor="let item of PaisName" value="{{item.name}}">{{item.name}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+
+        <ion-item>
+            <ion-label position="floating">Categoria</ion-label>
+            <ion-select [(ngModel)]="categoria" (ionChange)="ysiEsHipodromo()" placeholder="Selecciona una categoria">
+                <ion-select-option  value="Hipismo">Hipodromo en Vivo </ion-select-option>
+                <ion-select-option  value="Entretenimiento">Entretenimiento</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+     
+
+        <ion-item>
+            <ion-label position="floating">Horario</ion-label>
+            <ion-input [(ngModel)]="horario" placeholder="00:00/00:00"></ion-input>
+        </ion-item>
+
+
+        <ion-item>
+            <ion-label>Dia de estreno</ion-label>
+            <ion-select (ionChange)="capituloNum()" [(ngModel)]="diaEstreno" placeholder="Select One">
+                <ion-select-option value="1">1</ion-select-option>
+                <ion-select-option value="2">2</ion-select-option>
+
+                <ion-select-option value="3">3</ion-select-option>
+                <ion-select-option value="4">4</ion-select-option>
+                <ion-select-option value="5">5</ion-select-option>
+                <ion-select-option value="6">6</ion-select-option>
+                <ion-select-option value="7">7</ion-select-option>
+
+                <ion-select-option value="8">8</ion-select-option>
+                <ion-select-option value="9">9</ion-select-option>
+
+                <ion-select-option value="10">10</ion-select-option>
+                <ion-select-option value="11">11</ion-select-option>
+
+                <ion-select-option value="12">12</ion-select-option>
+                <ion-select-option value="13">13</ion-select-option>
+
+                <ion-select-option value="14">14</ion-select-option>
+
+                <ion-select-option value="15">15</ion-select-option>
+                <ion-select-option value="16">16</ion-select-option>
+                <ion-select-option value="17">17</ion-select-option>
+                <ion-select-option value="18">18</ion-select-option>
+
+                <ion-select-option value="19">19</ion-select-option>
+                <ion-select-option value="20">20</ion-select-option>
+                <ion-select-option value="21">21</ion-select-option>
+                <ion-select-option value="22">22</ion-select-option>
+
+                <ion-select-option value="23">23</ion-select-option>
+                <ion-select-option value="24">24</ion-select-option>
+                <ion-select-option value="25">25</ion-select-option>
+                <ion-select-option value="26">26</ion-select-option>
+                <ion-select-option value="27">27</ion-select-option>
+                <ion-select-option value="28">28</ion-select-option>
+                <ion-select-option value="29">29</ion-select-option>
+                <ion-select-option value="30">30</ion-select-option>
+                <ion-select-option value="31">31</ion-select-option>
+
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Mes de estreno</ion-label>
+            <ion-select [(ngModel)]="mesEstreno" placeholder="Select One">
+                <ion-select-option value="1">Enero</ion-select-option>
+                <ion-select-option value="2">Febrero</ion-select-option>
+                <ion-select-option value="3">Marzo</ion-select-option>
+
+                <ion-select-option value="4">Abril</ion-select-option>
+                <ion-select-option value="5">Mayo</ion-select-option>
+                <ion-select-option value="6">Junio</ion-select-option>
+                <ion-select-option value="7">Julio</ion-select-option>
+                <ion-select-option value="8">Agosto</ion-select-option>
+                <ion-select-option value="9">Septiembre</ion-select-option>
+                <ion-select-option value="10">Octubre</ion-select-option>
+                <ion-select-option value="11">Noviembre</ion-select-option>
+                <ion-select-option value="12">Diciembre</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Dia de semana</ion-label>
+            <ion-select [(ngModel)]="dayOfTheWeek" placeholder="Select One">
+                <ion-select-option value="Lun">Lunes</ion-select-option>
+                <ion-select-option value="Mar">Martes</ion-select-option>
+                <ion-select-option value="Mie">Miercoles</ion-select-option>
+                <ion-select-option value="Jue">Jueves</ion-select-option>
+                <ion-select-option value="Vie">Viernes</ion-select-option>
+                <ion-select-option value="Sab">Sabado</ion-select-option>
+                <ion-select-option value="Dom">Domingo</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Hora de Finalizacion</ion-label>
+            <ion-input [(ngModel)]="hora" placeholder="00:00"></ion-input>
+        </ion-item>
+
+        <ion-item *ngFor="let item of EpisodioFilter" (click)="episdioSelected(item)" >
+            <ion-thumbnail>
+                <img [src]="item.cover" alt="">
+            </ion-thumbnail>
+            <ion-label >
+                <h3>{{item.nombre}} </h3> 
+            <p>Episodio {{item.capitulo}} | {{item.pais}} </p>
+        </ion-label>
+        </ion-item>
+
+
+
+        <br>
+        <br>
+        <br>
+        <ion-button *ngIf="nombre && pais && episodioSelected && categoria && horario && categoria !== 'Hipismo' " (click)="publicarProgramacion()">Enviar capitulo</ion-button>
+        <ion-button *ngIf="nombre && pais && episodioSelected && categoria && horario && categoria === 'Hipismo' " (click)="publicarProgramacionSiesHipodromo()">Enviar capitulo</ion-button>
+    </div>
+    
+</div>

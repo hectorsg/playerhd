@@ -1,0 +1,137 @@
+<div class="contenido-modal" *ngIf="!adLive" style="    backdrop-filter: blur(6px);-webkit-backdrop-filter: blur(8px);
+background: #000000e3; padding-top: 0;    padding: 0;  padding-bottom: 0;">
+    <!-- <div class="modal-dia">
+    <span>.</span>
+  </div>-->
+    <div (click)="dismissModal()" class="dissmiss" style="width: max-content;
+  margin-left: auto;
+  margin-top: 2%;position:initial">
+        <ion-icon name="chevron-down-outline"></ion-icon>
+    </div>
+    <ion-spinner *ngIf="!sliderLoad" style="position: absolute;
+  width: 20%;
+  height: inherit;
+  left: 40%;
+  color: white;" name="crescent"></ion-spinner>
+    <ion-slides [options]="hipodromoSlide" #hipodromo style="height: 95%;width: 100%;">
+        <!--Aqui va la info del hipodromo-->
+
+        <!--Aqui va la info de la carrera-->
+
+        <!--Aqui va la Gaceta-->
+        <ion-slide *ngIf="sliderLoad">
+            <div class="gaceta-content">
+                <div class="header">
+                    <div (click)="openInfoHipodromo()" class="hipodromo-name">
+
+                        <span>{{hip.nombre}} </span>
+                    </div>
+                    <div class="time-info" style="text-align: center;">
+                        <span *ngIf="dateFalta">En {{dateFalta}} </span>
+                        <span class="parpadea" style="color: red;" *ngIf="!dateFalta && hip.noTieneActividad === true">En Proceso</span>
+                    </div>
+                </div>
+                <div class="carreras-list">
+                    <div class="carrera-item">
+                        <h3 style="color: #8f8f8f;
+                        font-size: 16px;
+                        margin-top: 0;
+                        margin-bottom: 5%;" *ngIf="hip.retrosArray" >Haz click en tu proveedor de retrospectos favorito</h3>
+                        
+                        <div *ngFor="let item of hip.retrosArray" class="item-horse" (click)="abrir(item)">
+                            <div class="horse-num">
+                                <!-- <div class="num" style="background: {{ite.color}} ;" >
+                <span>.</span>
+              </div>--><ion-img [src]="item.cover"></ion-img>
+                            </div>
+                            <div class="item-horse-name">
+                                <div class="name">
+                                    <span>{{item.retrosName}} </span>
+                                    <span style="font-size: 13px;
+                                    color: grey;">{{item.hook}} </span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <h3 style="color: #8f8f8f;
+                        font-size: 16px;
+                        margin-top: 0;
+                        margin-bottom: 5%;
+                        margin-top: 15%;" *ngIf="hip.apuestaArray" >Juega Ahora, con las plataformas de apuestas oficiales de {{hip.nombre}}</h3>
+
+<div *ngFor="let item of hip.apuestaArray" class="item-horse" (click)="abrirApuesta(item)">
+    <div class="horse-num">
+        <!-- <div class="num" style="background: {{ite.color}} ;" >
+<span>.</span>
+</div>--><ion-img [src]="item.cover"></ion-img>
+    </div>
+    <div class="item-horse-name">
+        <div class="name">
+            <span>{{item.nameApuesta}} </span>
+            <span style="font-size: 13px;
+            color: grey;">{{item.hook}} </span>
+        </div>
+
+    </div>
+</div>
+                    </div>
+
+                </div>
+
+                <br>
+                <br>
+            </div>
+        </ion-slide>
+
+        <!--Aqui va el caballo-->
+        <ion-slide *ngIf="sliderLoad">
+            <div class="gaceta-content">
+                <div (click)="VolverGaceta()" class="volver">
+
+                    <span>Volver</span>
+                </div>
+
+                <div class="header">
+                    <div class="hipodromo-name" style="    width: 65%;">
+
+                        <span>Retrospecto </span>
+                    </div>
+                    <div class="time-info" style="text-align: center;
+          width: 30%;">
+                        <span style="opacity: 0;">.</span>
+                        <!--  <span>Descargar PDF</span>
+                        <span>{{CurrentRaceHorse.odds}} </span>-->
+                    </div>
+                </div>
+                <div class="pdf-place" style="height:91%;position:relative">
+                   <iframe style="    height: 100%;
+                   width: 100%;" [src]="link" frameborder="0"></iframe>
+                </div>
+
+
+
+            </div>
+        </ion-slide>
+    </ion-slides>
+
+</div>
+
+
+<div class="adwaiter" *ngIf="adLive && patrocinador && ress">
+    <ion-avatar style="position: absolute;z-index: 1100000;top: 2%;left: 5%;">
+        <img src="../../../assets/other/poster1.jpg" alt="">
+    </ion-avatar>
+    <div *ngIf="ress.type === 'img' " class="adcontain" (click)="goToLink(patrocinador.linkEpisodio)">
+        <img [src]="patrocinador.episodioVerticalBanner" alt="">
+    </div>
+    <div *ngIf="ress.type === 'video' " class="adcontain" (click)="goToLink(patrocinador.linkEpisodio)">
+
+        <video [src]="patrocinador.episodioVideo" [loop]="true" [autoplay]="true" playsinline webkit-playsinline></video>
+    </div>
+    <div class="skipcontain">
+        <ion-button *ngIf="!canDismiss">Saltar en {{waitFor}} seg</ion-button>
+        <ion-button (click)="puedeCerrar()" *ngIf="canDismiss">Cerrar</ion-button>
+        <ion-button (click)="goToLink(patrocinador.linkEpisodio)">Ver Mas</ion-button>
+    </div>
+
+</div>
