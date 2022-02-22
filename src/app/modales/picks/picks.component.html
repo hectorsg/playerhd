@@ -1,0 +1,59 @@
+<div class="contenido" style="    background: black;
+color: white;
+width: 100%;
+height: 100%;
+display: flex;
+align-items: center;
+flex-direction: column;" *ngIf="allData"  >
+<div class="close" >
+
+  <ion-avatar >
+    <img src="../../../assets/other/poster1.jpg" alt="">
+  </ion-avatar>
+  
+  <span (click)="closeModal()" style="font-size: 22px;"> 
+  <ion-icon name="chevron-down-outline"></ion-icon>
+  </span>
+</div>
+
+  <div class="head">
+    <div class="data">
+      <div class="coveress">
+        <ion-avatar>
+          <img [src]="allData.hipodromoPhoto" alt="">
+        </ion-avatar>
+        <ion-avatar>
+          <img [src]="paisImage" alt="">
+        </ion-avatar>
+      </div>
+      <span class="hipoName" >{{allData.hipodromo}} </span>
+      <span class="namePron" >{{allData.talentName}} </span>
+      <span class="namePron" >{{allData.type}} </span>
+
+      <span class="datePron" >{{allData.date}} a las {{allData.hour}}</span>
+    </div>
+    <div class="user">
+      <img [src]="allData.talentPickPhoto" alt="">
+    </div>
+  </div>
+  <div class="pickss">
+    <div class="itemglobar" *ngFor="let p of picks" >
+      <span style="    height: 55px;
+      width: 55px;
+      text-align: center;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      background: #3b3b3b;
+      margin-right: 2%;
+      display: flex;
+      font-weight: 600;" >{{p.raceName}} </span>
+      <span *ngFor="let i of p.pick" class="racers" >{{i.number}} </span>
+    </div>
+
+  </div>
+  <div class="bott">
+    <ion-button (click)="presentPopover()" >Mirar Pronostico</ion-button>
+    <ion-button (click)="openLinkJuega()" class="pulse" style="    border-radius: 15px;" >Juega Ya</ion-button>
+  </div>
+</div>

@@ -1,0 +1,117 @@
+.contend{
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    background: #000000e3;
+    color: white;
+}
+
+.contend .heaad{
+    height: 8vh;
+    display: flex;
+    width: 100%;
+    padding-left: 3%;
+    padding-right: 3%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contend .arrawr{
+    height: 92vh;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.contend .arrawr .pickitem{
+    width: 96%;
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+    margin-left: 2%;
+    margin-right: 2%;
+    background: #2b2a2a;
+    margin-top: 2%;
+    border-radius: 20px;
+    padding: 2%;
+}
+
+.contend .arrawr .pickitem .headitem{
+    width: 100%;
+    height: 9vh;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 5%;
+    padding-left: 5%;
+    border-bottom: 1px solid;
+}
+
+.contend .arrawr .pickitem .headitem .namesspace{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.contend .arrawr .pickitem .headitem  .photo{
+    position: relative;
+    display: flex;
+    width: 25%;
+}
+
+.contend .arrawr .pickitem .headitem  .photo img{
+    position: absolute;
+    top: -22px;
+    width: 80%;
+}
+
+
+.contend .arrawr .pickitem .botonitem{
+    display: flex;
+    justify-content: space-around;
+}
+
+.contend .arrawr .pickitem .pickarray{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.contend .arrawr .pickitem .pickarray .picksarray{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.contend .arrawr .pickitem .pickarray .picksarray .item{
+    width: 25px;
+    height: 25px;
+    background: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nores{
+    height: 30%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nores span{
+    font-size: 22px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.contend .arrawr .ti{
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.contend .arrawr .ti span{
+    font-weight: 600;
+}

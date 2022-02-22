@@ -1,0 +1,257 @@
+<div class="fund-contenido">
+    <ion-slides style="height: 100%;width: 100%;" #fundCon pager>
+        <ion-slide>
+            <div (click)="dissmissModal()" class="dissmiss" style="    width: max-content;
+            margin-left: auto;
+            margin-top: 2%;
+            position: absolute;
+            top: 2%;
+            right: 5%;
+            font-size: 22px; z-index: 1000;">
+                <ion-icon name="chevron-down-outline"></ion-icon>
+            </div>
+
+            <ion-slides *ngIf="fundacionConfigu" style="width: 100%;height: 100%;" [options]="portadita" pager #portada>
+                <ion-slide>
+                    <div *ngIf="fundacionConfigu" class="cont" style="display: flex;
+                flex-direction: column;
+                height: max-content;
+                overflow-y: initial;
+                justify-content: center;
+                align-items: center;">
+
+                        <h3>{{fundacionConfigu.titleBig}}</h3>
+
+                        <img style="width: 95%;" [src]="fundacionConfigu.gustavoPhoto" alt="">
+                        <p>{{fundacionConfigu.introText}} </p>
+
+
+
+
+
+                        <!--
+    
+                   
+    
+                    -->
+                        <div (click)="verMas()" class="dissmiss" style="width: 30%;
+                    margin-left: auto;
+                    margin-top: 2%;
+                    position: initial;
+                    margin-top: 2%;
+                    margin-bottom: 5%;">
+                            <span style="    display: flex;
+                        justify-content: space-around;
+                        align-items: center;
+                        font-weight: 600;
+                        color: #9e9e9e;">Ver Mas <ion-icon slot="end" name="arrow-forward-circle-outline"></ion-icon></span>
+                        </div>
+                    </div>
+                </ion-slide>
+                <ion-slide>
+                    <div *ngIf="fundacionConfigu" class="cont" style="display: flex;
+                  flex-direction: column;
+                  height: max-content;
+                  overflow-y: initial;
+                  justify-content: center;
+                  align-items: center;">
+
+                        <img [src]="fundacionConfigu.firstPhoto" alt="">
+                        <p style="font-size: 10px;text-align:center">Kianny Casallas, Directora de la Fundación en Venezuela</p>
+                        <p>Fundación Gustavo Ravell con una misión netamente humanista, basados en el altruismo que caracteriza a los pueblos latinoamericanos, se ha planteado como objetivo central el apoyo concreto a los sectores menos favorecidos de nuestras
+                            diversas sociedades.
+                        </p>
+
+                        <img [src]="fundacionConfigu.secondPhoto" alt="">
+
+                        <!--
+                        <p>Demostramos que el hipismo representa algo más que el juego, la competencia, la diversión y la apuesta. A partir del hecho hípico la Fundación Gustavo Ravell, a través de sus asociados en diversas áreas de la industria hípica estadounidense
+                            y de los países latinoamericanos, una vez hecho el respectivo diagnóstico, se dedicará a entregar felicidad a través de apoyos concretos a manera de alimentos, vestido, calzado o cualquier otra manera que se considere pertinente
+                            para enaltecer la condición humana de manera igualitaria y repartir alegría a través del hipismo hasta el último rincón.</p>
+                       -->
+
+
+                        <!--
+                            <p>Para ello, la Fundación Gustavo Ravell, radicada en Estados Unidos, cuenta con representantes en Chile, Uruguay, Argentina, Venezuela, Panamá, República Dominicana y México. Con ellos no solo se lleva un diagnóstico sino una estrategia
+                            para cada vez alcanzar un mayor número de favorecidos con estos planes de cooperación a favor de la familia hípica continental.</p>
+
+-->
+                        <div (click)="verMas()" class="dissmiss" style="width: 30%;
+                    margin-left: auto;
+                    margin-top: 2%;
+                    position: initial;
+                    margin-top: 2%;
+                    margin-bottom: 5%;">
+                            <span style="    display: flex;
+                        justify-content: space-around;
+                        align-items: center;
+                        font-weight: 600;
+                        color: #9e9e9e;">Ver Mas <ion-icon slot="end" name="arrow-forward-circle-outline"></ion-icon></span>
+                        </div>
+                    </div>
+                </ion-slide>
+
+                <ion-slide>
+                    <div *ngIf="fundacionConfigu" class="cont" style="display: flex;
+                flex-direction: column;
+                height: max-content;
+                overflow-y: initial;
+                justify-content: center;
+                align-items: center;">
+
+                        <img [src]="fundacionConfigu.thirdPhoto" alt="">
+
+                        <p>Demostramos que el hipismo representa algo más que el juego, la competencia, la diversión y la apuesta. A partir del hecho hípico la Fundación Gustavo Ravell, a través de sus asociados en diversas áreas de la industria hípica estadounidense
+                            y de los países latinoamericanos, una vez hecho el respectivo diagnóstico, se dedicará a entregar felicidad a través de apoyos concretos a manera de alimentos, vestido, calzado o cualquier otra manera que se considere pertinente
+                            para enaltecer la condición humana de manera igualitaria y repartir alegría a través del hipismo hasta el último rincón.</p>
+
+
+
+                        <!--
+                          <p>Para ello, la Fundación Gustavo Ravell, radicada en Estados Unidos, cuenta con representantes en Chile, Uruguay, Argentina, Venezuela, Panamá, República Dominicana y México. Con ellos no solo se lleva un diagnóstico sino una estrategia
+                          para cada vez alcanzar un mayor número de favorecidos con estos planes de cooperación a favor de la familia hípica continental.</p>
+
+-->
+                        <div (click)="verMas()" class="dissmiss" style="width: 30%;
+                    margin-left: auto;
+                    margin-top: 2%;
+                    position: initial;
+                    margin-top: 2%;
+                    margin-bottom: 5%;">
+                            <span style="    display: flex;
+                        justify-content: space-around;
+                        align-items: center;
+                        font-weight: 600;
+                        color: #9e9e9e;">Ver Mas <ion-icon slot="end" name="arrow-forward-circle-outline"></ion-icon></span>
+                        </div>
+                    </div>
+                </ion-slide>
+
+                <ion-slide>
+                    <div *ngIf="fundacionConfigu" class="cont" style="display: flex;
+              flex-direction: column;
+              height: max-content;
+              overflow-y: initial;
+              justify-content: center;
+              align-items: center;">
+
+                        <img [src]="fundacionConfigu.fourPhoto" alt="">
+
+                        <p>Para ello, la Fundación Gustavo Ravell, radicada en Estados Unidos, cuenta con representantes en Chile, Uruguay, Argentina, Venezuela, Panamá, República Dominicana y México. Con ellos no solo se lleva un diagnóstico sino una estrategia
+                            para cada vez alcanzar un mayor número de favorecidos con estos planes de cooperación a favor de la familia hípica continental.</p>
+                        <div (click)="verMas()" class="dissmiss" style="width: 30%;
+                            margin-left: auto;
+                            margin-top: 2%;
+                            position: initial;
+                            margin-top: 2%;
+                            margin-bottom: 5%;">
+                            <span style="    display: flex;
+                                justify-content: space-around;
+                                align-items: center;
+                                font-weight: 600;
+                                color: #9e9e9e;">Ver Mas <ion-icon slot="end" name="arrow-forward-circle-outline"></ion-icon></span>
+                        </div>
+                    </div>
+                </ion-slide>
+            </ion-slides>
+
+
+
+            <div class="spinnnn" *ngIf="!fundacionConfigu ">
+                <ion-spinner style="    width: 30%;
+              height: 40%;
+              left: 35%;
+              top: 30%;
+              color: white;position: absolute;" name="crescent"></ion-spinner>
+            </div>
+
+        </ion-slide>
+        <ion-slide>
+            <div *ngIf="fundacionConfigu && fundacionPost && !fundOppen" class="cont">
+                <div (click)="dissmissModal()" class="dissmiss" style="width: max-content;
+              margin-left: auto;
+              margin-top: 2%;font-size: 22px;position:initial">
+                    <ion-icon name="chevron-down-outline"></ion-icon>
+                </div>
+                <h3>{{fundacionConfigu.titleAlt}}</h3>
+                <ion-item *ngFor="let item of fundacionPost" (click)="verPostFund(item)" style="margin-bottom: 2%;
+                --background: #3f3f3f;
+                color: white;
+                border-radius: 10px;">
+                    <ion-thumbnail style="--border-radius:10px;" slot="start">
+                        <img style="width: 100%;height: 100%;object-fit: cover;" [src]="item.photoPortada" alt="">
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h3> {{item.title}} </h3>
+                        <p style="color: #b5b5b5;
+                        font-size: 10px;"> {{item.descripcion}} </p>
+                    </ion-label>
+                </ion-item>
+            </div>
+
+            <div *ngIf="fundacionConfigu && fundacionPost && fundOppen" class="fundopen">
+                <div class="boar">
+                    <div (click)="fundOppen = null" class="backk">
+                        <ion-icon name="arrow-undo-outline"></ion-icon>
+                    </div>
+                    <div (click)="dissmissModal()" class="dismi">
+
+                        <ion-icon name="chevron-down-outline"></ion-icon>
+                    </div>
+                </div>
+                <ion-slides style="height: 100%;width: 100%;" pager #funO [options]="fund">
+                    <ion-slide>
+                        <div class="opencont">
+                            <h3>{{fundOppen.title}} </h3>
+                            <div class="mediacont">
+                                <img [src]="fundOppen.photoPortada" alt="">
+                            </div>
+                            <div class="mediadescrip">
+                                <span>{{fundOppen.descripcion}} </span>
+                            </div>
+                        </div>
+                    </ion-slide>
+                    <ion-slide *ngIf="fundOppen.imageone">
+                        <div class="opencont">
+                            <div class="mediacont">
+                                <img [src]="fundOppen.imageone" alt="">
+                            </div>
+                            <div class="mediadescrip">
+                                <span>{{fundOppen.descripcionone}} </span>
+                            </div>
+                        </div>
+                    </ion-slide>
+                    <ion-slide *ngIf="fundOppen.imagetwo">
+                        <div class="opencont">
+                            <div class="mediacont">
+                                <img [src]="fundOppen.imagetwo" alt="">
+                            </div>
+                            <div class="mediadescrip">
+                                <span>{{fundOppen.descripciontwo}} </span>
+                            </div>
+                        </div>
+                    </ion-slide>
+                    <ion-slide *ngIf="fundOppen.imagethree">
+                        <div class="opencont">
+                            <div class="mediacont">
+                                <img [src]="fundOppen.imagethree" alt="">
+                            </div>
+                            <div class="mediadescrip">
+                                <span>{{fundOppen.descripcionthree}} </span>
+                            </div>
+                        </div>
+                    </ion-slide>
+                </ion-slides>
+            </div>
+
+            <div class="spinnnn" *ngIf="!fundacionPost ">
+                <ion-spinner style="    width: 30%;
+            height: 40%;
+            left: 35%;
+            top: 30%;
+            color: white;position: absolute;" name="crescent"></ion-spinner>
+            </div>
+        </ion-slide>
+
+    </ion-slides>
+</div>

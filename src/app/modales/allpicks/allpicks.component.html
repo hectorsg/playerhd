@@ -1,0 +1,190 @@
+<div class="contend">
+  <div class="heaad">
+    <ion-avatar>
+      <img src="../../../assets/logo/icon.png" alt="">
+    </ion-avatar>
+
+    <ion-icon (click)="dismiss()" style="font-size:22px;" name="chevron-down-outline"></ion-icon>
+  </div>
+
+  <div class="arrawr" *ngIf="pronosticoArray">
+   
+
+    <div class="ti" *ngIf="day && FullMonth && country" >
+      <span>Pronosticos de {{country.name}} hoy {{day}} de {{FullMonth}}</span>
+    </div>
+
+    <div class="nores" *ngIf="pronosticoArray.length === 0" >
+      <span>No hay Pronosticos de {{country.name}} Disponibles </span>
+    </div>
+<!--Este es un item para ganador-->
+    <div class="pickitem" *ngFor="let item of pronosticoArray" >
+      <div class="headitem">
+
+        <div class="namesspace">
+          <span style="    font-weight: 600;" >{{item.hipodromo}} {{item.carreraNro}}</span>
+          <span style="font-size: 14px;
+          color: #b0b0b0;text-transform: capitalize;" >{{item.talentName}} </span>
+        </div>
+        <div class="photo">
+          <img [src]="item.photoPick" alt="">
+        </div>
+      </div>
+
+      <div *ngIf="item.tipoJugada === 'Ganador'&& item.picks" class="pickarray">
+        <span style="font-weight: 600;
+        color: #bebebe;" >{{item.tipoJugada}}</span>
+        <div class="picksarray"  >
+          <div class="item" [style]="item.picks.color" >
+            <span>{{item.picks.number}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pickarray" *ngIf="item.type !== 'Pronostico'" >
+        <span>{{item.descripcion}} </span>
+      </div>
+
+
+
+      <div *ngIf="item.tipoJugada !== 'Ganador' && item.picks" class="pickarray">
+        <span style="font-weight: 600;
+        color: #bebebe;" >{{item.tipoJugada}}</span>
+        <div class="picksarray" *ngFor="let ite of item.picks">
+          <div class="item" style="margin-right: 10px;
+          width: 30px;
+          background: #d0d0d0;
+          font-weight: 600;
+          color: black;" >
+            <span>{{ite.raceName}}</span>
+          </div>
+          <div class="item" *ngFor="let it of ite.pick" [style]="it.color" >
+            <span>{{it.number}}</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="botonitem">
+        <ion-button style="    width: 30%;
+        --background: #5a5a5a;" (click)="presentPopover(item)" >Ver Video</ion-button>
+        <ion-button style="    width: 60%;
+        --background: #888888;" (click)="presentActionSheet()" >Ir a las Jugadas</ion-button>
+      </div>
+    </div>
+
+    <br><br> <br><br>
+  <!-- Este es un item para Pick 5
+    <div class="pickitem">
+      <div class="headitem">
+
+        <div class="namesspace">
+          <span style="    font-weight: 600;" >Gulfstream Park R2</span>
+          <span style="font-size: 14px;
+          color: #b0b0b0;" >Jose Armao</span>
+        </div>
+        <div class="photo">
+          <img src="https://firebasestorage.googleapis.com/v0/b/grtv-2c63e.appspot.com/o/qsuploads%2Fjosearmaoinside%20(1).png?alt=media&token=cf233f37-b037-4c34-8d02-3ea8e6624273" alt="">
+        </div>
+      </div>
+
+      <div class="pickarray">
+        <span style="font-weight: 600;
+        color: #bebebe;" >Pick 5</span>
+        <div class="picksarray">
+          <div class="item" style="margin-right: 10px;
+          width: 30px;
+          background: #d0d0d0;
+          font-weight: 600;
+          color: black;" >
+            <span>R2</span>
+          </div>
+          <div class="item" style="background:rgb(23, 167, 87);">
+            <span>5</span>
+          </div>
+        </div>
+
+        <div class="picksarray">
+          <div class="item" style="margin-right: 10px;
+          width: 30px;
+          background: #d0d0d0;
+          font-weight: 600;
+          color: black;" >
+            <span>R3</span>
+          </div>
+          <div class="item" style="background:rgb(152, 206, 0);color:black;" >
+            <span>12</span>
+          </div>
+          <div class="item" style="background:rgb(168, 168, 168); color:black;" >
+            <span>2</span>
+          </div>
+          <div class="item" style="background:rgb(23, 167, 87);">
+            <span>5</span>
+          </div>
+        </div>
+
+        <div class="picksarray">
+          <div class="item" style="margin-right: 10px;
+          width: 30px;
+          background: #d0d0d0;
+          font-weight: 600;
+          color: black;" >
+            <span>R4</span>
+          </div>
+          <div class="item" style="background:rgb(255, 154, 204);color:black;" >
+            <span>8</span>
+          </div>
+          <div class="item" style="background:rgb(244, 120, 68);" >
+            <span>7</span>
+          </div>
+          <div class="item" style="background:rgb(103, 64, 115);">
+            <span>10</span>
+          </div>
+        </div>
+
+        <div class="picksarray">
+          <div class="item" style="margin-right: 10px;
+          width: 30px;
+          background: #d0d0d0;
+          font-weight: 600;
+          color: black;" >
+            <span>R5</span>
+          </div>
+          <div class="item" style="background:rgb(208, 2, 27);" >
+            <span>1</span>
+          </div>
+          <div class="item" style="background:rgb(66, 105, 181);" >
+            <span>2</span>
+          </div>
+          <div class="item" style="background:rgb(23, 167, 87);">
+            <span>5</span>
+          </div>
+        </div>
+
+        <div class="picksarray">
+          <div class="item" style="margin-right: 10px;
+          width: 30px;
+          background: #d0d0d0;
+          font-weight: 600;
+          color: black;" >
+            <span>R6</span>
+          </div>
+          <div class="item" style="background:rgb(168, 168, 168); color:black;" >
+            <span>2</span>
+          </div>
+        </div>
+      </div>
+
+   
+
+      <div class="botonitem">
+        <ion-button style="    width: 30%;
+        --background: #5a5a5a;" >Ver Video</ion-button>
+        <ion-button style="    width: 60%;
+        --background: #888888;" (click)="presentActionSheet()" >Ir a las Jugadas</ion-button>
+      </div>
+    </div>
+      -->
+      
+  </div>
+</div>
